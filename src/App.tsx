@@ -4,9 +4,12 @@ import './App.css';
 
 function App() {
   return (
-    <ContentContainer>
-    <Layout />
-    </ContentContainer>
+  <div className="text-2xl font-bold underline ">
+     <ContentContainer>
+     <Layout />
+     </ContentContainer>
+  </div>
+   
   );
 }
 

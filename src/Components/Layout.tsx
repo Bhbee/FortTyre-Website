@@ -1,7 +1,16 @@
 
 function Layout() {
   return (
-    <div>Layout</div>
+    <nav>
+      <ul>
+        <li>Logo</li>
+        <li>Home</li>
+        <li>Shop</li>
+        <li>About</li>
+        <li>Contatct</li>
+        <li>Terms</li>
+      </ul>
+    </nav>
   )
 }
 
