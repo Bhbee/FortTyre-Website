@@ -1,12 +1,12 @@
-import React from 'react';
-import ContentCotainer from './ContentContainer';
+import ContentContainer from './Components/ContentContainer';
+import Layout from './Components/Layout';
 import './App.css';
 
 function App() {
   return (
-    <ContentCotainer>
-    
-    </ContentCotainer>
+    <ContentContainer>
+    <Layout />
+    </ContentContainer>
   );
 }
 
