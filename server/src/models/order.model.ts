@@ -1,27 +1,94 @@
-import mongoose from "mongoose";
-import { nanoid } from "nanoid";
-import { UserDocument } from "./user.model";
-import { ProductDocument } from "./product.model";
+import { modelOptions, prop, getModelForClass, Ref } from '@typegoose/typegoose'
+import { Product} from './product.model'
+import { User } from './user.model'
 
-export interface OrderDocument extends mongoose.Document {
-  user: UserDocument["_id"];
-  product: ProductDocument["_id"];
+@modelOptions({ schemaOptions: {timestamps: true}})
+class DeliveryAddress {
+  @prop()
+  public fullname?: string
+
+  @prop()
+  public address?: string
+
+  @prop()
+  public city?: string
+
+  @prop()
+  public postalCode?: string
+
+  @prop()
+  public country?: string
 }
 
-const OrderSchema = new mongoose.Schema(
-  {
-    orderId: {
-      type: String,
-      required: true,
-      unique: true,
-      default: () => nanoid(10),
-    },
-    user: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
-    product: { type: mongoose.Schema.Types.ObjectId, ref: "Product" },
-  },
-  { timestamps: true }
-);
+class Item {
+  @prop ({required: true })
+  public name!: string
 
-const Order = mongoose.model<OrderDocument>("Order", OrderSchema);
+  @prop ({required: true })
+  public quantity!: number
 
-export default Order;
+  // @prop ({required: true })
+  // public image!: string
+
+  @prop ({required: true })
+  public price!: string
+
+  @prop ({ref: Product})
+  public product?: Ref<Product> 
+
+}
+
+class PaymentResult {
+  @prop()
+  public paymentId!: string
+
+  @prop()
+  public status!: string
+
+  @prop()
+  public update_time!: string
+
+  @prop()
+  public email_address!: string
+}
+
+@modelOptions( {schemaOptions: {timestamps: true}})
+export class Order {
+  public _id!: string
+  
+  @prop()
+  public orderItems!: Item[]
+
+  @prop()
+  public deliveryAddress ?: DeliveryAddress 
+
+  @prop({ref: User})
+  public user?: Ref<User>
+
+
+  @prop()
+  public paymentResult?: PaymentResult
+
+  @prop({required: true, default: 0})
+  public itemPrice!: number
+
+  @prop({required: true, default: 0})
+  public deliveryPrice!: number
+
+  @prop({required: true, default: 0})
+  public totalPrice!: number
+
+  @prop({required: true, default: false})
+  public isPaid!: boolean
+
+  @prop()
+  public paidAt!: Date
+
+  @prop({required: true, default: false})
+  public isDelivered!: boolean
+
+  @prop()
+  public deliveredAt!: Date
+}
+
+export const OrderModel = getModelForClass(Order)

@@ -1,16 +1,15 @@
 require("dotenv").config();
-import express  from 'express';
-import mongoose from 'mongoose';
-import compression from 'compression';
+import express, {Request, Response} from 'express'
 import cors from 'cors';
-import bodyParser from 'body-parser';
-import cookieParser from 'cookie-parser';
+import path from 'path'
 
-//import config from 'config';
-import log from './logger'
-import router from './routes';
 import dbConnect from './config/dbConnect';
-import deserializeUser from './middleware/deserializeUser';
+import { productRouter } from './routers/productRouter';
+import { userRouter } from './routers/userRouter';
+import { orderRouter } from './routers/orderRouter';
+import { paymentRouter } from './routers/paymentRouter';
+import { uploadRouter } from './routers/uploadImage';
+import { authRouter } from './routers/authRouter';
 
 
 const app = express()
@@ -18,63 +17,32 @@ const PORT = process.env.PORT;
 
 
 //middlewares
-
-// app.use(cors({
-//     credentials:true
-// })); 
-// app.use(compression());
-// app.use(cookieParser());
-// app.use(bodyParser.json());
+app.use(
+   cors({
+    credentials:true,
+    origin: ["http://localhost/3000"] //edit to frontend address
+})); 
 app.use(express.json());
-app.use(express.urlencoded({extended: false}));
-app.use(router);
-app.use(deserializeUser);
+//app.use(cookieParser)
+app.use(express.urlencoded({extended: true}));
+app.use(express.static(path.join(__dirname, '../../client')))
+app.get('*', (req:Request, res:Response)=>{
+   res.sendFile(path.join(__dirname, '../../client/'))
+})
 
-//connect to database
+//Routers
 
+app.use('/auth', authRouter)
+app.use('/users', userRouter)
+app.use('/orders', orderRouter)
+app.use('/products', productRouter)
+app.use('/payment', paymentRouter)
+app.use('/upload', uploadRouter)
+
+dbConnect();
+//run server and connect to database
 app.listen(PORT, () => {
-   log.info(`Server running on port ${PORT}`);
+   console.log(`Server running on port ${PORT}`);
 
-   dbConnect();
+   
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// const MONGO_URL = 'mongodb+srv://Bhbee:Bhbee23@forttyre.xa6gehz.mongodb.net/?retryWrites=true&w=majority'
-// mongoose.connect(MONGO_URL)
-// mongoose.connection.on('error', (error: Error)=>{
-//     console.log(error)
-// })
-
-
-// mongoose.connection.once('open', ()=> {
-//     console.log('connected to mongodb');
-//     app.listen(PORT, () => {
-//         console.log(`Server running on port ${PORT}`);
-//     });
-// })
-// mongoose.connection.on('error', (error: Error)=>{
-//     console.log(error)
-// })
-

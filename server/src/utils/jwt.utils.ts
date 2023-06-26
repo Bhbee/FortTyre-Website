@@ -1,21 +1,30 @@
 import jwt from "jsonwebtoken";
+import {User} from "../models/user.model"
 
-//const privateKey = config.get("privateKey") as string;
- const pKey = process.env.privateKey as string;
-export function sign(object: Object, options?: jwt.SignOptions | undefined) {
-  return jwt.sign(object, pKey, options);
+const JWT_SECRET = process.env.JWT_SECRET as string;
+
+export const generateToken = (user: User) => {
+  return jwt.sign(
+    {
+      _id: user._id,
+      email: user.email,
+      isAdmin: user.isAdmin,
+    }, 
+    JWT_SECRET, 
+    {expiresIn: '1d'}
+  )
 }
 
-export function decode(token: string) {
-  try {
-    const decoded = jwt.verify(token, pKey);
 
-    return { valid: true, expired: false, decoded };
-  } catch (error: any) {
-    return {
-      valid: false,
-      expired: error.message === "jwt expired",
-      decoded: null,
-    };
-  }
+//Refresh Token
+export function generateRefreshToken(user: User){
+  return jwt.sign(
+    {
+      _id: user._id,
+      email: user.email,
+      isAdmin: user.isAdmin,
+    }, 
+    JWT_SECRET, 
+    {expiresIn: '3d'}
+  )
 }

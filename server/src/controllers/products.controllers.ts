@@ -1,50 +1,123 @@
-import { Request, Response } from "express";
-import { get } from "lodash";
-import {addProduct, findProduct, UpdateProduct, deleteProduct} from "../services/product.services";
+import  express, { Request, Response} from 'express'
+import asyncHandler from 'express-async-handler'
+import { Product, ProductModel } from '../models/product.model'
 
-export async function addProductHandler(req: Request, res: Response) {
-  const userId = get(req, "user._id");
-  const body = req.body;
+export const userRouter = express.Router()
+const productsPerPage: number = 8;
+//Get All Products
+export const GetAllProducts = asyncHandler(async (req: Request, res: Response) =>{
+    const { query } = req;
+    const page: any = query.page || 1;
+    const pageSize: any = query.pageSize || query.PAGE_SIZE;
 
-  const product = await addProduct({ ...body, user: userId });
+    const products = await ProductModel
+      .find()
+      .skip(pageSize * (page - 1))
+      .limit(pageSize);
 
-  return res.send(product);
-}
+    const countProducts = await ProductModel.countDocuments();
+    res.send({
+      products,
+      countProducts,
+      page,
+      pages: Math.ceil(countProducts / productsPerPage),
+  })
+})
 
-export async function updateproductHandler(req: Request, res: Response) {
-  const productId = get(req, "params.productId");
-  const update = req.body;
-
-  const product = await findProduct({ productId });
-
-  if (!product) {
-    return res.sendStatus(404);
+//Add Product by admin only
+export const AddProduct = asyncHandler(async (req: Request, res: Response) =>{
+  let findProduct = await ProductModel.findOne({brand: req.body.brand})
+  const findProductSize = await ProductModel.findOne({size: req.body.size})
+  if(findProduct && findProductSize){
+    res.send("Product alreaddy exists. You might want to consider updating the existing product")
   }
-
-  const updatedproduct = await UpdateProduct({ productId }, update, { new: true });
-
-  return res.send(updatedproduct);
-}
-export async function getProductHandler(req: Request, res: Response) {
-  const productId = get(req, "params.productId");
-  const product = await findProduct({ productId });
-
-  if (!product) {
-    return res.sendStatus(404);
+  else{
+    const product = await ProductModel.create({
+      brand: req.body.brand,
+      size: req.body.size,
+      price: req.body.price,
+      image: req.body.image,
+      countInStock: req.body.countInStock,
+      
+    } as Product)
+    res.json({
+      _id: product.id,
+      brand: product.brand,
+      size: product.size,
+      price: product.price,
+      image: product.image,
+      countInStock: product.countInStock,
+    })
   }
+})
 
-  return res.send(product);
-}
+//Edit Product
+export const EditProductDetails = asyncHandler(async (req: Request, res: Response) =>{
+    const productId = req.params.id;
+      const product = await ProductModel.findById(productId);
+      if (product) {
+        product.price = req.body.price;
+        product.image = req.body.image;
+        product.size = req.body.size;
+        product.brand = req.body.brand;
+        product.countInStock = req.body.countInStock;
+        await product.save();
+        res.send({ message: 'Product Updated' });
+      } else {
+        res.status(404).send({ message: 'Product Not Found' });
+      }
+  })
 
-export async function deleteproductHandler(req: Request, res: Response) {
-  const productId = get(req, "params.productId");
 
-  const product = await findProduct({ productId });
+//Delete user from database by Admin only
+export const DeleteProduct = asyncHandler(async (req: Request, res: Response) =>{
+      const product = await ProductModel.findById(req.params.id);
+      if (product) {
+        await ProductModel.deleteOne()
+        res.send({ message: "Product Deleted" });
+      } else {
+        res.status(404).send({ message: "Product Not Found" });
+      }
+})
 
-  if (!product) {
-    return res.sendStatus(404);
-  }
-  await deleteProduct({ productId });
+//search by filter
+export const SearchByFilter = asyncHandler(async (req: Request, res: Response) =>{
+    const { query } = req;
+    const page: any = query.page || 1;
+    const pageSize: any = query.pageSize || query.PAGE_SIZE;
+    const brand = query.brand || '';
+    const size = query.size || '';
+    const searchQuery = query.query || '';
 
-  return res.sendStatus(200);
-}
+    const queryFilter =
+      searchQuery && searchQuery !== 'all'
+        ? {
+            name: {
+              $regex: searchQuery,
+              $options: 'i',
+            },
+          }
+        : {};
+    const brandFilter = brand && brand !== 'all' ? { brand } : {};
+    const sizeFilter = size && size !== 'all' ? { size} : {};
+
+    const products = await ProductModel.find({
+      ...queryFilter,
+      ...brandFilter,
+      ...sizeFilter,
+    })
+      .skip(pageSize * (page - 1))
+      .limit(pageSize);
+
+    const countProducts = await ProductModel.countDocuments({
+      ...queryFilter,
+      ...brandFilter,
+      ...sizeFilter,
+    });
+    res.send({
+      products,
+      countProducts,
+      page,
+      //pages: Math.ceil(countProducts / pageSize),
+    });
+  })

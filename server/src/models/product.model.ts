@@ -1,35 +1,25 @@
-import mongoose from "mongoose";
-//import { nanoid } from "nanoid";
+import { modelOptions, prop, getModelForClass } from '@typegoose/typegoose'
 
-export interface ProductDocument extends mongoose.Document {
-  name: string;
-  price: number;
-  description: string;
-  createdAt: Date;
-  updatedAt: Date;
+@modelOptions({ schemaOptions: {timestamps: true}})
+
+export class Product {
+    public _id!: string
+    
+    @prop()
+    public image!: string
+    
+    @prop({required: true})
+    public brand!: string
+
+    @prop({required: true})
+    public size!: string
+
+    @prop({required: true, default: 0})
+    public price!: string
+
+    @prop({required: true, default: 0})
+    public countInStock!: number
+
 }
 
-const ProductSchema = new mongoose.Schema(
-  {
-    // ProductId: {
-    //   type: String,
-    //   required: true,
-    //   unique: true,
-    //   default: () => nanoid(10),
-    // },
-    name:{
-        type: String,
-        required: true
-    },
-    price:{
-        type: String,
-        required: true
-    },
-    description: { type: String, default: true },
-  },
-  { timestamps: true }
-);
-
-const Product = mongoose.model<ProductDocument>("Product", ProductSchema);
-
-export default Product;
+export const ProductModel = getModelForClass(Product);

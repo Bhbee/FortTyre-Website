@@ -5,9 +5,12 @@ module.exports ={
         'prettier/@typescript-eslint',
         'plugin:pretier/recommended',
     ],
+    overrides: [],
+    parser: '@typescript-eslint/parser',
     parseOptions:{
-        ecmaVersion: 2018,
+        ecmaVersion: 2016,
         sourceType: 'module',
     },
+    plugins: ['@typescript-eslint'],
     rules: {},
 };
