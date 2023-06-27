@@ -1,0 +1,69 @@
+.image {
+    width: auto;
+    max-width: 100%;
+    height: auto;
+    background-size: cover;
+}
+
+.col-image-center {
+    justify-content: center;
+    align-items: center;
+}
+
+.heading-font {
+    font-family: poppins;
+    color: green;
+    font-size: 1.5rem;
+}
+
+.home-paragraphs {
+    text-align: center;
+    font-size: 1rem;
+}
+
+.home-headings {
+    /* font-family: Poppins; */
+    font-size: 1.5rem;
+    text-align: center;
+    color: green;
+}
+.home-shop-btn {
+    background-color: green;
+    color: #fff;
+    width: 100%;
+    border-radius: 38px;
+    font-size: 1.2rem;
+}
+
+.home-container-col {
+    margin: 0 auto;
+}
+.home-shop-btn:hover {
+    box-shadow: 0 0 20px rgba(104, 85, 224, 0.2);
+    transition: 0.4s;
+    background-color: rgb(50, 205, 50)
+}
+
+/* @media (max-width: 450px) {
+.home-headings {
+
+}
+.home-paragraphs {
+
+}
+.heading-font {
+
+}
+} */
+
+@media (max-width: 768px) {
+    .home-headings {
+        text-align: left;
+    }
+
+    .home-paragraphs {
+        text-align: left;
+    }
+    
+}
+

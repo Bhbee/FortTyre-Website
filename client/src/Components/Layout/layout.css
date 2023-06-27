@@ -1,0 +1,143 @@
+.layout-brand-logo {
+    margin-right: 1rem;
+    margin-top: 0.6rem;
+    font-weight: 900;
+    font-family: poppins;
+    color: black;
+    text-decoration: none;
+}
+
+.nav-bgcolor {
+    background-color: #fff;
+    color: black;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    /* height: 20vh; */
+}
+
+.navlink {
+    margin-right: 0.6rem;
+}
+
+.navbar-brand {
+ margin-right: 0.6rem;
+}
+
+.nav-social-links {
+    margin: 0 0.6rem;
+    text-decoration: none;
+    color: #003700;
+    display: flex;
+}
+
+.form-width {
+    width: 70%;
+}
+
+.layout-search-btn {
+  background-color: green;
+  color:#fff;
+}
+
+
+.layout-search-btn:hover {
+    background-color: rgb(50, 205, 50)
+}
+.icon-account-paragraph {
+  text-decoration: none;
+  color: green;
+
+}
+
+.layout-icon-margin {
+    margin-right: 0.3rem;
+    margin-top: 0.3rem;
+}
+
+.layout-icon {
+    size: 1rem;
+    color: green
+}
+
+.nav-social-links:hover {
+    color: rgb(50, 205, 50)
+}
+
+
+
+@media (max-width: 992px) {
+.layout-brand-logo {
+    font-size: 1rem;
+}
+
+
+    .nav-collapse-container {
+        height: 80vh;
+        padding: 0.95rem;
+        /* border: 1px solid red; */
+        
+            } 
+
+            .layout-nav-dropdown {
+                display: flex;
+                flex-direction: row;
+                /* justify-content: center; */
+                align-items: center;
+                margin-bottom: 0.47rem;
+            }
+
+     .nav-social-links {
+        /* padding: 5px 30px; */
+        text-decoration: none;
+        color: #003700;
+        margin: 0; 
+        margin-bottom: 0.47rem;
+        }
+
+        .form-width {
+            width: 100%;
+            margin-bottom: 0.95rem;
+        }
+}
+
+  @media (min-width: 992px ) 
+ and (max-width: 1200px) {
+        .layout-brand-logo {
+                font-size: 1.8rem;
+            }
+        
+            .layout-icon {
+                font-size: 1.3rem;
+            }
+        
+            .nav-container {
+                justify-content: space-around;
+            }
+        
+            .layout-nav-dropdown {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-left: 2.1rem;
+            }
+}  
+
+@media (min-width: 1200px){
+ .layout-brand-logo {
+    font-size: 1.5rem;
+  } 
+
+  .layout-icon {
+    font-size: 1rem;
+  }
+    .nav-container {
+        justify-content: space-around;
+    }
+
+        .layout-nav-dropdown {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-left: 2.1rem;
+        }
+}
