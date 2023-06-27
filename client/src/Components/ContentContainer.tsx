@@ -1,9 +1,11 @@
-import { ReactNode } from "react";
+import {ReactNode} from 'react'
 
-type ContainerProps = {
-  children: ReactNode;
+type Props = {
+  children: ReactNode
 }
 
-export default function ContentContainer({ children }: ContainerProps) {
-  return <section>{children}</section>;
+export default function ContentContainer({children}: Props) {
+  return (
+    <section>{children}</section>
+  )
 }

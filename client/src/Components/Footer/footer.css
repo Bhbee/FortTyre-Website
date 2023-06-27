@@ -1,0 +1,38 @@
+.footer-container-fluid {
+    background-color: #28282B;
+    color: #fff;
+    width: 100%;
+    padding: 20px 0;
+    text-align: center;
+  
+}
+
+.footer-container-padding {
+ padding: 20px;   
+}
+
+.footer-bg-img {
+    background-image: url("../../Assets/footer_bg.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.footer-col-align {
+    text-align: left;
+}
+
+.footer-text-header {
+    font-family: poppins;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.footer-paragraph {
+    cursor: pointer;
+    font-size: 0.8rem;
+}
+
+.footer-social-links {
+    margin-right: 1.6rem;
+}
