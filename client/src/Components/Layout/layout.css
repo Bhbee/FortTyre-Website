@@ -54,10 +54,7 @@
     margin-top: 0.3rem;
 }
 
-.layout-icon {
-    size: 1rem;
-    color: green
-}
+
 
 .nav-social-links:hover {
     color: rgb(50, 205, 50)
@@ -67,21 +64,22 @@
 
 @media (max-width: 992px) {
 .layout-brand-logo {
-    font-size: 1rem;
+    font-size: 2rem;
 }
 
-
+.layout-icon {
+    font-size: 2rem;
+    color: green;
+}
     .nav-collapse-container {
         height: 80vh;
         padding: 0.95rem;
-        /* border: 1px solid red; */
         
-            } 
+ } 
 
             .layout-nav-dropdown {
                 display: flex;
                 flex-direction: row;
-                /* justify-content: center; */
                 align-items: center;
                 margin-bottom: 0.47rem;
             }
