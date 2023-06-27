@@ -44,47 +44,6 @@ const Hero: React.FC = () => {
           </Row>
         </Row>
       </Container>
-      {/* <Container className="mt-5">
-        <Row>
-          <Col xs={12} lg={6} className="hero-col1-padding">
-            <Row className="mb-2">
-              <Col xs={12}>
-                <h1 className="header-gradient-color">
-                  Make it a safe trip with Fort tyres.
-                </h1>
-              </Col>
-            </Row>
-            <Row className="mb-2">
-              <Col xs={12} md={10}>
-                <p className="hero-typo-sizing">
-                  We help individuals and businesses experience a stress free
-                  tyre care process. We sell, fix and provide maintenance
-                  services for all tyre brands and sizes at the convenience of
-                  your home and offices.
-                </p>
-              </Col>
-            </Row>
-            <Row className="mb-2">
-              <Col xs={12} md={8}>
-                <Button variant="success" size="lg" className="hero-shop-btn">
-                  Shop Now
-                </Button>
-              </Col>
-            </Row>
-          </Col>
-
-          <Col xs={12} lg={6}>
-            <Row>
-              <Col xs={12}>
-                <Image
-                  src="https://media.istockphoto.com/id/1407217358/photo/panorama-image-of-a-new-tire-is-placed-on-the-tire-storage-rack-in-the-tire-industry-be.webp?b=1&s=170667a&w=0&k=20&c=JKwn7ckKUBX4EO5TmRearEf3lAh_PYbCjgV4FiM3B4g="
-                  className="hero-image"
-                />
-              </Col>
-            </Row>
-          </Col>
-        </Row>
-      </Container> */}
     </section>
   );
 };
