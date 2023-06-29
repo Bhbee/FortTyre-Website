@@ -4,6 +4,12 @@ import { Product, ProductModel } from '../models/product.model'
 
 export const userRouter = express.Router()
 const productsPerPage: number = 8;
+
+//Get a Product
+export const GetAProduct = asyncHandler(async (req: Request, res: Response) =>{
+  
+})
+
 //Get All Products
 export const GetAllProducts = asyncHandler(async (req: Request, res: Response) =>{
     const { query } = req;

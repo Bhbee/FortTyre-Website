@@ -4,11 +4,14 @@ import {ProductModel} from '../models/product.model'
 import {isAdmin} from '../middleware/verifyAdmin'
 import {verifyUser} from '../middleware/verifyUserAuthencity'
 
-import {AddProduct, DeleteProduct, EditProductDetails, GetAllProducts, SearchByFilter} from '../controllers/products.controllers'
+import {AddProduct, DeleteProduct, EditProductDetails, GetAProduct, GetAllProducts, SearchByFilter} from '../controllers/products.controllers'
 export const productRouter = express.Router()
 
 //Get all products
 productRouter.get('/', GetAllProducts)
+
+//Get a product
+productRouter.get('/', GetAProduct)
 
 //Search for product by filter
 productRouter.get('/search', SearchByFilter)

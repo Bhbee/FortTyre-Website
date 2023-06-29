@@ -17,9 +17,6 @@ export class User {
 
     @prop({required: true})
     public password!: string
-
-    @prop()
-    public resetToken!: string
     
     @prop()
     public refreshToken!: string
