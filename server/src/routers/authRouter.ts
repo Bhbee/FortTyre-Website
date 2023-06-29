@@ -1,5 +1,5 @@
 import express from 'express'
-import {Login, Register, handleRefreshToken } from '../controllers/auth.controller'
+import {Login, Logout, Register, handleRefreshToken } from '../controllers/auth.controller'
 import {forgotPassword, passwordReset} from '../controllers/resetPassword.controller'
 
 export const authRouter = express.Router()
@@ -13,8 +13,11 @@ authRouter.post('/sign-up', Register)
 //Refresh token
 authRouter.get("/refresh", handleRefreshToken)
 
+//Logout
+authRouter.get("/sign-out", Logout)
+
 //Forgot Password? Get reset-password link
-authRouter.post("/forget-password", forgotPassword)
+authRouter.post("/forgot-password", forgotPassword)
 
 //Reset password
-authRouter.post("/reset-password", passwordReset)
+authRouter.post("/reset-password/:id/:token", passwordReset)

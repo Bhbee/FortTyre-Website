@@ -2,7 +2,7 @@ require("dotenv").config();
 import express, {Request, Response} from 'express'
 import cors from 'cors';
 import path from 'path'
-
+import cookieParser from 'cookie-parser';
 import dbConnect from './config/dbConnect';
 import { productRouter } from './routers/productRouter';
 import { userRouter } from './routers/userRouter';
@@ -23,7 +23,7 @@ app.use(
     origin: ["http://localhost/3000"] //edit to frontend address
 })); 
 app.use(express.json());
-//app.use(cookieParser)
+app.use(cookieParser())
 app.use(express.urlencoded({extended: true}));
 app.use(express.static(path.join(__dirname, '../../client')))
 app.get('*', (req:Request, res:Response)=>{
