@@ -6,7 +6,7 @@ export class Product {
     public _id!: string
     
     @prop()
-    public image!: string
+    public image!: object
     
     @prop({required: true})
     public brand!: string

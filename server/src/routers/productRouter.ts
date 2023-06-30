@@ -1,11 +1,11 @@
 import  express, {Request, Response} from 'express'
-import asyncHandler from 'express-async-handler'
-import {ProductModel} from '../models/product.model'
 import {isAdmin} from '../middleware/verifyAdmin'
 import {verifyUser} from '../middleware/verifyUserAuthencity'
-
+import upload from "../middleware/multer"
 import {AddProduct, DeleteProduct, EditProductDetails, GetAProduct, GetAllProducts, SearchByFilter} from '../controllers/products.controllers'
 export const productRouter = express.Router()
+
+
 
 //Get all products
 productRouter.get('/', GetAllProducts)
@@ -17,7 +17,7 @@ productRouter.get('/', GetAProduct)
 productRouter.get('/search', SearchByFilter)
 
 //Add Product by Admin only
-productRouter.post('/', verifyUser, isAdmin, AddProduct)
+productRouter.post('/', verifyUser, isAdmin, upload.single("image"), AddProduct)
       
 //Edit Product by Admin only
 productRouter.patch('/:id',verifyUser, isAdmin, EditProductDetails)

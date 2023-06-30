@@ -1,5 +1,7 @@
 import  express, { Request, Response} from 'express'
 import asyncHandler from 'express-async-handler'
+
+import cloudinary from '../utils/cloudinary'
 import { Product, ProductModel } from '../models/product.model'
 
 export const userRouter = express.Router()
@@ -7,7 +9,7 @@ const productsPerPage: number = 8;
 
 //Get a Product
 export const GetAProduct = asyncHandler(async (req: Request, res: Response) =>{
-  
+
 })
 
 //Get All Products
@@ -31,31 +33,43 @@ export const GetAllProducts = asyncHandler(async (req: Request, res: Response) =
 })
 
 //Add Product by admin only
-export const AddProduct = asyncHandler(async (req: Request, res: Response) =>{
-  let findProduct = await ProductModel.findOne({brand: req.body.brand})
-  const findProductSize = await ProductModel.findOne({size: req.body.size})
-  if(findProduct && findProductSize){
-    res.send("Product alreaddy exists. You might want to consider updating the existing product")
-  }
-  else{
+export const AddProduct = async (req: Request, res: Response) => {
+  const { brand, size, price, countInStock } = req.body;
+  const imageFile = req.file;
+
+  try {
+    let findProduct = await ProductModel.findOne({ brand: req.body.brand });
+    const findProductSize = await ProductModel.findOne({ size: req.body.size });
+    if (findProduct && findProductSize) {
+      return res.send('Product already exists. You might want to consider updating the existing product');
+    }
+    if (!imageFile) {
+      return res.status(400).send({ message: 'Image file is missing' });
+    }
+    const uploadResponse = await cloudinary.uploader.upload(imageFile.path, {
+      resource_type: 'image',
+      upload_preset: 'forttyres-product-images'
+    });
+
+    if (!uploadResponse) {
+      return res.status(400).send({ message: 'Image upload failed' });
+    }
     const product = await ProductModel.create({
-      brand: req.body.brand,
-      size: req.body.size,
-      price: req.body.price,
-      image: req.body.image,
-      countInStock: req.body.countInStock,
-      
-    } as Product)
-    res.json({
-      _id: product.id,
-      brand: product.brand,
-      size: product.size,
-      price: product.price,
-      image: product.image,
-      countInStock: product.countInStock,
-    })
+      brand: brand,
+      size: size,
+      price: price,
+      image: {
+        url: uploadResponse.secure_url,
+        publicId: uploadResponse.public_id
+      },
+      countInStock: countInStock
+    });
+    res.status(201).send({ message: 'Product Added Successfully' });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send({ message: 'Internal Server Error' });
   }
-})
+};
 
 //Edit Product
 export const EditProductDetails = asyncHandler(async (req: Request, res: Response) =>{

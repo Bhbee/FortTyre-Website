@@ -1,5 +1,4 @@
 import express, {Request, Response} from 'express'
-
 export const paymentRouter = express.Router()
 
 paymentRouter.get('/paystack', (req:Request, res:Response) =>{

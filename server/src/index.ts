@@ -8,7 +8,6 @@ import { productRouter } from './routers/productRouter';
 import { userRouter } from './routers/userRouter';
 import { orderRouter } from './routers/orderRouter';
 import { paymentRouter } from './routers/paymentRouter';
-import { uploadRouter } from './routers/uploadImage';
 import { authRouter } from './routers/authRouter';
 
 
@@ -24,7 +23,7 @@ app.use(
 })); 
 app.use(express.json());
 app.use(cookieParser())
-app.use(express.urlencoded({extended: true}));
+app.use(express.urlencoded({extended: true, limit:'5mb'}));
 app.use(express.static(path.join(__dirname, '../../client')))
 app.get('*', (req:Request, res:Response)=>{
    res.sendFile(path.join(__dirname, '../../client/'))
@@ -37,7 +36,6 @@ app.use('/users', userRouter)
 app.use('/orders', orderRouter)
 app.use('/products', productRouter)
 app.use('/payment', paymentRouter)
-app.use('/upload', uploadRouter)
 
 dbConnect();
 //run server and connect to database
