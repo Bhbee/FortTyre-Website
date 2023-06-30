@@ -9,7 +9,13 @@ const productsPerPage: number = 8;
 
 //Get a Product
 export const GetAProduct = asyncHandler(async (req: Request, res: Response) =>{
-
+  const productId = req.params.id;
+  const product = await ProductModel.findById(productId);
+  if (product) {
+    res.send(product);
+  } else {
+    res.status(404).send({ message: 'Product Not Found' });
+  }
 })
 
 //Get All Products
@@ -60,7 +66,7 @@ export const AddProduct = async (req: Request, res: Response) => {
       price: price,
       image: {
         url: uploadResponse.secure_url,
-        publicId: uploadResponse.public_id
+        public_id: uploadResponse.public_id
       },
       countInStock: countInStock
     });
@@ -74,31 +80,46 @@ export const AddProduct = async (req: Request, res: Response) => {
 //Edit Product
 export const EditProductDetails = asyncHandler(async (req: Request, res: Response) =>{
     const productId = req.params.id;
-      const product = await ProductModel.findById(productId);
-      if (product) {
-        product.price = req.body.price;
-        product.image = req.body.image;
-        product.size = req.body.size;
-        product.brand = req.body.brand;
-        product.countInStock = req.body.countInStock;
-        await product.save();
-        res.send({ message: 'Product Updated' });
-      } else {
-        res.status(404).send({ message: 'Product Not Found' });
+    const imageFile = req.file;
+    const product = await ProductModel.findById(productId);
+    if (product) {
+      if(imageFile){
+        const uploadResponse = await cloudinary.uploader.upload(imageFile.path, {
+          resource_type: 'image',
+          upload_preset: 'forttyres-product-images'
+        });
+        await cloudinary.uploader.destroy(product.image.public_id);
+        product.image ={
+          url: uploadResponse.secure_url,
+          public_id: uploadResponse.public_id
+        }
       }
-  })
+      product.price = req.body.price
+      product.size = req.body.size
+      product.brand = req.body.brand
+      product.countInStock = req.body.countInStock
+      await product.save()
+      res.send({ message: 'Product Updated' });
+    } else {
+      res.status(404).send({ message: 'Product Not Found' });
+    }
+})
 
 
 //Delete user from database by Admin only
-export const DeleteProduct = asyncHandler(async (req: Request, res: Response) =>{
-      const product = await ProductModel.findById(req.params.id);
-      if (product) {
-        await ProductModel.deleteOne()
-        res.send({ message: "Product Deleted" });
-      } else {
-        res.status(404).send({ message: "Product Not Found" });
-      }
-})
+export const DeleteProduct = asyncHandler(async (req: Request, res: Response) => {
+  const product = await ProductModel.findById(req.params.id);
+  if (product) {
+    if (product.image && product.image.public_id) {
+      await cloudinary.uploader.destroy(product.image.public_id)
+    }
+    await ProductModel.deleteOne({ _id: product._id })
+    res.send({ message: "Product Deleted" });
+  } else {
+    res.status(404).send({ message: "Product Not Found" })
+  }
+});
+
 
 //search by filter
 export const SearchByFilter = asyncHandler(async (req: Request, res: Response) =>{

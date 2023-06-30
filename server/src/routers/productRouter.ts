@@ -5,13 +5,11 @@ import upload from "../middleware/multer"
 import {AddProduct, DeleteProduct, EditProductDetails, GetAProduct, GetAllProducts, SearchByFilter} from '../controllers/products.controllers'
 export const productRouter = express.Router()
 
-
-
 //Get all products
 productRouter.get('/', GetAllProducts)
 
 //Get a product
-productRouter.get('/', GetAProduct)
+productRouter.get('/:id', GetAProduct)
 
 //Search for product by filter
 productRouter.get('/search', SearchByFilter)
@@ -20,28 +18,9 @@ productRouter.get('/search', SearchByFilter)
 productRouter.post('/', verifyUser, isAdmin, upload.single("image"), AddProduct)
       
 //Edit Product by Admin only
-productRouter.patch('/:id',verifyUser, isAdmin, EditProductDetails)
+productRouter.patch('/:id',verifyUser, isAdmin, upload.single("image"), EditProductDetails)
 
 //Delete Product by Admin only
 productRouter.delete('/:id', verifyUser, isAdmin, DeleteProduct)
 
  
-
-
-
-
-// productRouter.get('/categories',asyncHandler(async (req:Request, res: Response) => {
-//       const categories = await ProductModel.find().distinct('category')
-//       res.json(categories)
-//     })
-//   )
-  
-// //api/slug/....
-// productRouter.get('/slug/:slug', asyncHandler(async (req, res) =>{
-//     const product = await ProductModel.findOne({ slug: req.params.slug})
-//     if(product){
-//         res.json(product)
-//     } else {
-//         res.status(404).json({message: 'Product Not Found'})
-//     }
-// }))
