@@ -1,12 +1,17 @@
 import { modelOptions, prop, getModelForClass } from '@typegoose/typegoose'
+interface ProductImage {
+    public_id: string
+    url: string
+ }
 
 @modelOptions({ schemaOptions: {timestamps: true}})
 
+  
 export class Product {
     public _id!: string
     
-    @prop()
-    public image!: string
+    @prop({required: true})
+    public image!: ProductImage
     
     @prop({required: true})
     public brand!: string

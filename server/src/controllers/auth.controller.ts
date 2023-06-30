@@ -78,7 +78,7 @@ export const handleRefreshToken = asyncHandler(async (req: Request, res: Respons
     };
     req.user = decode;
     res.send({
-      accessToken: generateToken(UserFound),
+      accessToken: generateRefreshToken(UserFound),
     });
   } catch (error) {
     res.status(401).send("Invalid refresh token");
