@@ -51,7 +51,6 @@ export const PayWithPaystack = asyncHandler(async (req: Request, res: Response) 
 
 
 
-
 //verify payment and update order payment details
 export const VerifyPayment = asyncHandler(async (req: Request, res: Response) => {
       const reference = req.params.reference  //get from client
