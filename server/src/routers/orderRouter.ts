@@ -1,7 +1,9 @@
 import express from 'express'
 import {verifyUser } from '../middleware/verifyUserAuthencity'
 import { isAdmin } from '../middleware/verifyAdmin'
-import {DeleteOrder, GetAllOrders, GetAllOrdersOfUser, GetOrderDetails, PlaceOrder, UpdateDeliverystatus, UpdateOrderPaymentDetails, summaryOfSales} from '../controllers/order.controller'
+import { PayWithPaystack, VerifyPayment } from '../controllers/payment.controller'
+import {DeleteOrder, GetAllOrders, GetAllOrdersOfUser, GetOrderDetails, PlaceOrder, UpdateDeliverystatus, summaryOfSales} from '../controllers/order.controller'
+
 
 
 export const orderRouter = express.Router()
@@ -23,9 +25,11 @@ orderRouter.post('/', verifyUser, PlaceOrder)
 //Get Order details
 orderRouter.get('/:id', verifyUser, GetOrderDetails)
 
-//Update order payment details
-orderRouter.put('/:id/pay', verifyUser, UpdateOrderPaymentDetails )
+// make payment for order placed
+orderRouter.post('/:id/pay', PayWithPaystack, )
 
+//Update order payment details
+orderRouter.get('/:id/:reference/verify', VerifyPayment)
 
 //Order delivery status update
 orderRouter.put('/:id/deliver', verifyUser, isAdmin, UpdateDeliverystatus)

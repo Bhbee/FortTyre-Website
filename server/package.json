@@ -15,6 +15,8 @@
     "@typegoose/typegoose": "^11.2.0",
     "@types/bcryptjs": "^2.4.2",
     "@types/multer": "^1.4.7",
+    "@types/node-fetch": "^2.6.4",
+    "@types/paystack": "^2.0.1",
     "bcryptjs": "^2.4.3",
     "cloudinary": "^1.37.3",
     "cors": "^2.8.5",
@@ -26,7 +28,9 @@
     "module-alias": "^2.2.3",
     "mongoose": "^7.2.2",
     "multer": "^1.4.5-lts.1",
-    "nodemailer": "^6.9.3"
+    "node-fetch": "^3.3.1",
+    "nodemailer": "^6.9.3",
+    "paystack": "^2.0.1"
   },
   "devDependencies": {
     "@types/cors": "^2.8.13",

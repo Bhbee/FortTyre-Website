@@ -124,16 +124,16 @@ export const DeleteProduct = asyncHandler(async (req: Request, res: Response) =>
 //search by filter
 export const SearchByFilter = asyncHandler(async (req: Request, res: Response) =>{
     const { query } = req;
-    const page: any = query.page || 1;
+    const page = Number(query.page) || 1;
     const pageSize: any = query.pageSize || query.PAGE_SIZE;
-    const brand = query.brand || '';
-    const size = query.size || '';
+    const brand = (query.brand || '') as string
+    const size = (query.size || '') as string
     const searchQuery = query.query || '';
 
     const queryFilter =
       searchQuery && searchQuery !== 'all'
         ? {
-            name: {
+            brand: {
               $regex: searchQuery,
               $options: 'i',
             },
@@ -159,6 +159,5 @@ export const SearchByFilter = asyncHandler(async (req: Request, res: Response) =
       products,
       countProducts,
       page,
-      //pages: Math.ceil(countProducts / pageSize),
     });
   })
