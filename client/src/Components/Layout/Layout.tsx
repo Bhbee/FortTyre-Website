@@ -1,33 +1,44 @@
+import logo from "../../Assets/logo.jpg";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Form from "react-bootstrap/Form";
+import Row from "react-bootstrap/Row";
 import Button from "react-bootstrap/Button";
 import Navbar from "react-bootstrap/Navbar";
-import NavDropdown from "react-bootstrap/NavDropdown";
+import { NavbarProps } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
-import { RiAccountCircleLine } from "react-icons/ri";
+// import { RiAccountCircleLine } from "react-icons/ri";
 import { AiOutlineShoppingCart } from "react-icons/ai";
-import { RiAdminFill } from "react-icons/ri";
+import { useState } from "react";
 
 import "./layout.css";
 
-const Layout: React.FC = () => { 
+const Layout: React.FC = () => {
   return (
-    <header>
-      <Navbar
-        collapseOnSelect
-        expand="lg"
-        className="nav-bgcolor mt-2 mb-2"
-        // fixed="top"
-      >
+    <header className="layout-position">
+      <div className="layout-text">
         <Container>
-          <NavLink to="/" className="layout-brand-logo">
-            Fort Tyres
+          <Nav className="top-nav">
+            <NavLink to="../login" className="top-nav-links">
+              LOGIN
+            </NavLink>
+            <NavLink to="../signup" className="top-nav-links">
+              REGISTER
+            </NavLink>
+          </Nav>
+        </Container>
+      </div>
+      <Navbar collapseOnSelect expand="lg" className="nav-bgcolor">
+        <Container>
+          <NavLink to="/">
+            <img src={logo} alt="logo" className="layout-logo" />
           </NavLink>
+
           <Navbar.Toggle
             aria-controls="responsive-navbar-nav"
-            className="nav-container"
+            style={{ border: "none" }}
           />
+
           <Navbar.Collapse
             id="responsive-navbar-nav"
             className="mt-3 nav-container nav-collapse-container"
@@ -35,7 +46,7 @@ const Layout: React.FC = () => {
             <Form className="d-flex form-width">
               <Form.Control
                 type="search"
-                placeholder="Search products, size & brands"
+                placeholder="Search tyres here... (Eg 1955/65R15) "
                 className="me-2"
                 aria-label="Search"
               />
@@ -45,33 +56,18 @@ const Layout: React.FC = () => {
               </Button>
             </Form>
 
-            <Nav className="layout-nav-dropdown">
-              <RiAccountCircleLine className="layout-icon-margin layout-icon" />
-              <NavDropdown title="Account" id="basic-nav-dropdown">
-                <NavDropdown.Item href="#action/3.3">
-                  <NavLink to="./account/login" className="nav-social-links">
-                    Login
-                  </NavLink>
-                </NavDropdown.Item>
-                <NavDropdown.Divider />
-                <NavDropdown.Item href="#action/3.4">
-                  <NavLink to="./account/signup" className="nav-social-links">
-                    Sign Up
-                  </NavLink>
-                </NavDropdown.Item>
-              </NavDropdown>
-            </Nav>
+            <Nav.Link
+              as={NavLink}
+              to="/cart"
+              className="nav-social-links"
+              href="/cart"
+            >
+              <AiOutlineShoppingCart className="layout-icon-margin layout-icon" />{" "}
+              <p className="cart-paragraph">Cart</p>
 
-            <Nav>
-              <NavLink to="admin" className="nav-social-links">
-                <RiAdminFill className="layout-icon-margin layout-icon" /> Admin
-              </NavLink>
-
-              <NavLink to="cart" className="nav-social-links">
-                <AiOutlineShoppingCart className="layout-icon-margin layout-icon" />{" "}
-                Cart
-              </NavLink>
-            </Nav>
+              <hr />
+            <div className="border-bottom"></div>
+            </Nav.Link>
           </Navbar.Collapse>
         </Container>
       </Navbar>

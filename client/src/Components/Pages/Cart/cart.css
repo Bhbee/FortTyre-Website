@@ -1,4 +1,7 @@
 .cart-header {
+    font-family: 'Dancing Script', cursive;
+        font-size: 3rem;
+        margin-bottom: 30px;
     text-align: center;
     color: green;
 }

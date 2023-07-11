@@ -1,12 +1,38 @@
+.top-nav {
+    justify-content: space-between;
+}
+
+.top-nav-links {
+    text-decoration: none;
+    color: #fff;
+}
 .layout-brand-logo {
     margin-right: 1rem;
     margin-top: 0.6rem;
-    font-weight: 900;
-    font-family: poppins;
-    color: black;
-    text-decoration: none;
+    
 }
 
+.layout-text {
+    margin: 0 auto;
+    text-align: center;
+    background-color: #002400;
+    color: #fff;
+}
+
+.layout-position {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 2000;
+}
+
+.layout-logo {
+    height: auto;
+    width: auto;
+    background-color: #A4FFA4;
+    padding: 0;
+}
 .nav-bgcolor {
     background-color: #fff;
     color: black;
@@ -28,6 +54,7 @@
     text-decoration: none;
     color: #003700;
     display: flex;
+    padding-top: 17px;
 }
 
 .form-width {
@@ -63,9 +90,6 @@
 
 
 @media (max-width: 992px) {
-.layout-brand-logo {
-    font-size: 2rem;
-}
 
 .layout-icon {
     font-size: 2rem;
@@ -74,8 +98,13 @@
     .nav-collapse-container {
         height: 80vh;
         padding: 0.95rem;
-        
- } 
+        border: 2px solid red;
+
+    }
+    
+    .hidden {
+        display: none;
+    }
 
             .layout-nav-dropdown {
                 display: flex;
@@ -91,18 +120,27 @@
         margin: 0; 
         margin-bottom: 0.47rem;
         }
-
+        .hidden {
+            display: none;
+        }
+        .cart-paragraph {
+            margin-top: 8px;
+           
+        }
         .form-width {
             width: 100%;
             margin-bottom: 0.95rem;
         }
+
+
+        /* .nav-container {
+            height:auto;
+            width: auto;
+        } */
 }
 
   @media (min-width: 992px ) 
  and (max-width: 1200px) {
-        .layout-brand-logo {
-                font-size: 1.8rem;
-            }
         
             .layout-icon {
                 font-size: 1.3rem;
@@ -121,21 +159,22 @@
 }  
 
 @media (min-width: 1200px){
- .layout-brand-logo {
+ /* .layout-brand-logo {
     font-size: 1.5rem;
-  } 
+  }  */
 
   .layout-icon {
     font-size: 1rem;
   }
     .nav-container {
         justify-content: space-around;
+        align-items: center;
     }
 
-        .layout-nav-dropdown {
+        /* .layout-nav-dropdown {
             display: flex;
             justify-content: center;
             align-items: center;
             margin-left: 2.1rem;
-        }
+        } */
 }

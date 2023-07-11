@@ -6,9 +6,7 @@ const ProductDetails: React.FC = () => {
   return (
     <Container>
       <Row>
-        <Col>
-          <p>Product details</p>
-        </Col>
+        <Col></Col>
       </Row>
     </Container>
   );

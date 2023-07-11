@@ -2,15 +2,16 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
+import { HiOutlineArrowNarrowRight } from "react-icons/hi";
 import "./hero.css";
 
 const Hero: React.FC = () => {
   return (
-    <section>
-      <Container className="hero-container-img">
+    <header>
+      <Container className="hero-container-img ">
         <div className="hero-image-overlay"></div>
         <Row className="hero-row">
-          <Row className="justify-content-center mt-5 mb-3">
+          <Row className="justify-content-center mb-3">
             <Col xs={12} md={8}>
               <h1
                 style={{ textAlign: "center" }}
@@ -37,14 +38,15 @@ const Hero: React.FC = () => {
             <Col xs={10} md={8} lg={4}>
               <p style={{ textAlign: "center" }}>
                 <Button variant="success" size="lg" className="hero-shop-btn">
-                  Shop Now
+                  Shop Now{" "}
+                  <HiOutlineArrowNarrowRight className="hero-btn-arrow" />
                 </Button>
               </p>
             </Col>
           </Row>
         </Row>
       </Container>
-    </section>
+    </header>
   );
 };
 
