@@ -1,10 +1,8 @@
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import Image from "react-bootstrap/Image";
 // import Hero from "../../Hero/Hero";
 import HeroSlider from "../../HeroSlider/HeroSlider";
-import Button from "react-bootstrap/Button";
 import { NavLink } from "react-router-dom";
 import "./home.css";
 import tyreBrands from "../../../Assets/tyreBrands.png";
@@ -107,6 +105,7 @@ const Home: React.FC = () => {
       <section>
         <Container className="mt-3">
           <Row className="latest-deal-row">
+            <h5 className="latest-deal-heading">Latest Deals</h5>
             <Col className="mt-3 mb-3 hidden" lg={3}>
               <img src={freshArrival} alt="" className="latest-deal" />
             </Col>
@@ -114,7 +113,6 @@ const Home: React.FC = () => {
               <img src={latest_deal_img} alt="" className="latest-deal-img" />
             </Col>
             <Col className="mt-3 mb-3" sm={6} md={6}>
-              <h5 className="latest-deal-heading">Latest Deal</h5>
               <div className="latest-deal-desctiption-container">
                 <img src="" alt="" />
                 <div>
