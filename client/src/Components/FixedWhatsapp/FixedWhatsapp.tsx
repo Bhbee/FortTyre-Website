@@ -10,10 +10,12 @@ const FixedWhatsapp: React.FC = () => {
       <Container>
         <Row className="justify-content-end">
           <Col xs="1">
-            <a href="https://wa.me/2348105636383"
-            target="_blank"
-            rel="noopener noreferrer">
-              <IoLogoWhatsapp size="3rem" className="fixed-whatsapp" />
+            <a
+              href="https://wa.me/2348105636383"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <IoLogoWhatsapp size="5rem" className="fixed-whatsapp" />
             </a>
           </Col>
         </Row>

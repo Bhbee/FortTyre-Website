@@ -1,5 +1,4 @@
 .footer-container-fluid {
-    background-color: #28282B;
     color: #fff;
     width: 100%;
     padding: 20px 0;
@@ -12,10 +11,11 @@
 }
 
 .footer-bg-img {
-    background-image: url("../../Assets/footer_bg.jpg");
+    /* background-image: url("../../Assets/footer_bg.jpg");
     background-position: center;
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: cover; */
+    background-color: #49B649;
 }
 
 .footer-col-align {

@@ -20,7 +20,6 @@ const Cart: React.FC = () => {
             <h4 className="cart-headerh4">Your cart is currently empty</h4>{" "}
           </Col>
         </Row>
-        
       </Row>
     </Container>
   );

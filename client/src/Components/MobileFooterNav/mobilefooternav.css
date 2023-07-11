@@ -1,0 +1,35 @@
+
+
+@media(max-width: 992px) {
+    nav {
+            background: rgba(0, 0, 0, 0.3);
+            width: 100%;
+            display: block;
+            padding: 0.7rem 1.7rem;
+            z-index: 2;
+            position: fixed;
+            left: 0;
+            right: 0;
+            transform: translateX(-50%);
+            bottom: 0;
+            display: flex;
+            gap: 0.8rem;
+            border-radius: 3rem;
+            backdrop-filter: blur(15px);
+        }
+    
+        nav .mobile-footer-link {
+            background: transparent;
+            padding: 0.9rem;
+            border-radius: 50%;
+            display: flex;
+            color: green;
+            font-size: 2.1rem;
+        }
+    
+        nav .mobile-footer-link:hover {
+            background: rgba(0, 0, 0, 0.3);
+        }
+    
+        /* nav .mobile-footer-link:active {} */
+}

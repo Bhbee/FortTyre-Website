@@ -8,145 +8,157 @@ import Container from "react-bootstrap/Container";
 import { NavLink } from "react-router-dom";
 import { AiOutlineGoogle } from "react-icons/ai";
 // import { FaFacebookF } from "react-icons/fa";
-import sign_up from "../../../Assets/sign_up.png"
+import sign_up from "../../../Assets/sign_up.png";
 import "./signup.css";
 
 const SignUp: React.FC = () => {
   return (
-    <Row className="mt-5 mb-5">
-      <Row>
-        <Col xs={12}>
-          <h3 className="login-header">Signup</h3>
-        </Col>
-      </Row>
-
-      <Container style={{ backgroundColor: "#F1FCF2" }}>
-        {/* <Row className="mt-3"></Row> */}
-
-        <Row className="mt-5">
-          <Col className="login-form-col">
-            <Image src={sign_up} className="login-form-img" />
+    <Container>
+      <Row className="mt-5 mb-5">
+        <Row>
+          <Col xs={12}>
+            <h3 className="login-header">Signup</h3>
           </Col>
+        </Row>
 
-          <Col>
-            <Row className="login-form-row-align">
-              <Col xs={12} md={8} className="mt-5">
-                <Form.Text>
-                  <p
-                    style={{
-                      textAlign: "center",
-                      fontWeight: "bold",
-                    }}
-                  >
-                    Not registered yet?
-                    <NavLink
-                      to="../signup"
-                      className="form-login-link-txt-decoration"
+        <Container style={{ backgroundColor: "#F1FCF2" }}>
+          {/* <Row className="mt-3"></Row> */}
+
+          <Row className="mt-5">
+            <Col className="login-form-column">
+              <div>
+                <Image src={sign_up} className="login-form-img" />
+              </div>
+            </Col>
+
+            <Col>
+              <Row className="login-form-row-align">
+                <Col xs={12} md={8}>
+                  <Form.Text>
+                    <p
+                      style={{
+                        textAlign: "center",
+                        fontWeight: "bold",
+                      }}
                     >
-                      <span
-                        style={{
-                          textDecoration: "none",
-
-                          marginLeft: "5px",
-                        }}
+                      Signed up already?
+                      <NavLink
+                        to="../login"
+                        className="form-login-link-txt-decoration"
                       >
-                        Sign Up
-                      </span>
-                    </NavLink>
-                  </p>
-                </Form.Text>
-              </Col>
-            </Row>
+                        <span
+                          style={{
+                            textDecoration: "none",
 
-            <Row className="login-form-row-align">
-              <Col xs={12} md={8} className="mt-3">
-                <p style={{ textAlign: "center" }}>
-                  <Button
-                    variant="primary"
-                    type="submit"
-                    size="lg"
-                    className="login-google"
-                  >
-                    <span className="login-form-icon-btn">
-                      <AiOutlineGoogle size="1.5rem" className="login-icon" />{" "}
-                    </span>{" "}
-                    <span className="login-form-txt-btn">
-                      Continue with Google
-                    </span>
-                  </Button>
-                </p>
-              </Col>
-            </Row>
-            {/* 
-            <Row className="login-form-row-align">
-              <Col xs={12} md={8} className="mt-3">
-                <p style={{ textAlign: "center" }}>
-                  <Button
-                    variant="primary"
-                    type="submit"
-                    size="lg"
-                    className="login-facebook"
-                  >
-                    <span className="login-form-icon-btn">
-                      <FaFacebookF size="1.5rem" className="login-icon" />
-                    </span>{" "}
-                    <span className="login-form-txt-btn">
-                      Continue with Facebook
-                    </span>{" "}
-                  </Button>
-                </p>
-              </Col>
-            </Row> */}
-
-            <Row className="login-form-row-align">
-              <Col xs={12} md={8} className="mt-3">
-                <Form.Text>
-                  <p style={{ textAlign: "center", fontSize: "larger" }}>Or</p>
-                </Form.Text>
-              </Col>
-            </Row>
-
-            <Form>
-              <Form.Group className="mb-4" controlId="formBasicEmail">
-                <Form.Label>Email address</Form.Label>
-                <Form.Control type="email" placeholder="Enter email" />
-              </Form.Group>
-
-              <Form.Group className="mb-4" controlId="formBasicPassword">
-                <Form.Label>Password</Form.Label>
-                <Form.Control type="password" placeholder="Password" />
-              </Form.Group>
-
-              <Row className="login-form-row-align">
-                <Col xs={12} md={8} className="mt-3">
-                  <Button
-                    variant="primary"
-                    type="submit"
-                    size="lg"
-                    className="form-login-btn"
-                  >
-                    Create my account
-                  </Button>
-                </Col>
-              </Row>
-
-              <Row className="login-form-row-align">
-                <Col xs={12} md={8} className="mt-3">
-                  <Form.Text className="text-muted">
-                    <p style={{ textAlign: "center", fontWeight: "bold" }}>
-                      Forgot{" "}
-                      <NavLink to="" className="form-login-link-txt-decoration">
-                        Password?
+                            marginLeft: "5px",
+                          }}
+                        >
+                          Login
+                        </span>
                       </NavLink>
                     </p>
                   </Form.Text>
                 </Col>
               </Row>
-            </Form>
-          </Col>
-        </Row>
-      </Container>
-    </Row>
+
+              <Row className="login-form-row-align">
+                <Col xs={12} md={8}>
+                  <p style={{ textAlign: "center" }}>
+                    <Button
+                      variant="primary"
+                      type="submit"
+                      size="lg"
+                      className="login-google"
+                    >
+                      <span className="login-form-icon-btn">
+                        <AiOutlineGoogle size="1.5rem" className="login-icon" />{" "}
+                      </span>{" "}
+                      <span className="login-form-txt-btn">
+                        Continue with Google
+                      </span>
+                    </Button>
+                  </p>
+                </Col>
+              </Row>
+
+              <Row className="login-form-row-align">
+                <Col xs={12} md={8}>
+                  <Form.Text>
+                    <p style={{ textAlign: "center", fontSize: "larger" }}>
+                      Or
+                    </p>
+                  </Form.Text>
+                </Col>
+              </Row>
+
+              <Form>
+                <Form.Group className="mb-4" controlId="formBasicEmail">
+                  <Form.Label>First Name</Form.Label>
+                  <Form.Control
+                    type="firstName"
+                    placeholder="Enter first name"
+                  />
+                </Form.Group>
+
+                <Form.Group className="mb-4" controlId="formBasicEmail">
+                  <Form.Label>Last Name</Form.Label>
+                  <Form.Control type="lastname" placeholder="Enter last name" />
+                </Form.Group>
+
+                <Form.Group className="mb-4" controlId="formBasicEmail">
+                  <Form.Label>Email address</Form.Label>
+                  <Form.Control type="email" placeholder="Enter email" />
+                </Form.Group>
+
+                <Form.Group className="mb-4" controlId="formBasicEmail">
+                  <Form.Label>Phone number</Form.Label>
+                  <Form.Control type="phone" placeholder="Enter phone number" />
+                </Form.Group>
+
+                <Form.Group className="mb-4" controlId="formBasicPassword">
+                  <Form.Label>Password</Form.Label>
+                  <Form.Control type="password" placeholder="Password" />
+                </Form.Group>
+
+                <Form.Group className="mb-4" controlId="formBasicEmail">
+                  <Form.Label>confirm pasword</Form.Label>
+                  <Form.Control type="password" placeholder="cofirm password" />
+                </Form.Group>
+
+                <Row className="login-form-row-align">
+                  <Col xs={12} md={8} className="mt-3">
+                    <Button
+                      variant="primary"
+                      type="submit"
+                      size="lg"
+                      className="form-login-btn"
+                    >
+                      Create my account
+                    </Button>
+                  </Col>
+                </Row>
+
+                <Row className="login-form-row-align">
+                  <Col xs={12} md={8} className="mt-3">
+                    <Form.Text className="text-muted">
+                      <p style={{ textAlign: "center", fontWeight: "bold" }}>
+                        Forgot{" "}
+                        <NavLink
+                          to=""
+                          className="form-login-link-txt-decoration"
+                        >
+                          Password?
+                        </NavLink>
+                      </p>
+                    </Form.Text>
+                  </Col>
+                </Row>
+              </Form>
+            </Col>
+          </Row>
+        </Container>
+      </Row>
+    </Container>
   );
 };
 

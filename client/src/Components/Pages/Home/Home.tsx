@@ -2,146 +2,138 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Image from "react-bootstrap/Image";
-import Hero from "../../Hero/Hero";
+// import Hero from "../../Hero/Hero";
+import HeroSlider from "../../HeroSlider/HeroSlider";
 import Button from "react-bootstrap/Button";
+import { NavLink } from "react-router-dom";
 import "./home.css";
+import tyreBrands from "../../../Assets/tyreBrands.png";
+import freshArrival from "../../../Assets/freshArrival.jpg";
+import latest_deal_img from "../../../Assets/latest_deal_img.png";
+import { HiOutlineArrowNarrowRight } from "react-icons/hi";
 // import ProductsListing from "../ProductListing/ProductsListing";
 
 const Home: React.FC = () => {
   const style = {
-    backgroundColor: "#F1FCF2",
+    backgroundColor: "#C8FFC8",
     padding: "20px",
   };
   return (
-    <section>
-      <Hero />
-      {/* <ProductsListing /> */}
-      <Container style={style} fluid className="mt-5">
-        <Container className="mt-5 mb-5">
-          <Row className="mb-3">
-            <Col xs={12} style={{ textAlign: "center" }}>
-              <h2 className="heading-font">
-                Tyre Purchase, Fitting and Maintenance.
-              </h2>
-            </Col>
-          </Row>
-          <Row className="mb-5 justify-content-center">
-            <Col
-              xs={12}
-              lg={4}
-              className="mb-3"
-              style={{ textAlign: "center" }}
-            >
-              <Image
-                src="https://media.istockphoto.com/id/1407217358/photo/panorama-image-of-a-new-tire-is-placed-on-the-tire-storage-rack-in-the-tire-industry-be.webp?b=1&s=170667a&w=0&k=20&c=JKwn7ckKUBX4EO5TmRearEf3lAh_PYbCjgV4FiM3B4g="
-                className="image"
-                rounded
-              />
-            </Col>
-            <Col
-              xs={12}
-              lg={4}
-              className="mb-3"
-              style={{ textAlign: "center" }}
-            >
-              <Image
-                src="https://media.istockphoto.com/id/1407217358/photo/panorama-image-of-a-new-tire-is-placed-on-the-tire-storage-rack-in-the-tire-industry-be.webp?b=1&s=170667a&w=0&k=20&c=JKwn7ckKUBX4EO5TmRearEf3lAh_PYbCjgV4FiM3B4g="
-                className="image"
-                rounded
-              />
-            </Col>
-            <Col
-              xs={12}
-              lg={4}
-              className="mb-3"
-              style={{ textAlign: "center" }}
-            >
-              <Image
-                src="https://media.istockphoto.com/id/1407217358/photo/panorama-image-of-a-new-tire-is-placed-on-the-tire-storage-rack-in-the-tire-industry-be.webp?b=1&s=170667a&w=0&k=20&c=JKwn7ckKUBX4EO5TmRearEf3lAh_PYbCjgV4FiM3B4g="
-                className="image"
-                rounded
-              />
-            </Col>
-          </Row>
+    <main>
+      <section>
+        {/* <Hero /> */}
+        <HeroSlider />
+        <Container style={style} fluid className="mt-5">
+          <h3 className="product-text mt-3">Product Categories</h3>
+          <Container className="mt-5 mb-5">
+            {/* <ProductsListing /> */}
+            <Row>
+              <Col sm={6} md={4} lg={4} className="mt-3 mb-3">
+                <NavLink
+                  to="../premiumproducts"
+                  style={{ textDecoration: "none", color: "black" }}
+                >
+                  <h5 className="product-categories-text">Premium Tyres</h5>
+                  <div className="product-categories">
+                    <img src={tyreBrands} alt="tyre" className="img-fluid" />
+                    <div className="overlay">
+                      <div className="content">
+                        <p>
+                          Shop now <HiOutlineArrowNarrowRight />
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </NavLink>
+              </Col>
 
-          <Row className="mb-3 justify-content-center">
-            <Col
-              xs={12}
-              lg={4}
-              className="mb-3"
-              style={{ textAlign: "center" }}
-            >
-              <Image
-                src="https://media.istockphoto.com/id/1407217358/photo/panorama-image-of-a-new-tire-is-placed-on-the-tire-storage-rack-in-the-tire-industry-be.webp?b=1&s=170667a&w=0&k=20&c=JKwn7ckKUBX4EO5TmRearEf3lAh_PYbCjgV4FiM3B4g="
-                className="image"
-                rounded
-              />
-            </Col>
-            <Col
-              xs={12}
-              lg={4}
-              className="mb-3"
-              style={{ textAlign: "center" }}
-            >
-              <Image
-                src="https://media.istockphoto.com/id/1407217358/photo/panorama-image-of-a-new-tire-is-placed-on-the-tire-storage-rack-in-the-tire-industry-be.webp?b=1&s=170667a&w=0&k=20&c=JKwn7ckKUBX4EO5TmRearEf3lAh_PYbCjgV4FiM3B4g="
-                className="image"
-                rounded
-              />
-            </Col>
-            <Col
-              xs={12}
-              lg={4}
-              className="mb-3"
-              style={{ textAlign: "center" }}
-            >
-              <Image
-                src="https://media.istockphoto.com/id/1407217358/photo/panorama-image-of-a-new-tire-is-placed-on-the-tire-storage-rack-in-the-tire-industry-be.webp?b=1&s=170667a&w=0&k=20&c=JKwn7ckKUBX4EO5TmRearEf3lAh_PYbCjgV4FiM3B4g="
-                className="image"
-                rounded
-              />
-            </Col>
+              <Col sm={6} md={4} lg={4} className="mt-3 mb-3">
+                <NavLink
+                  to="../premiumproducts"
+                  style={{ textDecoration: "none", color: "black" }}
+                >
+                  <h5 className="product-categories-text mb-3">
+                    Mid-Range Tyres
+                  </h5>
+                  <div className="product-categories">
+                    <img src={tyreBrands} alt="tyre" className="img-fluid" />
+                    <div className="overlay">
+                      <div className="content">
+                        <p>
+                          Shop now <HiOutlineArrowNarrowRight />
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </NavLink>
+              </Col>
 
-            <Row className="mt-5">
-              <p className="home-paragraphs">
-                We have all tyre brands and sizes available for delivery at your
-                preferred location.
-              </p>
-              <Col xs={12} md={3} className="home-container-col">
-                <Button variant="success" size="lg" className="home-shop-btn">
-                  Go to Shop
-                </Button>
+              <Col sm={6} md={4} lg={4} className="mt-3 mb-3">
+                <NavLink
+                  to="../premiumproducts"
+                  style={{ textDecoration: "none", color: "black" }}
+                >
+                  <h5 className="product-categories-text mb-3">Budget Tyres</h5>
+                  <div className="product-categories">
+                    <img src={tyreBrands} alt="tyre" className="img-fluid" />
+                    <div className="overlay">
+                      <div className="content">
+                        <p>
+                          Shop now <HiOutlineArrowNarrowRight />
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </NavLink>
               </Col>
             </Row>
+          </Container>
+        </Container>
+        <div className="custom-shape-divider-bottom-1688987183">
+          <svg
+            data-name="Layer 1"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 1200 120"
+            preserveAspectRatio="none"
+          >
+            <path
+              d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"
+              className="shape-fill"
+            ></path>
+          </svg>
+        </div>
+      </section>
 
-            <Row className="mt-5">
-              <h2 className="home-headings">Tyre Fittings</h2>
-              <Col>
-                <p className="home-paragraphs">
-                  We fix your tyres using the best industry standard process.
-                  Our team of trained professionals knows how to do this best.
-                </p>
-              </Col>
-            </Row>
-
-            <Row className="mt-5">
-              <h2 className="home-headings">Maintenance & Advisory Support.</h2>
-              <Col>
-                <p className="home-paragraphs">
-                  With our team of trained professionals, we provide advisory
-                  and maintenance services for your tyres at the best cost.
-                </p>
-                <Col xs={12} md={3} className="home-container-col">
-                  <Button variant="success" size="lg" className="home-shop-btn">
-                    Send Request
-                  </Button>
-                </Col>
-              </Col>
-            </Row>
+      <section>
+        <Container className="mt-3">
+          <Row className="latest-deal-row">
+            <Col className="mt-3 mb-3 hidden" lg={3}>
+              <img src={freshArrival} alt="" className="latest-deal" />
+            </Col>
+            <Col className="mt-3 mb-3" sm={6} md={3}>
+              <img src={latest_deal_img} alt="" className="latest-deal-img" />
+            </Col>
+            <Col className="mt-3 mb-3" sm={6} md={6}>
+              <h5 className="latest-deal-heading">Latest Deal</h5>
+              <div className="latest-deal-desctiption-container">
+                <img src="" alt="" />
+                <div>
+                  <p>Brand: Michelin Tyres</p>
+                  <h3>MICHELIN 215/55R17</h3>
+                  <p className="latest-deal-text">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Earum ducimus dignissimos omnis, minus magni dolorum
+                    consequatur voluptate assumenda nulla temporibus?
+                  </p>
+                  <p>&#8358;50,000</p>
+                  <button></button>
+                </div>
+              </div>
+            </Col>
           </Row>
         </Container>
-      </Container>
-    </section>
+      </section>
+    </main>
   );
 };
 

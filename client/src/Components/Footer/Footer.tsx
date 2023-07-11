@@ -15,23 +15,6 @@ const Footer: React.FC = () => {
           <Row>
             <Col xs={12} sm={6} md={4} className="footer-col-align mb-5">
               <Row className="mb-3">
-                <h3 className="footer-text-header">Services</h3>
-              </Row>
-              <p className="footer-paragraph">Tyre Purchase</p>
-              <p className="footer-paragraph">Tyre Fittings</p>
-              <p className="footer-paragraph">Tyre Maintenance</p>
-            </Col>
-            <Col xs={12} sm={6} md={4} className="footer-col-align mb-5">
-              <Row className="mb-3">
-                <h3 className="footer-text-header">Tyre Types</h3>
-              </Row>
-              <p className="footer-paragraph">Car Tyres</p>
-              <p className="footer-paragraph">Bus Tyres</p>
-              <p className="footer-paragraph">Truck Tyres</p>
-              <p className="footer-paragraph">Trycycle Tyres</p>
-            </Col>
-            <Col xs={12} sm={6} md={4} className="footer-col-align mb-5">
-              <Row className="mb-3">
                 <h3 className="footer-text-header">Features</h3>
               </Row>
               <p className="footer-paragraph">Home</p>
@@ -65,8 +48,7 @@ const Footer: React.FC = () => {
               </a>
 
               <a
-                href="https://www.facebook.com/forttyres
-"
+                href="https://www.facebook.com/forttyres"
                 className="footer-social-links"
               >
                 <BsFacebook size="1.5em" color="white" />

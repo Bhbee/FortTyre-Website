@@ -1,0 +1,41 @@
+/* .heroslider-container {
+    min-height: 80vh;
+    width: 100%;
+} */
+
+ .header-gradient-color {
+     background: #000000;
+     background: linear-gradient(to right, #19FF38 0%,
+             #379237 81%);
+     -webkit-background-clip: text;
+     background-clip: text;
+     -webkit-text-fill-color: transparent;
+
+     font-family: poppins;
+     font-weight: 900;
+ }
+
+ .heroslider_image {
+    min-height: 80vh;
+    object-fit: cover;
+    opacity: 1;
+ }
+
+ .heroslidertext {
+    font-family: montserrat;
+    
+ }
+
+ @media(max-width: 450px) {
+/* .carousel-caption {
+        position: absolute;
+        right: 15%;
+        bottom: 1.25rem;
+        left: 15%;
+        padding-top: 1.25rem;
+        padding-bottom: 1.25rem;
+        color: #fff;
+        text-align: center;
+        top: 10%;
+    } */
+ }

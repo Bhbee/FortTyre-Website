@@ -9,6 +9,7 @@
     min-height: 100%;
 }
 
+
 .form-login-btn {
     background-color: green;
     color: #fff;
@@ -39,7 +40,13 @@
 .login-google:hover {
     background-color: rgb(241, 113, 96);
 }
-
+.login-form-column {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+    
+}
 .login-form-txt-btn {
     margin-left: 20px;
 }
@@ -71,7 +78,7 @@
 }
 
 @media(max-width: 992px) {
-    .login-form-col {
+    .login-form-column {
         display: none;
     }
 }
