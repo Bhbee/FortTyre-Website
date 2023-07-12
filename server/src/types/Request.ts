@@ -2,7 +2,7 @@
 declare namespace Express {
     export interface Request {
       user: {
-        sub: string
+        _id: string
         email: string
         phone_number: string
         isAdmin: boolean

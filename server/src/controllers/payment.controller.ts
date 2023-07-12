@@ -49,7 +49,7 @@ export const PayWithPaystack = asyncHandler(async (req: Request, res: Response) 
     })
 
   }).on('error', error => {
-    return res.status(500).json({ error: 'An error occurred' });
+    return res.status(500).json({ error: 'An error occurred' })
   })
   clientReq.write(params)
   clientReq.end()
@@ -112,15 +112,17 @@ export const VerifyPayment = asyncHandler(async (req: Request, res: Response) =>
         const mailHandler = new MailHandler();
         mailHandler.sendEmail(responseData.data.customer.email, 
           'Payment Successful Notification',
-            `<p>Your transaction of ${responseData.data.amount / 100}naira to  Fort Tyre was successful!</p> `,
-            (error:any, info:any)=>{
-              if (error) {
-                res.status(500).json({ error: 'An error occurred while sending the email.' });
-              } else {
-                res.status(200).json({ message: 'Email sent successfully!', response: info?.response });
-              }
-            });
-      
+          `<h1>Hi, Thanks for shopping with us.</h1>
+          <p>Hi, We have finished processing your order. Your transaction of ${responseData.data.amount / 100}naira to  Fort Tyre was successful!</p> 
+          `,
+          (error:any, info:any)=>{
+            if (error) {
+              res.status(500).json({ error: 'An error occurred while sending the email.' });
+            } else {
+              res.status(200).json({ message: 'Email sent successfully!', response: info?.response });
+            }
+          }
+        );
       }
       else{
         res.send({ message: "Payment not succesful" })
