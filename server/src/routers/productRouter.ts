@@ -8,11 +8,12 @@ export const productRouter = express.Router()
 //Get all products
 productRouter.get('/', GetAllProducts)
 
+//Search for product by filter
+productRouter.get('/search', SearchByFilter)
+
 //Get a product
 productRouter.get('/:id', GetAProduct)
 
-//Search for product by filter
-productRouter.get('/search', SearchByFilter)
 
 //Add Product by Admin only
 productRouter.post('/', verifyUser, isAdmin, upload.single("image"), AddProduct)

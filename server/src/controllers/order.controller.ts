@@ -12,7 +12,7 @@ export const GetAllOrders = asyncHandler(async (req: Request, res: Response) =>{
 
 //get all orders of current user
 export const GetAllOrdersOfUser =  asyncHandler(async (req: Request, res: Response) =>{
-  const orders = await OrderModel.find({ user: req.user._id})
+  const orders = await OrderModel.find({ user: req.user.sub})
   res.json(orders)
 })
 //Summary of sales per month
@@ -63,38 +63,37 @@ export const PlaceOrder = asyncHandler(async (req: Request, res: Response) =>{
       res.status(400).json({ message: "Cart is Empty"})
   } else{ 
       const createOrder = await OrderModel.create({
+          user: req.user.sub,
           orderItems: req.body.orderItems.map((x: Product) =>({ ...x, product: x._id})),
           deliveryAddress: req.body.deliveryAddress,
-          //paymentMethod: req.body.paymentMethod,
-          itemsPrice: req.body.itemPrice,
+          itemPrice: req.body.itemPrice,
           deliveryPrice: req.body.deliveryPrice,
-          totalprice: req.body.totalPrice,
-          user: req.user._id
+          totalPrice: req.body.totalPrice
       })
+      //res.send(req.user)
       res.status(201).json( {message: "Order Created", order: createOrder})
-  }
+    }
 })
 
 
 //Update order payment details
-export const UpdateOrderPaymentDetails = asyncHandler(async (req: Request, res: Response) =>{
-    const order = await OrderModel.findById(req.params.id).populate('user')
-
-    if(order) {
-        order.isPaid = true
-        order.paidAt == new Date (Date.now())
-        order.paymentResult = {
-            paymentId: req.body.id,
-            status: req.body.status,
-            update_time: req.body.transaction_date,
-            email_address: req.body.customer.email,
-          };
-        const updatedOrder = await order.save()
-        res.send({order: updatedOrder, message: "Payment Succesful"})
-    } else {
-        res.status(404).send({message: "Order does not exist"})
-    }
-})
+// export const UpdateOrderPaymentDetails = asyncHandler(async (req: Request, res: Response) =>{
+//     const order = await OrderModel.findById(req.params.id).populate('user')
+//     if(order) {
+//         order.isPaid = true
+//         order.paidAt == new Date (Date.now())
+//         order.paymentResult = {
+            
+//             status: req.body.status,
+//             update_time: req.body.transaction_date,
+//             email_address: req.body.customer.email,
+//           };
+//         const updatedOrder = await order.save()
+//         res.send({order: updatedOrder, message: "Payment Succesful"})
+//     } else {
+//         res.status(404).send({message: "Order does not exist"})
+//     }
+// })
 
 //Order delivery status update
 export const UpdateDeliverystatus = asyncHandler(async (req: Request, res: Response) => {

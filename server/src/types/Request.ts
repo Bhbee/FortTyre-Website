@@ -8,5 +8,6 @@ declare namespace Express {
         isAdmin: boolean
         refreshToken: string
       }
+      post(options: any, callback: any): void;
     }
   }

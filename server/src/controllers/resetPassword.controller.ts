@@ -1,9 +1,10 @@
 import jwt from 'jsonwebtoken'
 import bcrypt from 'bcryptjs'
-import nodemailer from 'nodemailer'
+import MailHandler from '../utils/mailHandler'
 import {Request, Response} from 'express'
 import asyncHandler from 'express-async-handler'
 import {User, UserModel} from '../models/user.model' 
+import { error } from 'console'
 
 
 //Get reset-password link
@@ -27,31 +28,17 @@ export const forgotPassword = asyncHandler(async (req: Request, res: Response) =
 
       //const link = `${baseUrl()}/reset-password/${user.id}/${token}`);
 
-      var transporter = nodemailer.createTransport({
-          service: 'gmail',
-          host: 'smtp.gmail.com',
-          auth:{
-              user: "samuelchristiana38@gmail.com",
-              pass: "lfdeltnqsdtoqbrc"
+      const mailHandler = new MailHandler();
+      mailHandler.sendEmail(user.email, 
+        'Password Reset',
+         `<p>Hey, Please follow this ${link} to reset your password.</p> `,
+         (error:any, info:any)=>{
+          if (error) {
+            res.status(500).json({ error: 'An error occurred while sending the email.' });
+          } else {
+            res.status(200).json({ message: 'Email sent successfully!', response: info?.response });
           }
-      })
-
-      var mailOptions = {
-          from: "samuelchristiana38@gmail.com",
-          to: user.email,
-          subject: "Password Reset",
-          text: `Hey, Please follow this ${link} to reset your password.`
-
-      }
-
-      transporter.sendMail(mailOptions, function(error, info){
-        if(error){
-          res.send({ message: 'Unsuccessful.' });
-        }else{
-          res.send({ message: 'We sent reset password link to your email.' });
-          console.log(link)
-        }
-      })
+         });
       
     } else {
       res.status(404).send({ message: 'User not found' });
