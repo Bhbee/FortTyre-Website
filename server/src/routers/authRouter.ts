@@ -1,7 +1,7 @@
 import express from 'express'
 import {Login, Logout, Register, handleRefreshToken } from '../controllers/auth.controller'
 import {forgotPassword, passwordReset} from '../controllers/resetPassword.controller'
-
+import {googleOauthController} from '../controllers/auth.controller'
 export const authRouter = express.Router()
 
 //Login
@@ -15,6 +15,9 @@ authRouter.get("/refresh", handleRefreshToken)
 
 //Logout
 authRouter.get("/sign-out", Logout)
+
+//google Oauth
+authRouter.post('/google/callback', googleOauthController);
 
 //Forgot Password? Get reset-password link
 authRouter.post("/forgot-password", forgotPassword)

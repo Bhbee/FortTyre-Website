@@ -1,12 +1,16 @@
 import { modelOptions, prop, getModelForClass, Ref } from '@typegoose/typegoose'
 import { Product} from './product.model'
 import { User } from './user.model'
+import { Payment } from './payment.model'
 
-interface PaymentResult {
-  status: string
-  payment_time: string
-  email_address: string
-}
+
+// interface PaymentInfo {
+//   order: string
+//   email: string
+//   amount: number
+//   reference: string
+//   status: string
+// }
 
 @modelOptions({ schemaOptions: {timestamps: true}})
 class DeliveryAddress {
@@ -57,9 +61,11 @@ export class Order {
   @prop({ref: User, required: true})
   public user!: Ref<User>
 
+  @prop({ref: Payment})
+  public paymentInfo?: Ref<Payment>
 
-  @prop()
-  public paymentResult?: PaymentResult
+  // @prop()
+  // public paymentInfo?: PaymentInfo
 
   @prop({required: true, default: 0})
   public itemPrice!: number

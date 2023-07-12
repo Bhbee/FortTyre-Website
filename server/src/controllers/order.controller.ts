@@ -68,7 +68,7 @@ export const PlaceOrder = asyncHandler(async (req: Request, res: Response) =>{
           deliveryAddress: req.body.deliveryAddress,
           itemPrice: req.body.itemPrice,
           deliveryPrice: req.body.deliveryPrice,
-          totalPrice: req.body.totalPrice,
+          totalPrice: req.body.totalPrice
       })
       //res.send(req.user)
       res.status(201).json( {message: "Order Created", order: createOrder})

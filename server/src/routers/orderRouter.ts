@@ -29,7 +29,7 @@ orderRouter.get('/:id', verifyUser, GetOrderDetails)
 orderRouter.post('/:id/pay', PayWithPaystack, )
 
 //Update order payment details
-orderRouter.get('/:id/:reference/verify', VerifyPayment)
+orderRouter.get('/pay/verify/:id', VerifyPayment)
 
 //Order delivery status update
 orderRouter.put('/:id/deliver', verifyUser, isAdmin, UpdateDeliverystatus)
