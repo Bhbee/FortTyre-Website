@@ -1,24 +1,29 @@
 import { AiOutlineHome } from "react-icons/ai";
-import { LuContact } from "react-icons/lu";
+
 import { RiAccountCircleFill } from "react-icons/ri";
 import { SiGnuprivacyguard } from "react-icons/si";
+import { BsCartX } from "react-icons/bs";
 import { NavLink } from "react-router-dom";
 import "./mobilefooternav.css";
 
 const MobileFooterNav: React.FC = () => {
   return (
     <nav>
-      <NavLink to="" className="mobile-footer-link">
-        <AiOutlineHome /><p>Home</p>
+      <NavLink to="/" className="mobile-footer-link">
+        <AiOutlineHome className="mobile-footer-icon" />
+        <p>Home</p>
       </NavLink>
-      <NavLink to="" className="mobile-footer-link">
-        <LuContact /><p>Contact</p>
+      <NavLink to="../signup" className="mobile-footer-link">
+        <SiGnuprivacyguard className="mobile-footer-icon" />
+        <p>Sign Up</p>
       </NavLink>
-      <NavLink to="" className="mobile-footer-link">
-        <SiGnuprivacyguard /><p>Register</p>
+      <NavLink to="../login" className="mobile-footer-link">
+        <RiAccountCircleFill className="mobile-footer-icon" />
+        <p>Login</p>
       </NavLink>
-      <NavLink to="" className="mobile-footer-link">
-        <RiAccountCircleFill /><p>Login</p>
+      <NavLink to="../cart" className="mobile-footer-link">
+        <BsCartX className="mobile-footer-icon" />
+        <p>Cart</p>
       </NavLink>
     </nav>
   );
