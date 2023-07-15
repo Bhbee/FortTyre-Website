@@ -2,33 +2,19 @@ import logo from "../../Assets/logo.jpg";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Form from "react-bootstrap/Form";
-import Row from "react-bootstrap/Row";
 import Button from "react-bootstrap/Button";
 import Navbar from "react-bootstrap/Navbar";
-import { NavbarProps } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
-// import { RiAccountCircleLine } from "react-icons/ri";
 import { AiOutlineShoppingCart } from "react-icons/ai";
-import { useState } from "react";
+import { RiAccountCircleFill } from "react-icons/ri";
+import { SiGnuprivacyguard } from "react-icons/si";
 
 import "./layout.css";
 
 const Layout: React.FC = () => {
   return (
     <header className="layout-position">
-      <div className="layout-text">
-        <Container>
-          <Nav className="top-nav">
-            <NavLink to="../login" className="top-nav-links">
-              LOGIN
-            </NavLink>
-            <NavLink to="../signup" className="top-nav-links">
-              REGISTER
-            </NavLink>
-          </Nav>
-        </Container>
-      </div>
-      <Navbar collapseOnSelect expand="lg" className="nav-bgcolor">
+    <Navbar collapseOnSelect expand="lg" className="nav-bgcolor">
         <Container>
           <NavLink to="/">
             <img src={logo} alt="logo" className="layout-logo" />
@@ -64,9 +50,26 @@ const Layout: React.FC = () => {
             >
               <AiOutlineShoppingCart className="layout-icon-margin layout-icon" />{" "}
               <p className="cart-paragraph">Cart</p>
+            </Nav.Link>
 
-              <hr />
-            <div className="border-bottom"></div>
+            <Nav.Link
+              as={NavLink}
+              to="../signup"
+              className="nav-social-links"
+              href="../signup"
+            >
+              <SiGnuprivacyguard className="layout-icon-margin layout-icon" />{" "}
+              <p className="cart-paragraph">Sign Up</p>
+            </Nav.Link>
+
+            <Nav.Link
+              as={NavLink}
+              to="../login"
+              className="nav-social-links"
+              href="../login"
+            >
+              <RiAccountCircleFill className="layout-icon-margin layout-icon" />{" "}
+              <p className="cart-paragraph">Login</p>
             </Nav.Link>
           </Navbar.Collapse>
         </Container>

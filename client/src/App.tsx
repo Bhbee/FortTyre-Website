@@ -4,7 +4,7 @@ import "./App.css";
 import AppRouter from "./Components/AppRouter";
 import Footer from "./Components/Footer/Footer";
 import FixedWhatsapp from "./Components/FixedWhatsapp/FixedWhatsapp";
-// import MobileFooterNav from "./Components/MobileFooterNav/MobileFooterNav";
+import MobileFooterNav from "./Components/MobileFooterNav/MobileFooterNav";
 
 const App: React.FC = () => {
   return (
@@ -13,7 +13,7 @@ const App: React.FC = () => {
         <Layout />
         <AppRouter />
         <FixedWhatsapp />
-        {/* <MobileFooterNav /> */}
+        <MobileFooterNav />
         <Footer />
       </ContentContainer>
     </>
