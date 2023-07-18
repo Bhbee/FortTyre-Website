@@ -13,7 +13,7 @@ nav {
     border-style: solid;
         /* border-color: rgba(56, 68, 79, 1);
         background: rgba(49, 56, 70, 1); */
-        background: black;
+        background: rgba(0,0,0,0.9);
         box-shadow: 5px 10px 30px -5px rgba(0, 0, 0, 0.3);
 }
 
@@ -29,6 +29,7 @@ nav {
 .mobile-footer-link p {
 margin: 0;
 color: white;
+font-size: 1rem;
 }
 
 .mobile-footer-icon {

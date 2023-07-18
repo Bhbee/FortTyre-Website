@@ -21,7 +21,7 @@ const SignUp: React.FC = () => {
           </Col>
         </Row>
 
-        <Container style={{ backgroundColor: "#F1FCF2" }}>
+        <Container fluid style={{ backgroundColor: "#F1FCF2" }}>
           {/* <Row className="mt-3"></Row> */}
 
           <Row className="mt-5">
