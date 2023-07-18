@@ -23,13 +23,13 @@
             max-height: 100%;
             max-width: 100%;
             padding: 10px;
-            bottom: 5.5rem;
+            bottom: 7rem;
             
             right: 1.25rem;
             color: #fff;
                 background-color: #25d366;
                 border-radius: 100%;
-                box-shadow: 0.16rem 0.16rem 0.25rem #999;
+                /* box-shadow: 0.16rem 0.16rem 0.25rem #999; */
                 z-index: 100;
                 cursor: pointer;
         }
@@ -43,7 +43,7 @@
             max-height: 100%;
             padding: 10px;
             max-width: 100%;
-            bottom: 5.5rem;
+            bottom: 5rem;
             right: 1.25rem;
             color: #fff;
             background-color: #25d366;

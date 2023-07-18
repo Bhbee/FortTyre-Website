@@ -17,7 +17,7 @@ const Home: React.FC = () => {
     padding: "20px",
   };
   return (
-    <main>
+    <main className="mb-5">
       <section>
         {/* <Hero /> */}
         <HeroSlider />
@@ -31,7 +31,9 @@ const Home: React.FC = () => {
                   to="../premiumproducts"
                   style={{ textDecoration: "none", color: "black" }}
                 >
-                  <h5 className="product-categories-text mb-3">Premium Tyres</h5>
+                  <h5 className="product-categories-text mb-3">
+                    Premium Tyres
+                  </h5>
                   <div className="product-categories">
                     <img src={tyreBrands} alt="tyre" className="img-fluid" />
                     <div className="overlay">
@@ -100,7 +102,7 @@ const Home: React.FC = () => {
             ></path>
           </svg>
         </div>
-      </section> 
+      </section>
 
       <section>
         <Container className="mt-3">

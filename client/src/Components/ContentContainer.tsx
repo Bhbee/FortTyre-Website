@@ -1,11 +1,9 @@
-import {ReactNode} from 'react'
+import { ReactNode } from "react";
 
 type Props = {
-  children: ReactNode
-}
+  children: ReactNode;
+};
 
-export default function ContentContainer({children}: Props) {
-  return (
-    <section>{children}</section>
-  )
+export default function ContentContainer({ children }: Props) {
+  return <section>{children}</section>;
 }

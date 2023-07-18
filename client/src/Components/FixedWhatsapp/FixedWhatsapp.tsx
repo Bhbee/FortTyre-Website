@@ -11,7 +11,7 @@ const FixedWhatsapp: React.FC = () => {
         <Row className="justify-content-end">
           <Col xs="1">
             <a
-              href="https://wa.me/2348105636383"
+              href="https://wa.me/2348083164856"
               target="_blank"
               rel="noopener noreferrer"
             >

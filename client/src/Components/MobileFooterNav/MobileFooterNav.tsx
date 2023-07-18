@@ -2,7 +2,7 @@ import { AiOutlineHome } from "react-icons/ai";
 
 import { RiAccountCircleFill } from "react-icons/ri";
 import { SiGnuprivacyguard } from "react-icons/si";
-import { BsCartX } from "react-icons/bs";
+import { AiOutlineShoppingCart } from "react-icons/ai";
 import { NavLink } from "react-router-dom";
 import "./mobilefooternav.css";
 
@@ -22,7 +22,7 @@ const MobileFooterNav: React.FC = () => {
         <p>Login</p>
       </NavLink>
       <NavLink to="../cart" className="mobile-footer-link">
-        <BsCartX className="mobile-footer-icon" />
+        <AiOutlineShoppingCart className="mobile-footer-icon" />
         <p>Cart</p>
       </NavLink>
     </nav>

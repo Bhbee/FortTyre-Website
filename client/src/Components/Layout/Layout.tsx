@@ -14,7 +14,7 @@ import "./layout.css";
 const Layout: React.FC = () => {
   return (
     <header className="layout-position">
-    <Navbar collapseOnSelect expand="lg" className="nav-bgcolor">
+      <Navbar collapseOnSelect expand="lg" className="nav-bgcolor">
         <Container>
           <NavLink to="/">
             <img src={logo} alt="logo" className="layout-logo" />
@@ -32,7 +32,7 @@ const Layout: React.FC = () => {
             <Form className="d-flex form-width">
               <Form.Control
                 type="search"
-                placeholder="Search tyres here... (Eg 1955/65R15) "
+                placeholder="Search tyres here... (Eg 205/65/16) "
                 className="me-2"
                 aria-label="Search"
               />
