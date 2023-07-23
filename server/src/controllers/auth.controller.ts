@@ -79,7 +79,7 @@ export const handleRefreshToken = asyncHandler(async (req: Request, res: Respons
       refreshToken: string;
     };
     req.user = decode;
-    res.send({
+    res.json({
       accessToken: generateRefreshToken(UserFound),
     });
   } catch (error) {
@@ -110,71 +110,3 @@ export const Logout = asyncHandler(async (req: Request, res: Response) =>{
   })
   res.sendStatus(204)
 })
-
-
-
-
-
-
-
-
-
-// export const googleOauthController = asyncHandler(async (req: Request, res: Response) =>{
-//   //get code from query string
-//   const code = req.query.code as string
-
-//   try{
-//     //get the id and access token with code
-//     const {id_token, access_token} = await getGoogleOauthToken({code})
-
-//     //get user with token
-//     const googleUser = await getGoogleUser({id_token, access_token})
-//     //jwt.decode(id_token)
-//     if(!googleUser.verified_email){
-//       return res.status(403).send("Google account is not verified")
-//     }
-//     //upsert user
-//     const user = await findAndUpdateUser(
-//       {email: googleUser.email},
-//       {
-//         email: googleUser.email,
-//         name: googleUser.name,
-//         picture: googleUser.picture
-//       },
-//       {
-//         upsert:true, new: true
-//       }
-
-//     )
-//     //create session
-//     if (!user)
-//     return res.redirect(`$http://localhost:/oauth/error`);
-
-//   // Create access and refresh token
-//     const { access_token: accessToken, refresh_token } = await signToken(user)
-
-//   // Send cookie
-//     res.cookie('refresh-token', refresh_token,  {
-//       httpOnly: true, maxAge: 72 * 60 * 60  * 1000
-//     })
-//     res.cookie('access-token', accessToken, {
-//       httpOnly: true, maxAge: 24 * 60 * 60  * 1000
-//     })
-//     res.cookie('logged_in', true, {
-//       expires: new Date(
-//         Date.now() + 24 * 60 * 1000
-//       ),
-//     });
-//     //create access & refresh token
-
-//     //set cookies
-
-//     //redirect back to client
-//   }catch(err){
-//     const redirectUrl = "http://localhost/300/oauth/error"
-//     return res.redirect(redirectUrl)
-//   }
-  
-// })
-
-

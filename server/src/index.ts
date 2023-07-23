@@ -19,7 +19,7 @@ const PORT = process.env.PORT;
 app.use(
    cors({
     credentials:true,
-    origin: ["https://forttyres.onrender.com"] //edit to frontend address
+    origin: "*" //["https://forttyres.onrender.com"] //edit to frontend address
 })); 
 // app.use(authMiddleware)
 app.use(express.json());
@@ -27,7 +27,7 @@ app.use(cookieParser())
 app.use(express.urlencoded({extended: true, limit:'5mb'}));
 app.use(express.static(path.join(__dirname, '../../client')))
 app.get('*', (req:Request, res:Response)=>{
-   res.sendFile(path.join(__dirname, '../../client/'))
+   res.sendFile(path.join(__dirname, '../../client/')) //edit later to 404 page 
 })
 
 //Routers
