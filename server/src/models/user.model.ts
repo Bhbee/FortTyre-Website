@@ -31,7 +31,7 @@ export class User {
     @prop({required: true, unique: true})
     public phone_number!: string
 
-    @prop({required: true, minlength: 8, maxLength: 32, select: false})
+    @prop({required: true})
     public password!: string
 
     @prop({ default: 'default.png' })
