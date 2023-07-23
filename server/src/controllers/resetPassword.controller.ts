@@ -24,9 +24,7 @@ export const forgotPassword = asyncHandler(async (req: Request, res: Response) =
       );
 
       //reset link
-      const link = `${baseUrl}/${user.id}/${token}`
-
-      //const link = `${baseUrl()}/reset-password/${user.id}/${token}`);
+      const link = `${baseUrl}/auth/reset-password/${user.id}/${token}`
 
       const mailHandler = new MailHandler();
       mailHandler.sendEmail(user.email, 
