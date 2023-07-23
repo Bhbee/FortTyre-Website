@@ -18,7 +18,7 @@ export const verifyUser = (req: Request, res:Response, next:NextFunction) => {
         }
         next()
       } catch(error) {
-        res.send("No token attached")
+        res.send("session time out")
       }
     }else {
       res.status(403).send({ message: "Token expired. Please login again"})
