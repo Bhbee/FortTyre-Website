@@ -9,7 +9,7 @@ import { error } from 'console'
 
 //Get reset-password link
 const pKey = process.env.privateKey as string;
-
+const baseUrl = process.env.baseUrl as string;
 export const forgotPassword = asyncHandler(async (req: Request, res: Response) =>{
     const user = await UserModel.findOne({ email: req.body.email });
     const secret = pKey + user?.phone_number
@@ -24,7 +24,7 @@ export const forgotPassword = asyncHandler(async (req: Request, res: Response) =
       );
 
       //reset link
-      const link = `http://localhost:3000/auth/reset-password/${user.id}/${token}`
+      const link = `${baseUrl}/${user.id}/${token}`
 
       //const link = `${baseUrl()}/reset-password/${user.id}/${token}`);
 
