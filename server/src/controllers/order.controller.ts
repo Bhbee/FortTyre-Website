@@ -12,7 +12,7 @@ export const GetAllOrders = asyncHandler(async (req: Request, res: Response) =>{
 
 //get all orders of current user
 export const GetAllOrdersOfUser =  asyncHandler(async (req: Request, res: Response) =>{
-  const orders = await OrderModel.find({ user: req.user.sub})
+  const orders = await OrderModel.find({ user: req.user._id})
   res.json(orders)
 })
 //Summary of sales per month
@@ -63,7 +63,7 @@ export const PlaceOrder = asyncHandler(async (req: Request, res: Response) =>{
       res.status(400).json({ message: "Cart is Empty"})
   } else{ 
       const createOrder = await OrderModel.create({
-          user: req.user.sub,
+          user: req.user._id,
           orderItems: req.body.orderItems.map((x: Product) =>({ ...x, product: x._id})),
           deliveryAddress: req.body.deliveryAddress,
           itemPrice: req.body.itemPrice,

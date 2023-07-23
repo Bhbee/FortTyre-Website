@@ -10,7 +10,7 @@ export const verifyUser = (req: Request, res:Response, next:NextFunction) => {
       try{
         const decode = jwt.verify(accessToken, JWT_SECRET)
         req.user = decode as {
-          sub: string
+          _id: string
           email: string
           phone_number: string
           isAdmin: boolean

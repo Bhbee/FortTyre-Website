@@ -30,7 +30,7 @@ export const GetAllProducts = asyncHandler(async (req: Request, res: Response) =
       .limit(pageSize);
 
     const countProducts = await ProductModel.countDocuments();
-    res.send({
+    res.status(200).send({
       products,
       countProducts,
       page,
