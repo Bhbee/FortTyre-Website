@@ -1,15 +1,15 @@
 import {index,  modelOptions, pre, prop, getModelForClass } from '@typegoose/typegoose'
 
-import bcrypt from 'bcryptjs';
+// import bcrypt from 'bcryptjs';
 
-@index({ email: 1 })
-@pre<User>('save', async function () {
-  // Hash password if the password is new or was updated
-  if (!this.isModified('password')) return;
+// @index({ email: 1 })
+// @pre<User>('save', async function () {
+//   // Hash password if the password is new or was updated
+//   if (!this.isModified('password')) return;
 
-  // Hash password with costFactor of 12
-  this.password = await bcrypt.hash(this.password, 12);
-})
+//   // Hash password with costFactor of 12
+//   this.password = await bcrypt.hash(this.password, 12);
+// })
 
 @modelOptions({ schemaOptions: {timestamps: true}})
 export class User {
