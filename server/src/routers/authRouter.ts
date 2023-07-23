@@ -5,7 +5,7 @@ import {googleOauthHandler} from '../controllers/googleOauth.controller'
 export const authRouter = express.Router()
 
 //Login
-authRouter.post('/signin', Login)
+authRouter.post('/sign-in', Login)
 
 //Registration
 authRouter.post('/sign-up', Register)
