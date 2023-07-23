@@ -73,27 +73,35 @@ export const DeleteUSer = asyncHandler(async (req: Request, res: Response) =>{
 
 
 export const UpdatePersonalUserInfo = asyncHandler(async (req: Request, res: Response) =>{
-      const salt = await bcrypt.genSalt(12) 
-      const user = await UserModel.findById(req.user._id);
-      if (user) {
-        user.first_name = req.body.first_name || user.first_name;
-        user.last_name = req.body.last_name || user.last_name;
-        user.email = req.body.email || user.email;
-        user.phone_number = req.body.phone_number || user.phone_number;
-        if (req.body.password) {
-          user.password = bcrypt.hashSync(req.body.password, salt)
-        }
-        const updatedUser = await user.save();
-        res.send({
-          _id: updatedUser._id,
-          first_name: updatedUser.first_name,
-          last_name: updatedUser.last_name,
-          email: updatedUser.email,
-          phone_number: updatedUser.phone_number,
-          isAdmin: updatedUser.isAdmin,
-          accessToken: generateToken(updatedUser),
-        });
-      } else {
-        res.status(404).send({ message: "User not found" });
+  const { id } = req.params;
+  const currentUser = req.user; 
+
+  if (id !== currentUser._id) {
+    res.status(403).send({ message: "Access denied" });
+    return;
+  }else{
+    const salt = await bcrypt.genSalt(12) 
+    const user = await UserModel.findById(currentUser);
+    if (user) {
+      user.first_name = req.body.first_name || user.first_name;
+      user.last_name = req.body.last_name || user.last_name;
+      user.email = req.body.email || user.email;
+      user.phone_number = req.body.phone_number || user.phone_number;
+      if (req.body.password) {
+        user.password = bcrypt.hashSync(req.body.password, salt)
       }
-    })
+      const updatedUser = await user.save();
+      res.send({
+        _id: updatedUser._id,
+        first_name: updatedUser.first_name,
+        last_name: updatedUser.last_name,
+        email: updatedUser.email,
+        phone_number: updatedUser.phone_number,
+        isAdmin: updatedUser.isAdmin,
+        accessToken: generateToken(updatedUser),
+      });
+    } else {
+      res.status(404).send({ message: "User not found" });
+    }
+  }
+})

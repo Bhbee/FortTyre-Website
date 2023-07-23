@@ -16,7 +16,7 @@ userRouter.get("profile/:id", verifyUser, GetMyProfile)
 //Get user's profile
 userRouter.get("/:id", verifyUser, GetUserProfile)
 
-//update user details: No need for admin auth
+//update my details: No need for admin auth
 userRouter.patch( "/:id", verifyUser, UpdatePersonalUserInfo)
 
 //Delete uer
