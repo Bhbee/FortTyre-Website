@@ -19,7 +19,7 @@ const PORT = process.env.PORT;
 app.use(
    cors({
     credentials:true,
-    origin: ["https://forttyres.onrender.com"] //edit to frontend address
+    origin: "*" //["https://forttyres.onrender.com"] //edit to frontend address
 })); 
 // app.use(authMiddleware)
 app.use(express.json());
