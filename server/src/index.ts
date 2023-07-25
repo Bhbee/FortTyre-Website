@@ -26,10 +26,10 @@ app.use(express.json());
 app.use(cookieParser())
 app.use(express.urlencoded({extended: true, limit:'5mb'}));
 app.use(express.static(path.join(__dirname, '../../client')))
-app.get('*', (req:Request, res:Response)=>{
-   res.json("not available")
-   //res.sendFile(path.join(__dirname, '../../client/')) //edit later to 404 page 
-})
+// app.get('*', (req:Request, res:Response)=>{
+//    res.json("not available")
+//    //res.sendFile(path.join(__dirname, '../../client/')) //edit later to 404 page 
+// })
 
 //Routers
 
