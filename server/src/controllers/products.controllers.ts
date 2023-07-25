@@ -22,7 +22,7 @@ export const GetAProduct = asyncHandler(async (req: Request, res: Response) =>{
 export const GetAllProducts = asyncHandler(async (req: Request, res: Response) =>{
     const { query } = req;
     const page: any = query.page || 1;
-    const pageSize: any = query.pageSize || query.PAGE_SIZE;
+    const pageSize: any = query.pageSize || query.PAGE_SIZE || 6;
 
     const products = await ProductModel
       .find()
