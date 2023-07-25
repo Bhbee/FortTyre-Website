@@ -11,7 +11,7 @@ import { FaTwitter } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa";
 import { BsFacebook } from "react-icons/bs";
 import "./footer.css";
-import logo from "../../Assets/logo.jpg";
+import logonew from "../../Assets/logonew.png";
 
 const Footer: React.FC = () => {
   function getCurrentYear() {
@@ -120,7 +120,7 @@ const Footer: React.FC = () => {
       </Container>
       <Container className="mt-3 footer-container-padding-last footer-last-flex">
         <Col>
-          <Image src={logo} className="image-fluid footer-logo" />
+          <Image src={logonew} className="image-fluid footer-logo" />
         </Col>
 
         <p className="mt-3">

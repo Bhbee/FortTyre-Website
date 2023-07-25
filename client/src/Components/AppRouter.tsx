@@ -7,6 +7,9 @@ import Terms from "../Components/Pages/Terms";
 import SignUp from "./Pages/Signup/SignUp";
 import LogIn from "./Pages/Login/LogIn";
 import Error404Page from "./Pages/Error404Page/Error404Page";
+import Fitting from "./Pages/Fitting/FIitting";
+import Servicing from "./Pages/Servicing/Servicing";
+import Maintenance from "./Pages/Maintenance/Maintenance";
 import { Routes, Route } from "react-router-dom";
 
 
@@ -19,7 +22,9 @@ const AppRouter: React.FC = () => {
       <Route path="premiumproducts" element={<ProductsListing />}>
         <Route path=":productId" element={<ProductsDetails />} />
       </Route>
-
+      <Route path="fitting" element={<Fitting/> } />
+      <Route path="maintenance" element={<Maintenance />} />
+      <Route path="servicing" element={<Servicing />} />
       <Route path="cart" element={<Cart />} />
       <Route path="terms" element={<Terms />} />
 

@@ -20,12 +20,11 @@ position: relative;
     font-size: 1.2rem;
 }
 
-.product-categories {
+/* .product-categories {
     max-width: 100%;
     width: 100%;
 
     border: 1px solid transparent;
-    /* display:flex; */
     position: relative;
     justify-content: center;
     align-items: center;
@@ -34,7 +33,8 @@ box-shadow: 5px 4px 12px 1px rgba(0, 0, 0, 0.59);
 
 .product-categories-text {
     text-align: center;
-}
+} */
+
 
 .latest-deal {
     width: 100%;
@@ -76,26 +76,7 @@ box-shadow: 5px 4px 12px 1px rgba(0, 0, 0, 0.59);
 
 
 
-.custom-shape-divider-bottom-1688987183 {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    overflow: hidden;
-    line-height: 0;
-    transform: rotate(180deg);
-}
 
-.custom-shape-divider-bottom-1688987183 svg {
-    position: relative;
-    display: block;
-    width: calc(132% + 1.3px);
-    height: 112px;
-}
-
-.custom-shape-divider-bottom-1688987183 .shape-fill {
-    fill: #FFFFFF;
-}
 
 
 
@@ -151,15 +132,10 @@ box-shadow: 5px 4px 12px 1px rgba(0, 0, 0, 0.59);
 .product-categories:hover .overlay {
     opacity: 0.8;
 }
-.product-text {
-    text-align: center;
-    font-weight: 900;
-    font-size: 3rem;
-    color: green;
-}
+
 
 .product-text::before {
-    content: 'Product Categories';
+    content: 'Products';
     font-family: 'Dancing Script';
     font-weight: 600;
     font-size: 8rem;

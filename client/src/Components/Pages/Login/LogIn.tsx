@@ -10,10 +10,14 @@ import { AiOutlineGoogle } from "react-icons/ai";
 import login from "../../../Assets/login.png";
 // import { FaFacebookF } from "react-icons/fa";
 import "./login.css";
+import { Helmet } from "react-helmet-async";
 
 const Login: React.FC = () => {
   return (
     <Container>
+      <Helmet>
+        <title>Login</title>
+      </Helmet>
       <Row className="mt-5 mb-5">
         <Row>
           <Col xs={12}>
@@ -78,26 +82,6 @@ const Login: React.FC = () => {
                   </p>
                 </Col>
               </Row>
-              {/* 
-            <Row className="login-form-row-align">
-              <Col xs={12} md={8} className="mt-3">
-                <p style={{ textAlign: "center" }}>
-                  <Button
-                    variant="primary"
-                    type="submit"
-                    size="lg"
-                    className="login-facebook"
-                  >
-                    <span className="login-form-icon-btn">
-                      <FaFacebookF size="1.5rem" className="login-icon" />
-                    </span>{" "}
-                    <span className="login-form-txt-btn">
-                      Continue with Facebook
-                    </span>{" "}
-                  </Button>
-                </p>
-              </Col>
-            </Row> */}
 
               <Row className="login-form-row-align">
                 <Col xs={12} md={8} className="mt-3">
@@ -112,12 +96,12 @@ const Login: React.FC = () => {
               <Form>
                 <Form.Group className="mb-4" controlId="formBasicEmail">
                   <Form.Label>Email address</Form.Label>
-                  <Form.Control type="email" placeholder="Enter email" />
+                  <Form.Control type="email" placeholder="johndoe@mail.com" />
                 </Form.Group>
 
                 <Form.Group className="mb-4" controlId="formBasicPassword">
                   <Form.Label>Password</Form.Label>
-                  <Form.Control type="password" placeholder="Password" />
+                  <Form.Control type="password" placeholder="**********" />
                 </Form.Group>
 
                 <Row className="login-form-row-align">

@@ -7,13 +7,16 @@ import Image from "react-bootstrap/Image";
 import Container from "react-bootstrap/Container";
 import { NavLink } from "react-router-dom";
 import { AiOutlineGoogle } from "react-icons/ai";
-// import { FaFacebookF } from "react-icons/fa";
+import { Helmet } from "react-helmet-async";
 import sign_up from "../../../Assets/sign_up.png";
 import "./signup.css";
 
 const SignUp: React.FC = () => {
   return (
     <Container>
+      <Helmet>
+        <title>Sign Up</title>
+      </Helmet>
       <Row className="mt-5 mb-5">
         <Row>
           <Col xs={12}>
@@ -94,25 +97,22 @@ const SignUp: React.FC = () => {
               <Form>
                 <Form.Group className="mb-4" controlId="formBasicEmail">
                   <Form.Label>First Name</Form.Label>
-                  <Form.Control
-                    type="firstName"
-                    placeholder="Enter first name"
-                  />
+                  <Form.Control type="firstName" placeholder="John" />
                 </Form.Group>
 
                 <Form.Group className="mb-4" controlId="formBasicEmail">
                   <Form.Label>Last Name</Form.Label>
-                  <Form.Control type="lastname" placeholder="Enter last name" />
+                  <Form.Control type="lastname" placeholder="Doe" />
                 </Form.Group>
 
                 <Form.Group className="mb-4" controlId="formBasicEmail">
                   <Form.Label>Email address</Form.Label>
-                  <Form.Control type="email" placeholder="Enter email" />
+                  <Form.Control type="email" placeholder="johndoe@mail.com" />
                 </Form.Group>
 
                 <Form.Group className="mb-4" controlId="formBasicEmail">
                   <Form.Label>Phone number</Form.Label>
-                  <Form.Control type="phone" placeholder="Enter phone number" />
+                  <Form.Control type="phone" placeholder="080633733915" />
                 </Form.Group>
 
                 <Form.Group className="mb-4" controlId="formBasicPassword">
@@ -139,19 +139,7 @@ const SignUp: React.FC = () => {
                 </Row>
 
                 <Row className="login-form-row-align">
-                  <Col xs={12} md={8} className="mt-3">
-                    <Form.Text className="text-muted">
-                      <p style={{ textAlign: "center", fontWeight: "bold" }}>
-                        Forgot{" "}
-                        <NavLink
-                          to=""
-                          className="form-login-link-txt-decoration"
-                        >
-                          Password?
-                        </NavLink>
-                      </p>
-                    </Form.Text>
-                  </Col>
+                  <Col xs={12} md={8} className="mt-3"></Col>
                 </Row>
               </Form>
             </Col>
