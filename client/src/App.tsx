@@ -7,6 +7,7 @@ import FixedWhatsapp from "./Components/FixedWhatsapp/FixedWhatsapp";
 import MobileFooterNav from "./Components/MobileFooterNav/MobileFooterNav";
 
 const App: React.FC = () => {
+
   return (
     <>
       <ContentContainer>

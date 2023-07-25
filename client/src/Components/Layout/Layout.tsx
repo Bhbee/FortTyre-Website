@@ -1,4 +1,4 @@
-import logo from "../../Assets/logo.jpg";
+import logonew from "../../Assets/logonew.png";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Form from "react-bootstrap/Form";
@@ -8,16 +8,32 @@ import { NavLink } from "react-router-dom";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { RiAccountCircleFill } from "react-icons/ri";
 import { SiGnuprivacyguard } from "react-icons/si";
-
+import { BsFillSunFill } from "react-icons/bs";
+import { BsFillMoonFill } from "react-icons/bs";
+import { useContext, useEffect } from "react";
+import { Store } from "../../Store";
 import "./layout.css";
 
 const Layout: React.FC = () => {
+  const {
+    state: { mode },
+    dispatch,
+  } = useContext(Store);
+
+  useEffect(() => {
+    document.body.setAttribute("data-bs-theme", mode);
+  }, [mode]);
+
+  const switchModeHandler = () => {
+    dispatch({ type: "SWITCH_MODE" });
+  };
+
   return (
     <header className="layout-position">
       <Navbar collapseOnSelect expand="lg" className="nav-bgcolor">
         <Container>
           <NavLink to="/">
-            <img src={logo} alt="logo" className="layout-logo" />
+            <img src={logonew} alt="logo" className="layout-logo" />
           </NavLink>
 
           <Navbar.Toggle
@@ -41,7 +57,9 @@ const Layout: React.FC = () => {
                 Search
               </Button>
             </Form>
-
+            <Button variant={mode} onClick={switchModeHandler}>
+              <i>{mode === "light" ? <BsFillSunFill /> : <BsFillMoonFill />}</i>
+            </Button>
             <Nav.Link
               as={NavLink}
               to="/cart"

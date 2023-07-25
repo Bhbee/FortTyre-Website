@@ -1,11 +1,5 @@
-.top-nav {
-    justify-content: space-between;
-}
 
-.top-nav-links {
-    text-decoration: none;
-    color: #fff;
-}
+
 .layout-brand-logo {
     margin-right: 1rem;
     margin-top: 0.6rem;
@@ -30,7 +24,6 @@
 .layout-logo {
     height: auto;
     width: auto;
-    background-color: #A4FFA4;
     padding: 0;
 }
 .nav-bgcolor {
@@ -58,7 +51,7 @@
 }
 
 .form-width {
-    width: 70%;
+    width: 60%;
 }
 
 .layout-search-btn {
