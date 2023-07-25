@@ -11,7 +11,7 @@ export const userRouter = express.Router()
 userRouter.get("/", verifyUser, isAdmin,  GetAllUserInfo)
 
 //Get my profile
-userRouter.get("profile/:id", verifyUser, GetMyProfile)
+userRouter.get("/profile/:id", verifyUser, GetMyProfile)
 
 //Get user's profile
 userRouter.get("/:id", verifyUser, GetUserProfile)

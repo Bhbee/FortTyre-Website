@@ -97,8 +97,6 @@ export const UpdatePersonalUserInfo = asyncHandler(async (req: Request, res: Res
         last_name: updatedUser.last_name,
         email: updatedUser.email,
         phone_number: updatedUser.phone_number,
-        isAdmin: updatedUser.isAdmin,
-        accessToken: generateToken(updatedUser),
       });
     } else {
       res.status(404).send({ message: "User not found" });
