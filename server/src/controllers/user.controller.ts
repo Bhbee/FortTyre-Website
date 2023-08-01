@@ -1,7 +1,6 @@
 import  express, { Request, Response} from 'express'
 import asyncHandler from 'express-async-handler'
 import bcrypt from 'bcryptjs'
-import { generateToken} from '../utils/jwt.utils'
 import { User, UserModel } from '../models/user.model'
 import { OrderModel } from '../models/order.model'
 
@@ -75,7 +74,7 @@ export const DeleteUSer = asyncHandler(async (req: Request, res: Response) =>{
 export const UpdatePersonalUserInfo = asyncHandler(async (req: Request, res: Response) =>{
   const { id } = req.params;
   const currentUser = req.user._id; 
-  console.log(currentUser, id)
+  //console.log(currentUser, id)
   if (id !== currentUser) {
     res.status(403).send({ message: "Access denied" });
     return;
