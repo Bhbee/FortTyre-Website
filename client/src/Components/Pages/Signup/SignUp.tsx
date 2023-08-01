@@ -22,10 +22,10 @@ import LoadingBox from "../../LoadingBox/LoadingBox";
 
 const SignUp: React.FC = () => {
   const navigate = useNavigate();
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
+  const [first_name, setFirstName] = useState("");
+  const [last_name, setLastName] = useState("");
   const [email, setEmail] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
+  const [phone_number, setPhoneNumber] = useState("");
   const [password, setPassword] = useState("");
 
   const { state, dispatch } = useContext(Store);
@@ -37,10 +37,10 @@ const SignUp: React.FC = () => {
     e.preventDefault();
     try {
       const data = await signUp({
-        firstName,
-        lastName,
+        first_name,
+        last_name,
         email,
-        phoneNumber,
+        phone_number,
         password,
       });
       dispatch({ type: "USER_REGISTERED", payload: data });
@@ -140,7 +140,7 @@ const SignUp: React.FC = () => {
                 <Form.Group className="mb-4" controlId="formBasicEmail">
                   <Form.Label>First Name</Form.Label>
                   <Form.Control
-                    type="firstName"
+                    type="first_name"
                     placeholder="John"
                     onChange={(e) => setFirstName(e.target.value)}
                   />
@@ -149,7 +149,7 @@ const SignUp: React.FC = () => {
                 <Form.Group className="mb-4" controlId="formBasicEmail">
                   <Form.Label>Last Name</Form.Label>
                   <Form.Control
-                    type="lastName"
+                    type="last_name"
                     placeholder="Doe"
                     onChange={(e) => setLastName(e.target.value)}
                   />
@@ -167,7 +167,7 @@ const SignUp: React.FC = () => {
                 <Form.Group className="mb-4" controlId="formBasicEmail">
                   <Form.Label>Phone number</Form.Label>
                   <Form.Control
-                    type="phoneNumber"
+                    type="phone_number"
                     placeholder="080633733915"
                     onChange={(e) => setPhoneNumber(e.target.value)}
                   />

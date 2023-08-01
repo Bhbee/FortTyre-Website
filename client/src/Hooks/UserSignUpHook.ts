@@ -5,23 +5,23 @@ import { UserSignUpMessage } from "../Types/UserSignUpMessage"
 export const useSignUpMutation = () => 
     useMutation({
         mutationFn: async ({
-            firstName,
-            lastName,
+            first_name,
+            last_name,
             email,
-            phoneNumber,
+            phone_number,
             password,
         }: {
-            firstName: string,
-            lastName: string,
+            first_name: string,
+            last_name: string,
             email: string,
-            phoneNumber: string,
+            phone_number: string,
             password: string
         }) => (
             await apiClient.post<UserSignUpMessage>("/auth/sign-up", {
-                firstName,
-                lastName,
+                first_name,
+                last_name,
                 email,
-                phoneNumber,
+                phone_number,
                 password
 
             })
