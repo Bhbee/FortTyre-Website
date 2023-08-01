@@ -14,13 +14,13 @@ const Servicing: React.FC = () => {
       </Helmet>
       <h3 className="servicing-heading mt-5">Servicing</h3>
       <Row>
-        <Col md={6}>
+        <Col classame="servicing-img" md={6}>
           <div>
             {" "}
             <Image src={servicing_os} fluid />
           </div>
         </Col>
-        <Col md={6}>
+        <Col className="servicing" md={6}>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium
           vero obcaecati incidunt rem nostrum autem iste id mollitia modi minus
           saepe laudantium odio cupiditate expedita numquam facere repellendus

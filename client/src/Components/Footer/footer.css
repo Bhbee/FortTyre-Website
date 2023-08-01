@@ -1,6 +1,6 @@
 footer {
     
-    background-color: #3CCF4E;
+    background-color: #023020;
     /* background-color: #fff; */ 
     padding-top: 2rem;
     margin-top: 5rem;
@@ -37,6 +37,9 @@ footer {
     background-color: green;
 }
 
+.footer-btn:hover {
+    background-color: rgb(50, 205, 50)
+}
 
 .footer-social-links {
     margin-right: 1rem;
@@ -44,11 +47,16 @@ footer {
 
 .footer-text-decoration {
     text-decoration: none;
-    color: black;
+    color: #fff;
     cursor: pointer;
 }
 .footer-heading {
     font-weight: 900;
+    color: #E8DACC;
+}
+
+.footer-contact-text {
+    color: #fff;
 }
 .footer-border::after {
     content: "";
@@ -71,6 +79,9 @@ footer {
     justify-content: space-between;
 }
 
+.footer-copyright {
+    color: #fff;
+}
 /* .heading p {
     font-family: monteserrat;
 } */
