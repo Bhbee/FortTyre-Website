@@ -30,7 +30,10 @@ const Maintenance: React.FC = () => {
             provident libero soluta sit eius odio possimus. Pariatur aut illo
             beatae nostrum, suscipit ex nam molestias odit soluta officiis,
             asperiores autem minima corporis omnis excepturi explicabo. Quod
-            voluptatum ratione at.
+            voluptatum ratione at. Lorem ipsum dolor, sit amet consectetur
+            adipisicing elit. Iusto id porro excepturi voluptate labore iure
+            sed, deleniti assumenda ipsam sit?Lorem ipsum dolor sit amet,
+            consectetur adipisicing elit. Et, sequi!
           </p>
         </Col>
       </Row>

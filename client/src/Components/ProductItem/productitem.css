@@ -1,0 +1,24 @@
+.product-item-color {
+    background-color: green;
+}
+
+.product-item-color:hover {
+    background-color: rgb(50, 205, 50)
+}
+
+.product-card {
+max-width: 400px;
+    width: 100%;
+
+}
+.img-width {
+    width: 100%;
+    height: 250px;
+
+    max-width: 400px;
+    object-fit: cover;
+}
+/* 
+.product-price {
+    text-decoration: none;
+} */

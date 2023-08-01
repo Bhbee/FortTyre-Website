@@ -5,14 +5,55 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Image from "react-bootstrap/Image";
 import Container from "react-bootstrap/Container";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { AiOutlineGoogle } from "react-icons/ai";
 import login from "../../../Assets/login.png";
-// import { FaFacebookF } from "react-icons/fa";
-import "./login.css";
 import { Helmet } from "react-helmet-async";
+import { useContext, useState, useEffect } from "react";
+import { Store } from "../../../Store";
+import { useLoginMutation } from "../../../Hooks/UserHook";
+import { getError } from "../../../Utils/ApiError";
+import ApiError from "../../../Types/ApiErrortype";
+import "./login.css";
+import LoadingBox from "../../LoadingBox/LoadingBox";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Login: React.FC = () => {
+  const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const { state, dispatch } = useContext(Store);
+  const { userAccessToken } = state;
+
+  const { mutateAsync: logIn, isLoading } = useLoginMutation();
+
+  const submitHandler = async (e: React.SyntheticEvent) => {
+    e.preventDefault();
+    try {
+      const data = await logIn({
+        email,
+        password,
+      });
+      dispatch({ type: "USER_LOGIN", payload: data });
+      localStorage.setItem("userAccessToken", JSON.stringify(data));
+      console.log("login", data);
+      navigate("/cart");
+    } catch (err) {
+      toast.error(getError(err as ApiError), {
+        position: toast.POSITION.BOTTOM_CENTER,
+      });
+    }
+  };
+
+  // useEffect(() => {
+  //   if (!userAccessToken) {
+  //     navigate("../sigin")
+  //   } else (
+  //     navigate("/cart")
+  //   )
+  // }, [navigate, userAccessToken])
+
   return (
     <Container>
       <Helmet>
@@ -68,6 +109,7 @@ const Login: React.FC = () => {
                   <p style={{ textAlign: "center" }}>
                     <Button
                       variant="primary"
+                      disabled={isLoading}
                       type="submit"
                       size="lg"
                       className="login-google"
@@ -93,15 +135,25 @@ const Login: React.FC = () => {
                 </Col>
               </Row>
 
-              <Form>
+              <Form onSubmit={submitHandler}>
                 <Form.Group className="mb-4" controlId="formBasicEmail">
                   <Form.Label>Email address</Form.Label>
-                  <Form.Control type="email" placeholder="johndoe@mail.com" />
+                  <Form.Control
+                    type="email"
+                    required
+                    placeholder="johndoe@mail.com"
+                    onChange={(e) => setEmail(e.target.value)}
+                  />
                 </Form.Group>
 
                 <Form.Group className="mb-4" controlId="formBasicPassword">
                   <Form.Label>Password</Form.Label>
-                  <Form.Control type="password" placeholder="**********" />
+                  <Form.Control
+                    type="password"
+                    required
+                    placeholder="**********"
+                    onChange={(e) => setPassword(e.target.value)}
+                  />
                 </Form.Group>
 
                 <Row className="login-form-row-align">
@@ -110,10 +162,15 @@ const Login: React.FC = () => {
                       variant="primary"
                       type="submit"
                       size="lg"
+                      disabled={isLoading}
                       className="form-login-btn"
                     >
                       Login
                     </Button>
+                    <div className="mt-3">{isLoading && <LoadingBox />}</div>
+                    <div>
+                      <ToastContainer />
+                    </div>
                   </Col>
                 </Row>
 

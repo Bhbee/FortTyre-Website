@@ -12,17 +12,16 @@ import Servicing from "./Pages/Servicing/Servicing";
 import Maintenance from "./Pages/Maintenance/Maintenance";
 import { Routes, Route } from "react-router-dom";
 
-
 const AppRouter: React.FC = () => {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="about" element={<About />} />
 
-      <Route path="premiumproducts" element={<ProductsListing />}>
+      {/* <Route path="premiumproducts" element={<ProductsListing />}>
         <Route path=":productId" element={<ProductsDetails />} />
-      </Route>
-      <Route path="fitting" element={<Fitting/> } />
+      </Route> */}
+      <Route path="fitting" element={<Fitting />} />
       <Route path="maintenance" element={<Maintenance />} />
       <Route path="servicing" element={<Servicing />} />
       <Route path="cart" element={<Cart />} />

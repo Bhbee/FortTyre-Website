@@ -1,13 +1,14 @@
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
-// import Col from "react-bootstrap/Col";
+import Col from "react-bootstrap/Col";
 import "./products.css";
 import { useGetProductsQuery } from "../../Hooks/productHook";
 import LoadingBox from "../LoadingBox/LoadingBox";
 import MessageBox from "../MessageBox/MessageBox";
 import { getError } from "../../Utils/ApiError";
 import ApiError from "../../Types/ApiErrortype";
-// import ProductItem from "../ProductItem/ProductItem";
+import ProductItem from "../ProductItem/ProductItem";
+import { Product } from "../../Types/Product";
 // import { ProductList, Product } from "../../Types/Product";
 
 const Products: React.FC = () => {
@@ -16,9 +17,11 @@ const Products: React.FC = () => {
     padding: "20px",
   };
 
-  const { data: products, isLoading, error } = useGetProductsQuery();
+  const { data: listOfProducts, isLoading, error } = useGetProductsQuery();
 
-  console.log(products)
+
+  console.log("lIST OF PRODUCTS", listOfProducts);
+
   return (
     <Container style={style} fluid className="mt-5">
       <Container>
@@ -42,14 +45,18 @@ const Products: React.FC = () => {
       ) : error ? (
         <MessageBox variant="danger">{getError(error as ApiError)}</MessageBox>
       ) : (
-        <Row>
-          {/* {products!.map((product) => (
-            <Col key={product.page} sm={6} md={4} lg={3}>
+        <Row className="mt-3">
+          {listOfProducts?.products.map((product) => (
+            <Col key={product.__v} sm={6} md={4} lg={3}>
               <ProductItem product={product} />
+              {/* <p>
+                <span>&#8358;</span>
+                {product.price}
+              </p> */}
             </Col>
-          ))}  */}
+          ))}
         </Row>
-        // <p>No products to display.</p>
+    
       )}
     </Container>
   );

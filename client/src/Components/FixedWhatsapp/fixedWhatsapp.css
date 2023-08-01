@@ -2,7 +2,7 @@
     position: fixed;
     width: 2.4rem;
     height: 2.4rem;
-    bottom: 1.6rem;
+    bottom: 30rem;
     right: 0.6rem;
     padding: 10px;
     
@@ -23,7 +23,7 @@
             max-height: 100%;
             max-width: 100%;
             padding: 10px;
-            bottom: 7rem;
+            bottom: 25rem;
             
             right: 1.25rem;
             color: #fff;
@@ -43,7 +43,7 @@
             max-height: 100%;
             padding: 10px;
             max-width: 100%;
-            bottom: 5rem;
+            bottom: 30rem;
             right: 1.25rem;
             color: #fff;
             background-color: #25d366;
@@ -62,7 +62,7 @@
         padding: 10px;
         max-height: 100%;
         max-width: 100%;
-        bottom: 2.3rem;
+        bottom: 25rem;
         right: 1.25rem;
         color: #fff;
         background-color: #25d366;

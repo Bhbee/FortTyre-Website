@@ -10,7 +10,7 @@ const Fitting: React.FC = () => {
     <Container>
       <h3 className="fitting-heading mt-5">Tyre Fitting</h3>
       <Row>
-        <Col md={6}>
+        <Col className="fitting-img" md={6}>
           <Image src={fittingimg} fluid />
         </Col>
         <Col md={6} className="fitting-col-bg">

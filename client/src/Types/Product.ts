@@ -14,7 +14,20 @@ export type Product = {
 }
 
 export type ProductList = {
-  products: Product[];
+  products: {
+  _id: string;
+  image: {
+    url: string;
+    public_id: string;
+  };
+  brand: string;
+  size: string;
+  price: string;
+  countInStock: number;
+  createdAt: string;
+  updatedAt: string;
+  __v: number;
+}[];
   countProducts: number;
   page: number;
   pages: number;
