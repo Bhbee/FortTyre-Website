@@ -1,0 +1,11 @@
+.maintenance-heading {
+        text-align: center;
+            color: green;
+            font-weight: 900;
+}
+
+.maintenance-txt {
+    font-family: monteserrat;
+    font-size: larger;
+    padding-top: 3rem;
+}

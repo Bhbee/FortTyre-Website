@@ -1,6 +1,7 @@
-import logo from "../../Assets/logo.jpg";
+import logonew from "../../Assets/logonew.png";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
+import Row from "react-bootstrap/Row";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Navbar from "react-bootstrap/Navbar";
@@ -8,16 +9,31 @@ import { NavLink } from "react-router-dom";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { RiAccountCircleFill } from "react-icons/ri";
 import { SiGnuprivacyguard } from "react-icons/si";
-
+import BreadCrumbs from "../BreadCrumbs/BreadCrumb";
+// import { useContext, useEffect } from "react";
+// import { Store } from "../../Store";
 import "./layout.css";
 
 const Layout: React.FC = () => {
+  // const {
+  //   state: { mode },
+  //   dispatch,
+  // } = useContext(Store);
+
+  // useEffect(() => {
+  //   document.body.setAttribute("data-bs-theme", mode);
+  // }, [mode]);
+
+  // const switchModeHandler = () => {
+  //   dispatch({ type: "SWITCH_MODE" });
+  // };
+
   return (
     <header className="layout-position">
       <Navbar collapseOnSelect expand="lg" className="nav-bgcolor">
         <Container>
           <NavLink to="/">
-            <img src={logo} alt="logo" className="layout-logo" />
+            <img src={logonew} alt="logo" className="layout-logo image-fluid" />
           </NavLink>
 
           <Navbar.Toggle
@@ -32,7 +48,7 @@ const Layout: React.FC = () => {
             <Form className="d-flex form-width">
               <Form.Control
                 type="search"
-                placeholder="Search tyres here... (Eg 205/65/16) "
+                placeholder="Search by product or size... (Eg 205/65/16 or Michelin) "
                 className="me-2"
                 aria-label="Search"
               />
@@ -41,16 +57,9 @@ const Layout: React.FC = () => {
                 Search
               </Button>
             </Form>
-
-            <Nav.Link
-              as={NavLink}
-              to="/cart"
-              className="nav-social-links"
-              href="/cart"
-            >
-              <AiOutlineShoppingCart className="layout-icon-margin layout-icon" />{" "}
-              <p className="cart-paragraph">Cart</p>
-            </Nav.Link>
+            {/* <Button variant={mode}>
+              <i>{mode === "light" ? <BsFillSunFill /> : <BsFillMoonFill />}</i>
+            </Button> */}
 
             <Nav.Link
               as={NavLink}
@@ -71,9 +80,21 @@ const Layout: React.FC = () => {
               <RiAccountCircleFill className="layout-icon-margin layout-icon" />{" "}
               <p className="cart-paragraph">Login</p>
             </Nav.Link>
+
+            <Nav.Link
+              as={NavLink}
+              to="/cart"
+              className="nav-social-links"
+              href="/cart"
+            >
+              <AiOutlineShoppingCart className="layout-icon-margin layout-icon" />{" "}
+              <p className="cart-paragraph">Cart</p>
+            </Nav.Link>
           </Navbar.Collapse>
         </Container>
       </Navbar>
+
+      <BreadCrumbs />
     </header>
   );
 };

@@ -11,7 +11,7 @@ import { FaTwitter } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa";
 import { BsFacebook } from "react-icons/bs";
 import "./footer.css";
-import logo from "../../Assets/logo.jpg";
+import logonew from "../../Assets/logonew.png";
 
 const Footer: React.FC = () => {
   function getCurrentYear() {
@@ -51,7 +51,7 @@ const Footer: React.FC = () => {
 
       <Container className="footer-second-container">
         <Row>
-          <Col md={3} className="heading">
+          {/* <Col md={3} className="heading">
             <h5 className="mb-3 footer-heading">Categroies</h5>
             <NavLink to="" className="footer-text-decoration">
               <p>Premium Tyres</p>
@@ -62,7 +62,7 @@ const Footer: React.FC = () => {
             <NavLink to="" className="footer-text-decoration">
               <p>Budget Tyres</p>
             </NavLink>
-          </Col>
+          </Col> */}
           <Col md={3} className="heading">
             <h5 className="mb-3 footer-heading">Features</h5>
             <NavLink to="" className="footer-text-decoration">
@@ -78,9 +78,9 @@ const Footer: React.FC = () => {
 
           <Col className="heading">
             <h5 className="mb-3 footer-heading">Contact</h5>
-            <p>+234 808 316 4856</p>
-            <p>sales@fortyres.com</p>
-            <p>
+            <p className="footer-contact-text">+234 808 316 4856</p>
+            <p className="footer-contact-text">sales@fortyres.com</p>
+            <p className="footer-contact-text">
               KM 20, Office 3B, A & B Mall Lekki Expressway, Opp. Lagos Business
               School.
             </p>
@@ -120,12 +120,10 @@ const Footer: React.FC = () => {
       </Container>
       <Container className="mt-3 footer-container-padding-last footer-last-flex">
         <Col>
-          <Image src={logo} className="image-fluid footer-logo" />
+          <Image src={logonew} className="image-fluid footer-logo" />
         </Col>
 
-        <p className="mt-3">
-          &copy;{year} FortTyre.com All Right Reserved
-        </p>
+        <p className="mt-3 footer-copyright">&copy;{year} FortTyre.com All Right Reserved</p>
       </Container>
     </footer>
   );

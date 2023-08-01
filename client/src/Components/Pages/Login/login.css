@@ -69,6 +69,7 @@ font-size: large;
     border-right: 2px solid #fff;
 }
 
+
 @media(max-width: 992px ) {
 .login-form-col {
     display: none;

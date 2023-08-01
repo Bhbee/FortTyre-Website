@@ -1,0 +1,9 @@
+.center {
+    color: green;
+}
+
+@media (max-width: 450px) {
+    .center {
+        height: 2rem;
+    }
+}

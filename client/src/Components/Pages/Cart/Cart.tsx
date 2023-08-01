@@ -2,12 +2,16 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { BsCartX } from "react-icons/bs";
+import { Helmet } from "react-helmet-async";
 import "./cart.css";
 
 const Cart: React.FC = () => {
   return (
     <Container className="mt-5">
       <Row>
+        <Helmet>
+          <title>Cart</title>
+        </Helmet>
         <h3 className="cart-header">Cart</h3>
 
         <Col className="mt-3 mb-5">

@@ -1,0 +1,17 @@
+.fitting-heading {
+    text-align: center;
+    color: green;
+    font-weight: 900;
+
+}
+
+
+
+@media (min-width: 992px) {
+    .fitting-col-bg {
+            padding-top: 2rem;
+        }
+        .fitting-img {
+            padding-top: 1.5rem;
+        }
+}

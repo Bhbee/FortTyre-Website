@@ -1,0 +1,17 @@
+.servicing-heading {
+text-align: center;
+    color: green;
+    font-weight: 900;
+}
+
+
+
+@media (min-width: 992px) {
+    .servicing {
+            padding-top: 1rem;
+        }
+        .servicing-img {
+            padding-top: 1.5rem;
+            margin-top: 4rem;
+        }
+}

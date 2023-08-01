@@ -1,12 +1,34 @@
 export type Product = {
-    name: string,
-    slug: string,
-    image: string,
-    category: string,
-    brand: string,
-    price: number,
-    countInStock: number,
-    description: string,
-    rating: number,
-    numReviews: number
+  _id: string;
+  image: {
+    url: string;
+    public_id: string;
+  };
+  brand: string;
+  size: string;
+  price: string;
+  countInStock: number;
+  createdAt: string;
+  updatedAt: string;
+  __v: number;
+}
+
+export type ProductList = {
+  products: {
+  _id: string;
+  image: {
+    url: string;
+    public_id: string;
+  };
+  brand: string;
+  size: string;
+  price: string;
+  countInStock: number;
+  createdAt: string;
+  updatedAt: string;
+  __v: number;
+}[];
+  countProducts: number;
+  page: number;
+  pages: number;
 }

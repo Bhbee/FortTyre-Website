@@ -1,0 +1,19 @@
+.breadcrumb {
+background-color: #023020;
+    padding: 0.5rem;
+}
+
+.crumblink {
+    text-decoration: none;
+    color: #fff;
+    margin-right: 0.5rem;
+
+}
+
+/* .breadcrumb-not-active {
+    color: #cccccc;
+}
+
+.breadcrumb-active {
+    color: #000000;
+} */
