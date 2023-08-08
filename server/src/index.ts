@@ -4,7 +4,7 @@ import cors from 'cors';
 import path from 'path'
 import cookieParser from 'cookie-parser';
 import passport from 'passport'
-import "../src/config/passport-setup";
+import "./config/passport-oauth-setup";
 import cookieSession from 'cookie-session'
 import dbConnect from './config/dbConnect';
 import { productRouter } from './routers/productRouter';

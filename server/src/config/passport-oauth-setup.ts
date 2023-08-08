@@ -1,7 +1,11 @@
-import {google} from './keys'
 import passport from 'passport';
 import { Strategy as GoogleStrategy } from 'passport-google-oauth20';
 import { User, UserModel } from '../models/user.model'
+
+
+const id = process.env.googleClientId as string
+const secret = process.env.googleClientSecret as string
+const callbk = process.env.googleOauthRedirectUrl
 
 passport.serializeUser(async(user: any, done) => {
   done(null, user.id);
@@ -16,10 +20,9 @@ passport.deserializeUser(async (id, done) => {
 passport.use(
   new GoogleStrategy(
     {
-      // options
-      clientID: google.googleClientId,
-      clientSecret: google.googleClientSecret,
-      callbackURL: google.googleOauthRedirectUrl
+      clientID: id,
+      clientSecret: secret,
+      callbackURL: callbk
     },
     async (accessToken, refreshToken, profile, done) => {
       const googleId = profile.id
