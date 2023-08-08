@@ -1,4 +1,15 @@
 
+ .badge-pill {
+     /* Add your custom styles here */
+     border-radius: 100%;
+     /* Change the pill border radius as desired */
+     padding: 6px 12px;
+     /* Adjust the padding to change the badge size */
+     font-size: 14px;
+     /* Adjust the font size as needed */
+     font-weight: bold;
+     /* Optionally adjust font-weight */
+ }
 
 .layout-brand-logo {
     margin-right: 1rem;
@@ -57,6 +68,7 @@
 .layout-search-btn {
   background-color: green;
   color:#fff;
+  border-radius: 38px;
 }
 
 
@@ -67,6 +79,22 @@
   text-decoration: none;
   color: green;
 
+}
+
+.search-results {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background-color: green;
+    color: #fff;
+    padding: 1rem;
+    padding-left: 2rem;
+    
+}
+
+.border-bottom {
+border-bottom: 2px solid black;
+cursor: pointer;
 }
 
 .layout-icon-margin {
@@ -89,7 +117,7 @@
     color: green;
 }
     .nav-collapse-container {
-        height: 80vh;
+        height: 50vh;
         padding: 0.95rem;
         /* border: 2px solid red; */
 
