@@ -15,6 +15,7 @@ export const GetAllOrdersOfUser =  asyncHandler(async (req: Request, res: Respon
   const orders = await OrderModel.find({ user: req.user._id})
   res.json(orders)
 })
+
 //Summary of sales per month
 export const summaryOfSales = asyncHandler(async (req: Request, res: Response) => {
     const orders = await OrderModel.aggregate([
@@ -59,6 +60,8 @@ export const GetOrderDetails = asyncHandler(async (req: Request, res: Response) 
 
 //Place an order
 export const PlaceOrder = asyncHandler(async (req: Request, res: Response) =>{
+  const user = req.user
+  console.log(user._id)
   if (req.body.orderItems.length === 0) {
       res.status(400).json({ message: "Cart is Empty"})
   } else{ 
@@ -75,25 +78,6 @@ export const PlaceOrder = asyncHandler(async (req: Request, res: Response) =>{
     }
 })
 
-
-//Update order payment details
-// export const UpdateOrderPaymentDetails = asyncHandler(async (req: Request, res: Response) =>{
-//     const order = await OrderModel.findById(req.params.id).populate('user')
-//     if(order) {
-//         order.isPaid = true
-//         order.paidAt == new Date (Date.now())
-//         order.paymentResult = {
-            
-//             status: req.body.status,
-//             update_time: req.body.transaction_date,
-//             email_address: req.body.customer.email,
-//           };
-//         const updatedOrder = await order.save()
-//         res.send({order: updatedOrder, message: "Payment Succesful"})
-//     } else {
-//         res.status(404).send({message: "Order does not exist"})
-//     }
-// })
 
 //Order delivery status update
 export const UpdateDeliverystatus = asyncHandler(async (req: Request, res: Response) => {

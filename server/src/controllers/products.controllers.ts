@@ -22,7 +22,7 @@ export const GetAProduct = asyncHandler(async (req: Request, res: Response) =>{
 export const GetAllProducts = asyncHandler(async (req: Request, res: Response) =>{
     const { query } = req;
     const page: any = query.page || 1;
-    const pageSize: any = query.pageSize || query.PAGE_SIZE || 6;
+    const pageSize: any = query.pageSize || query.PAGE_SIZE || 10;
 
     const products = await ProductModel
       .find()
@@ -61,7 +61,7 @@ export const AddProduct = async (req: Request, res: Response) => {
       return res.status(400).send({ message: 'Image upload failed' });
     }
     const product = await ProductModel.create({
-      brand: brand,
+      brand: (brand as string).toUpperCase,
       size: size,
       price: price,
       image: {
@@ -80,6 +80,7 @@ export const AddProduct = async (req: Request, res: Response) => {
 //Edit Product
 export const EditProductDetails = asyncHandler(async (req: Request, res: Response) =>{
     const productId = req.params.id;
+    const { brand, size, price, countInStock } = req.body;
     const imageFile = req.file;
     const product = await ProductModel.findById(productId);
     if (product) {
@@ -94,10 +95,10 @@ export const EditProductDetails = asyncHandler(async (req: Request, res: Respons
           public_id: uploadResponse.public_id
         }
       }
-      product.price = req.body.price
-      product.size = req.body.size
-      product.brand = req.body.brand
-      product.countInStock = req.body.countInStock
+      product.price = price
+      product.size = size
+      product.brand = brand.toUpperCase()
+      product.countInStock = countInStock
       await product.save()
       res.send({ message: 'Product Updated' });
     } else {
@@ -126,7 +127,7 @@ export const SearchByFilter = asyncHandler(async (req: Request, res: Response) =
     const { query } = req;
     const page = Number(query.page) || 1;
     const pageSize: any = query.pageSize || query.PAGE_SIZE;
-    const brand = (query.brand || '') as string
+    const brand = ((query.brand || '') as string).toUpperCase()
     const size = (query.size || '') as string
     const searchQuery = query.query || '';
 

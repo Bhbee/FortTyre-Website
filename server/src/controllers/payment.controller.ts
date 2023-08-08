@@ -14,6 +14,7 @@ export const PayWithPaystack = asyncHandler(async (req: Request, res: Response) 
   const first_name = user.first_name
   const last_name = user.last_name
   const id = req.params.id
+  
   const paymentVerificationUrl = `http://localhost:3000/orders/pay/verify/${id}`; //edit later to hosted base url
   const params = JSON.stringify({
     "email": email,
@@ -44,8 +45,6 @@ export const PayWithPaystack = asyncHandler(async (req: Request, res: Response) 
       
       const responseData = JSON.parse(data);
       return res.status(200).json(responseData); 
-      //const authorizationUrl = responseData.data.authorization_url;
-      //res.redirect(authorizationUrl); // Redirect to Paystack authorization URL
     })
 
   }).on('error', error => {
@@ -85,7 +84,7 @@ export const VerifyPayment = asyncHandler(async (req: Request, res: Response) =>
     apiRes.on('end', async () => {
       const responseData = JSON.parse(data);
       if(responseData.data.gateway_response === "Successful"){
-        // Add new payment to database
+        //1. Add new payment to database
         const payment = await PaymentModel.create({
           order: req.params.id,
           email: responseData.data.customer.email,
