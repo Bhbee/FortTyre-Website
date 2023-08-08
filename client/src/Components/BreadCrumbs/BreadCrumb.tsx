@@ -22,13 +22,15 @@ const BreadCrumbs: React.FC = () => {
 
   const breadcrumbs = useBreadcrumbs(route);
 
-  console.log("breadcrumbs", breadcrumbs);
-
   return (
     <div className="breadcrumb">
       <Container>
         {breadcrumbs.map(({ match, breadcrumb }) => (
-          <NavLink className="crumblink" key={match.pathname} to={match.pathname}>
+          <NavLink
+            className="crumblink"
+            key={match.pathname}
+            to={match.pathname}
+          >
             {breadcrumb} /
           </NavLink>
         ))}

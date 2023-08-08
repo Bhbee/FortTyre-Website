@@ -28,8 +28,12 @@ const SignUp: React.FC = () => {
   const [phone_number, setPhoneNumber] = useState("");
   const [password, setPassword] = useState("");
 
-  const { state, dispatch } = useContext(Store);
-  const { userRegistered } = state;
+  const isPasswordValid = (password: string) => {
+    return password.length >= 8;
+  };
+
+  const {  dispatch } = useContext(Store);
+
 
   const { mutateAsync: signUp, isLoading } = useSignUpMutation();
 
@@ -46,6 +50,9 @@ const SignUp: React.FC = () => {
       dispatch({ type: "USER_REGISTERED", payload: data });
       localStorage.setItem("userAccessToken", JSON.stringify(data));
       console.log("signUp", data);
+      toast.success("Succefully Registered", {
+        position: toast.POSITION.BOTTOM_CENTER,
+      });
       navigate("/cart");
     } catch (err) {
       toast.error(getError(err as ApiError), {
@@ -55,7 +62,7 @@ const SignUp: React.FC = () => {
   };
 
   return (
-    <Container>
+    <Container className="signup-top-container">
       <Helmet>
         <title>Sign Up</title>
       </Helmet>
@@ -137,7 +144,7 @@ const SignUp: React.FC = () => {
               </Row>
 
               <Form onSubmit={submitHandler}>
-                <Form.Group className="mb-4" controlId="formBasicEmail">
+                <Form.Group className="mb-4" controlId="formBasicEmailFirtName">
                   <Form.Label>First Name</Form.Label>
                   <Form.Control
                     type="first_name"
@@ -146,7 +153,7 @@ const SignUp: React.FC = () => {
                   />
                 </Form.Group>
 
-                <Form.Group className="mb-4" controlId="formBasicEmail">
+                <Form.Group className="mb-4" controlId="formBasicEmailLastName">
                   <Form.Label>Last Name</Form.Label>
                   <Form.Control
                     type="last_name"
@@ -186,6 +193,11 @@ const SignUp: React.FC = () => {
                   <Form.Label>Pasword</Form.Label>
                   <Form.Control type="password" placeholder="password" />
                 </Form.Group> */}
+                {password && !isPasswordValid(password) && (
+                  <p style={{ color: "red", fontWeight: "bold" }}>
+                    Password must be at least 8 characters long.
+                  </p>
+                )}
 
                 <Row className="login-form-row-align">
                   <Col xs={12} md={8} className="mt-3">

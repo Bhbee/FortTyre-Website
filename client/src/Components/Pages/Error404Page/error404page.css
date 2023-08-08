@@ -2,3 +2,7 @@
     background-color: green;
     cursor: pointer;
 }
+
+.btn-404:hover {
+    background-color: rgb(50, 205, 50);
+}
