@@ -81,13 +81,14 @@ export const UpdatePersonalUserInfo = asyncHandler(async (req: Request, res: Res
     const salt = await bcrypt.genSalt(12) 
     const user = await UserModel.findById(currentUser);
     if (user) {
-      user.first_name = req.body.first_name;
-      user.last_name = req.body.last_name;
-      user.email = req.body.email;
-      user.phone_number = req.body.phone_number;
       if (req.body.password) {
         user.password = bcrypt.hashSync(req.body.password, salt)
       }
+      console.log(req.body.email)
+      user.first_name = req.body.first_name || user.first_name;
+      user.last_name = req.body.last_name || user.last_name;
+      user.email = req.body.email || user.email;
+      user.phone_number = req.body.phone_number || user.phone_number;
       const updatedUser = await user.save();
       res.send({
         _id: updatedUser._id,

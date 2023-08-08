@@ -4,7 +4,7 @@ import cors from 'cors';
 import path from 'path'
 import cookieParser from 'cookie-parser';
 import passport from 'passport'
-import "./config/passport-oauth-setup";
+import "../src/config/passport-oauth-setup";
 import cookieSession from 'cookie-session'
 import dbConnect from './config/dbConnect';
 import { productRouter } from './routers/productRouter';
@@ -35,7 +35,7 @@ app.use(cookieParser())
 app.use(express.urlencoded({extended: true, limit:'5mb'}));
 app.use(express.static(path.join(__dirname, '../../client')))
 
-// app.get('*', (req:Request, res:Response)=>{
+// app.get('*', (req:Request, res:Response)=>{}
 //    res.json("not available")
 //    //res.sendFile(path.join(__dirname, '../../client/')) //edit later to 404 page 
 // })
