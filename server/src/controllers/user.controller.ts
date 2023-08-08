@@ -84,7 +84,6 @@ export const UpdatePersonalUserInfo = asyncHandler(async (req: Request, res: Res
       if (req.body.password) {
         user.password = bcrypt.hashSync(req.body.password, salt)
       }
-      console.log(req.body.email)
       user.first_name = req.body.first_name || user.first_name;
       user.last_name = req.body.last_name || user.last_name;
       user.email = req.body.email || user.email;
