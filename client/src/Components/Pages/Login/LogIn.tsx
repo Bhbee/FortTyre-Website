@@ -9,22 +9,21 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { AiOutlineGoogle } from "react-icons/ai";
 import login from "../../../Assets/login.png";
 import { Helmet } from "react-helmet-async";
-import { useContext, useState, useEffect } from "react";
+import { useContext, useState } from "react";
 import { Store } from "../../../Store";
-import { useLoginMutation } from "../../../Hooks/UserHook";
+import { useLoginMutation} from "../../../Hooks/UserHook"
 import { getError } from "../../../Utils/ApiError";
 import ApiError from "../../../Types/ApiErrortype";
-import "./login.css";
 import LoadingBox from "../../LoadingBox/LoadingBox";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
 
 const Login: React.FC = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { state, dispatch } = useContext(Store);
-  const { userAccessToken } = state;
+  const { dispatch } = useContext(Store);
 
   const { mutateAsync: logIn, isLoading } = useLoginMutation();
 
@@ -38,7 +37,10 @@ const Login: React.FC = () => {
       dispatch({ type: "USER_LOGIN", payload: data });
       localStorage.setItem("userAccessToken", JSON.stringify(data));
       console.log("login", data);
-      navigate("/cart");
+      // navigate("/cart");
+      toast.success("successfully logged in", {
+        position: toast.POSITION.BOTTOM_CENTER,
+      });
     } catch (err) {
       toast.error(getError(err as ApiError), {
         position: toast.POSITION.BOTTOM_CENTER,
@@ -46,16 +48,8 @@ const Login: React.FC = () => {
     }
   };
 
-  // useEffect(() => {
-  //   if (!userAccessToken) {
-  //     navigate("../sigin")
-  //   } else (
-  //     navigate("/cart")
-  //   )
-  // }, [navigate, userAccessToken])
-
   return (
-    <Container>
+    <Container className="login-top-container">
       <Helmet>
         <title>Login</title>
       </Helmet>
@@ -174,13 +168,13 @@ const Login: React.FC = () => {
                   </Col>
                 </Row>
 
-                <Row className="login-form-row-align">
+                <Row className="forgotpassword-form-row-align">
                   <Col xs={12} md={8} className="mt-3">
                     <Form.Text className="text-muted">
                       <p style={{ textAlign: "center", fontWeight: "bold" }}>
                         Forgot{" "}
                         <NavLink
-                          to=""
+                          to="../forgotpassword"
                           className="form-login-link-txt-decoration"
                         >
                           Password?

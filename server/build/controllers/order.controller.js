@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.DeleteOrder = exports.UpdateDeliverystatus = exports.UpdateOrderPaymentDetails = exports.PlaceOrder = exports.GetOrderDetails = exports.summaryOfSales = exports.GetAllOrdersOfUser = exports.GetAllOrders = void 0;
+exports.DeleteOrder = exports.UpdateDeliverystatus = exports.PlaceOrder = exports.GetOrderDetails = exports.summaryOfSales = exports.GetAllOrdersOfUser = exports.GetAllOrders = void 0;
 const express_async_handler_1 = __importDefault(require("express-async-handler"));
 const order_model_1 = require("../models/order.model");
 const user_model_1 = require("../models/user.model");
@@ -69,39 +69,22 @@ exports.GetOrderDetails = (0, express_async_handler_1.default)((req, res) => __a
 }));
 //Place an order
 exports.PlaceOrder = (0, express_async_handler_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const user = req.user;
+    console.log(user._id);
     if (req.body.orderItems.length === 0) {
         res.status(400).json({ message: "Cart is Empty" });
     }
     else {
         const createOrder = yield order_model_1.OrderModel.create({
+            user: req.user._id,
             orderItems: req.body.orderItems.map((x) => (Object.assign(Object.assign({}, x), { product: x._id }))),
             deliveryAddress: req.body.deliveryAddress,
-            paymentMethod: req.body.paymentMethod,
-            itemsPrice: req.body.itemPrice,
+            itemPrice: req.body.itemPrice,
             deliveryPrice: req.body.deliveryPrice,
-            totalprice: req.body.totalPrice,
-            user: req.user._id
+            totalPrice: req.body.totalPrice
         });
+        //res.send(req.user)
         res.status(201).json({ message: "Order Created", order: createOrder });
-    }
-}));
-//Update order payment details
-exports.UpdateOrderPaymentDetails = (0, express_async_handler_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const order = yield order_model_1.OrderModel.findById(req.params.id).populate('user');
-    if (order) {
-        order.isPaid = true;
-        order.paidAt == new Date(Date.now());
-        order.paymentResult = {
-            paymentId: req.body.id,
-            status: req.body.status,
-            update_time: req.body.transaction_date,
-            email_address: req.body.customer.email,
-        };
-        const updatedOrder = yield order.save();
-        res.send({ order: updatedOrder, message: "Payment Succesful" });
-    }
-    else {
-        res.status(404).send({ message: "Order does not exist" });
     }
 }));
 //Order delivery status update

@@ -14,8 +14,8 @@ const typegoose_1 = require("@typegoose/typegoose");
 let Product = exports.Product = class Product {
 };
 __decorate([
-    (0, typegoose_1.prop)(),
-    __metadata("design:type", String)
+    (0, typegoose_1.prop)({ required: true }),
+    __metadata("design:type", Object)
 ], Product.prototype, "image", void 0);
 __decorate([
     (0, typegoose_1.prop)({ required: true }),

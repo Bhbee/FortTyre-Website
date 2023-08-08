@@ -14,6 +14,10 @@ const typegoose_1 = require("@typegoose/typegoose");
 let User = exports.User = class User {
 };
 __decorate([
+    (0, typegoose_1.prop)(),
+    __metadata("design:type", String)
+], User.prototype, "googleId", void 0);
+__decorate([
     (0, typegoose_1.prop)({ required: true }),
     __metadata("design:type", String)
 ], User.prototype, "first_name", void 0);
@@ -26,17 +30,13 @@ __decorate([
     __metadata("design:type", String)
 ], User.prototype, "email", void 0);
 __decorate([
-    (0, typegoose_1.prop)({ required: true, unique: true }),
+    (0, typegoose_1.prop)({ unique: true }),
     __metadata("design:type", String)
 ], User.prototype, "phone_number", void 0);
 __decorate([
-    (0, typegoose_1.prop)({ required: true }),
-    __metadata("design:type", String)
-], User.prototype, "password", void 0);
-__decorate([
     (0, typegoose_1.prop)(),
     __metadata("design:type", String)
-], User.prototype, "resetToken", void 0);
+], User.prototype, "password", void 0);
 __decorate([
     (0, typegoose_1.prop)(),
     __metadata("design:type", String)

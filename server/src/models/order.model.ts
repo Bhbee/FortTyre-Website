@@ -3,15 +3,6 @@ import { Product} from './product.model'
 import { User } from './user.model'
 import { Payment } from './payment.model'
 
-
-// interface PaymentInfo {
-//   order: string
-//   email: string
-//   amount: number
-//   reference: string
-//   status: string
-// }
-
 @modelOptions({ schemaOptions: {timestamps: true}})
 class DeliveryAddress {
   @prop()

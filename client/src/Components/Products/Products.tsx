@@ -8,8 +8,6 @@ import MessageBox from "../MessageBox/MessageBox";
 import { getError } from "../../Utils/ApiError";
 import ApiError from "../../Types/ApiErrortype";
 import ProductItem from "../ProductItem/ProductItem";
-import { Product } from "../../Types/Product";
-// import { ProductList, Product } from "../../Types/Product";
 
 const Products: React.FC = () => {
   const style = {
@@ -19,8 +17,7 @@ const Products: React.FC = () => {
 
   const { data: listOfProducts, isLoading, error } = useGetProductsQuery();
 
-
-  console.log("lIST OF PRODUCTS", listOfProducts);
+    console.log("listOfProducts", listOfProducts);
 
   return (
     <Container style={style} fluid className="mt-5">
@@ -49,14 +46,9 @@ const Products: React.FC = () => {
           {listOfProducts?.products.map((product) => (
             <Col key={product.__v} sm={6} md={4} lg={3}>
               <ProductItem product={product} />
-              {/* <p>
-                <span>&#8358;</span>
-                {product.price}
-              </p> */}
             </Col>
           ))}
         </Row>
-    
       )}
     </Container>
   );

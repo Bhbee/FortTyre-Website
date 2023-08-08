@@ -14,8 +14,8 @@ export const PayWithPaystack = asyncHandler(async (req: Request, res: Response) 
   const first_name = user.first_name
   const last_name = user.last_name
   const id = req.params.id
-  
-  const paymentVerificationUrl = `http://localhost:3000/orders/pay/verify/${id}`; //edit later to hosted base url
+  const baseUrl = process.env.baseUrl as string
+  const paymentVerificationUrl = `${baseUrl}/orders/pay/verify/${id}`; //edit later to hosted base url
   const params = JSON.stringify({
     "email": email,
     "first_name": first_name,

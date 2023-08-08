@@ -7,7 +7,7 @@ import "./cart.css";
 
 const Cart: React.FC = () => {
   return (
-    <Container className="mt-5">
+    <Container className="mt-5 cart-top-container">
       <Row>
         <Helmet>
           <title>Cart</title>
