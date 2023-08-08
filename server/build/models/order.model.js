@@ -14,13 +14,6 @@ const typegoose_1 = require("@typegoose/typegoose");
 const product_model_1 = require("./product.model");
 const user_model_1 = require("./user.model");
 const payment_model_1 = require("./payment.model");
-// interface PaymentInfo {
-//   order: string
-//   email: string
-//   amount: number
-//   reference: string
-//   status: string
-// }
 let DeliveryAddress = class DeliveryAddress {
 };
 __decorate([
