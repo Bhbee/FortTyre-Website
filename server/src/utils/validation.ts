@@ -20,7 +20,7 @@ export const validateRegisterData = (user: User) =>{
         email: Joi.string().email().required().messages({'string.pattern.base': 'Email must be a valid email type'}),
         phone_number: Joi.string().min(11).max(11)
             .required()
-            .messages({'string.pattern.base': 'Phone number must 11 digits without the country code"',
+            .messages({'string.pattern.base': 'Phone number must 11 digits without the country code',
         }),
         password: Joi.string().min(8).max(36)
             .pattern(new RegExp('^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,}$'))
