@@ -1,0 +1,10 @@
+.reset-password-top-container { 
+    min-height: 50vh;
+    padding-top: 2rem;
+}
+
+.resetpassword-header {
+    text-align: center;
+    color: green;
+    font-weight: 900;
+}

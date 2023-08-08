@@ -1,11 +1,8 @@
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-
 import HeroSlider from "../../HeroSlider/HeroSlider";
-import { NavLink } from "react-router-dom";
 import "./home.css";
-import tyreBrands from "../../../Assets/tyreBrands.png";
 import freshArrival from "../../../Assets/freshArrival.jpg";
 import latest_deal_img from "../../../Assets/latest_deal_img.png";
 import OtherServices from "../../OtherServices/OtherServices";
