@@ -84,7 +84,7 @@
 .search-results {
     display: flex;
     flex-direction: column;
-    width: 100%;
+    width: 70%;
     background-color: green;
     color: #fff;
     padding: 1rem;
@@ -112,6 +112,9 @@ cursor: pointer;
 
 @media (max-width: 992px) {
 
+    .search-results {
+        width: 100%;
+    }
 .layout-icon {
     font-size: 2rem;
     color: green;
