@@ -55,9 +55,6 @@ export class Order {
   @prop({ref: Payment})
   public paymentInfo?: Ref<Payment>
 
-  // @prop()
-  // public paymentInfo?: PaymentInfo
-
   @prop({required: true, default: 0})
   public itemPrice!: number
 
