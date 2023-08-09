@@ -44,7 +44,7 @@ export const AddProduct = async (req: Request, res: Response) => {
   const imageFile = req.file;
 
   try {
-    let findProduct = await ProductModel.findOne({ brand: req.body.brand });
+    const findProduct = await ProductModel.findOne({ brand: req.body.brand });
     const findProductSize = await ProductModel.findOne({ size: req.body.size });
     if (findProduct && findProductSize) {
       return res.send('Product already exists. You might want to consider updating the existing product');
@@ -72,13 +72,13 @@ export const AddProduct = async (req: Request, res: Response) => {
     });
     res.status(201).send({ message: 'Product Added Successfully' });
   } catch (err) {
-    console.error(err);
-    res.status(500).send({ message: 'Internal Server Error' });
+    res.status(500).send({ message: 'An error occcured' })
   }
 };
 
 //Edit Product
-export const EditProductDetails = asyncHandler(async (req: Request, res: Response) =>{
+export const EditProductDetails = async (req: Request, res: Response) =>{
+  try{
     const productId = req.params.id;
     const { brand, size, price, countInStock } = req.body;
     const imageFile = req.file;
@@ -104,7 +104,11 @@ export const EditProductDetails = asyncHandler(async (req: Request, res: Respons
     } else {
       res.status(404).send({ message: 'Product Not Found' });
     }
-})
+  }
+  catch(error){
+    return res.status(500).json({ error: 'An error occurred' });
+  }
+}
 
 
 //Delete user from database by Admin only
@@ -123,7 +127,8 @@ export const DeleteProduct = asyncHandler(async (req: Request, res: Response) =>
 
 
 //search by filter
-export const SearchByFilter = asyncHandler(async (req: Request, res: Response) =>{
+export const SearchByFilter = async (req: Request, res: Response) =>{
+  try{
     const { query } = req;
     const page = Number(query.page) || 1;
     const pageSize: any = query.pageSize || query.PAGE_SIZE;
@@ -161,4 +166,8 @@ export const SearchByFilter = asyncHandler(async (req: Request, res: Response) =
       countProducts,
       page,
     });
-  })
+  }
+  catch(error){
+    return res.status(500).json({ error: 'An error occurred' });
+  }
+}
