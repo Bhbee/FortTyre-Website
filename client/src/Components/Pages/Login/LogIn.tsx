@@ -11,13 +11,13 @@ import login from "../../../Assets/login.png";
 import { Helmet } from "react-helmet-async";
 import { useContext, useState } from "react";
 import { Store } from "../../../Store";
-import { useLoginMutation} from "../../../Hooks/UserHook"
+import { useLoginMutation } from "../../../Hooks/UserHook";
 import { getError } from "../../../Utils/ApiError";
 import ApiError from "../../../Types/ApiErrortype";
 import LoadingBox from "../../LoadingBox/LoadingBox";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
+import "./login.css";
 
 const Login: React.FC = () => {
   const navigate = useNavigate();
