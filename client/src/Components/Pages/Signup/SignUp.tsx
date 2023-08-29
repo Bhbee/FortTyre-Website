@@ -27,13 +27,31 @@ const SignUp: React.FC = () => {
   const [email, setEmail] = useState("");
   const [phone_number, setPhoneNumber] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
 
   const isPasswordValid = (password: string) => {
-    return password.length >= 8;
+    const passwordPattern =
+      /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
+
+    if (password.length < 8) {
+      return "Password must be at least 8 characters long.";
+    }
+
+    if (!passwordPattern.test(password)) {
+      return "Password must include at least one uppercase letter, one lowercase letter, one digit, and one special character.";
+    }
+
+    return ""; // Return null if the password is valid
   };
 
-  const {  dispatch } = useContext(Store);
+  const handlePasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const newPassword = event.target.value;
+    const validationError = isPasswordValid(newPassword);
+    setError(validationError);
+    setPassword(newPassword);
+  };
 
+  const { dispatch } = useContext(Store);
 
   const { mutateAsync: signUp, isLoading } = useSignUpMutation();
 
@@ -50,7 +68,7 @@ const SignUp: React.FC = () => {
       dispatch({ type: "USER_REGISTERED", payload: data });
       localStorage.setItem("userAccessToken", JSON.stringify(data));
       console.log("signUp", data);
-      toast.success("Succefully Registered", {
+      toast.success(data.message, {
         position: toast.POSITION.BOTTOM_CENTER,
       });
       navigate("/cart");
@@ -148,6 +166,7 @@ const SignUp: React.FC = () => {
                   <Form.Label>First Name</Form.Label>
                   <Form.Control
                     type="first_name"
+                    required
                     placeholder="John"
                     onChange={(e) => setFirstName(e.target.value)}
                   />
@@ -157,6 +176,7 @@ const SignUp: React.FC = () => {
                   <Form.Label>Last Name</Form.Label>
                   <Form.Control
                     type="last_name"
+                    required
                     placeholder="Doe"
                     onChange={(e) => setLastName(e.target.value)}
                   />
@@ -166,6 +186,7 @@ const SignUp: React.FC = () => {
                   <Form.Label>Email address</Form.Label>
                   <Form.Control
                     type="email"
+                    required
                     placeholder="johndoe@mail.com"
                     onChange={(e) => setEmail(e.target.value)}
                   />
@@ -175,6 +196,7 @@ const SignUp: React.FC = () => {
                   <Form.Label>Phone number</Form.Label>
                   <Form.Control
                     type="phone_number"
+                    required
                     placeholder="080633733915"
                     onChange={(e) => setPhoneNumber(e.target.value)}
                   />
@@ -184,19 +206,14 @@ const SignUp: React.FC = () => {
                   <Form.Label>Password</Form.Label>
                   <Form.Control
                     type="password"
+                    required
                     placeholder="password"
-                    onChange={(e) => setPassword(e.target.value)}
+                    onChange={handlePasswordChange}
                   />
                 </Form.Group>
 
-                {/* <Form.Group className="mb-4" controlId="formBasicEmail">
-                  <Form.Label>Pasword</Form.Label>
-                  <Form.Control type="password" placeholder="password" />
-                </Form.Group> */}
-                {password && !isPasswordValid(password) && (
-                  <p style={{ color: "red", fontWeight: "bold" }}>
-                    Password must be at least 8 characters long.
-                  </p>
+                {error && (
+                  <p style={{ color: "red", fontWeight: "bold" }}>{error}</p>
                 )}
 
                 <Row className="login-form-row-align">

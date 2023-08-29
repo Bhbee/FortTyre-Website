@@ -4,8 +4,24 @@ import Col from "react-bootstrap/Col";
 import { BsCartX } from "react-icons/bs";
 import { Helmet } from "react-helmet-async";
 import "./cart.css";
+import { Store } from "../../../Store";
+import { useContext } from "react";
+import { OrderItems } from "../../../Types/CartItem";
+import { useGetProductsQuery } from "../../../Hooks/productHook";
 
 const Cart: React.FC = () => {
+  const { state, dispatch } = useContext(Store);
+  const {
+    cart: { orderItems },
+  } = state;
+
+  const { data: listOfProducts, isLoading, error } = useGetProductsQuery();
+  console.log("listOfProducts", listOfProducts?.products);
+
+  const updateCartHandler = (item: OrderItems, quantity: number) => {
+  
+  };
+
   return (
     <Container className="mt-5 cart-top-container">
       <Row>

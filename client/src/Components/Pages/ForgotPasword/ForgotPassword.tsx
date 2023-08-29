@@ -27,7 +27,10 @@ const ForgotPassword: React.FC = () => {
       });
       console.log(data);
       if (data.message === "Email sent successfully!") {
-        navigate("../resetpassword");
+        toast.success("reset password has ben sent to your email", {
+          position: toast.POSITION.BOTTOM_CENTER,
+        });
+        // navigate("../resetpassword");
         console.log("password successfully sent");
       }
     } catch (err) {

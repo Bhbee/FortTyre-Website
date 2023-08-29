@@ -1,39 +1,134 @@
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import { ListGroup, Card, Badge, Button } from "react-bootstrap";
 import { Helmet } from "react-helmet-async";
 import { useParams } from "react-router-dom";
 import LoadingBox from "../../LoadingBox/LoadingBox";
 import MessageBox from "../../MessageBox/MessageBox";
 import ApiError from "../../../Types/ApiErrortype";
+import { Store } from "../../../Store";
 import { convertProductToCartItem, getError } from "../../../Utils/ApiError";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { useGetProductDetailsBySlugQuery } from "../../../Hooks/productPageHook";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import "./productdetails.css";
 
 const ProductDetails: React.FC = () => {
   const { productId } = useParams();
-  
- const {data: product, isLoading, error} = useGetProductDetailsBySlugQuery(productId!)
+  const navigate = useNavigate();
 
-console.log("product",product);
+  const { state, dispatch } = useContext(Store);
+  const { cart } = state;
 
+  const {
+    data: product,
+    isLoading,
+    error,
+    status,
+    refetch,
+  } = useGetProductDetailsBySlugQuery(productId!);
 
-  return (
+  const getProductById = async () => {
+    if (productId !== "") {
+      // console.log("productId", productId);
+      await refetch();
+      // console.log("refetch");
+    }
+  };
+
+  useEffect(() => {
+    getProductById();
+  }, [productId]);
+
+  // console.log("data", product);
+
+  const addToCartHandler = () => {
+    const existItem = cart.orderItems.find((x) => x.name === product!.brand);
+    const quantity = existItem ? existItem.quantity + 1 : 1;
+    if (product!.countInStock < quantity) {
+      alert("product is out of stock");
+      toast.warn("Sorry. Product is out of stock");
+      return;
+    }
+    dispatch({
+      type: "CART_ADD_ITEM",
+      payload: { ...convertProductToCartItem(product!), quantity },
+    });
+    toast.success("Product added to the cart");
+    //  navigate("/cart");
+  };
+
+  return isLoading ? (
+    <LoadingBox />
+  ) : error ? (
+    <MessageBox variant="danger">{getError(error as ApiError)}</MessageBox>
+  ) : !product ? (
+    <MessageBox variant="danger">Product not found</MessageBox>
+  ) : (
     <Container className="product-details-top-container">
       <Helmet>
         <title>Product</title>
       </Helmet>
       <Row>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos aliquam
-          iusto soluta molestiae corporis reprehenderit, repudiandae nesciunt,
-          facilis nisi quo totam perferendis explicabo eum enim quam debitis
-          atque molestias. Esse id minima incidunt suscipit quo ab error eum
-          assumenda rerum totam, cum quisquam eos porro, ullam excepturi maiores
-          nesciunt odit?
-        </p>
-        <Col>{productId}</Col>
+        <Col md={6}>
+          <img
+            style={{ width: "400px", maxWidth: "100%" }}
+            src={product.image.url}
+            alt={product._id}
+          />
+        </Col>
+        <Col md={3}>
+          <ListGroup variant="flush">
+            <ListGroup.Item>
+              <Helmet>
+                <title>{product.brand}</title>
+              </Helmet>
+              <h1>{product.brand}</h1>
+            </ListGroup.Item>
+            <ListGroup.Item>{product.size}</ListGroup.Item>
+
+            <ListGroup.Item>Price : ${product.price}</ListGroup.Item>
+          </ListGroup>
+        </Col>
+
+        <Col md={3}>
+          {" "}
+          <Card>
+            <Card.Body>
+              <ListGroup variant="flush">
+                <ListGroup.Item>
+                  <Row>
+                    <Col>Price:</Col>
+                    <Col>${product.price}</Col>
+                  </Row>
+                </ListGroup.Item>
+                <ListGroup.Item>
+                  <Row>
+                    <Col>Status:</Col>
+                    <Col>
+                      {product.countInStock > 0 ? (
+                        <Badge bg="success">In Stock</Badge>
+                      ) : (
+                        <Badge bg="danger">Unavailable</Badge>
+                      )}
+                    </Col>
+                  </Row>
+                </ListGroup.Item>
+                {product.countInStock > 0 && (
+                  <ListGroup.Item>
+                    <div className="d-grid">
+                      <Button onClick={addToCartHandler} variant="primary">
+                        Add to Cart
+                      </Button>
+                    </div>
+                  </ListGroup.Item>
+                )}
+              </ListGroup>
+            </Card.Body>
+          </Card>
+        </Col>
       </Row>
     </Container>
   );

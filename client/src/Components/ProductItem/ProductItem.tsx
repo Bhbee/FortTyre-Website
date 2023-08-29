@@ -14,7 +14,7 @@ const ProductItem = ({ product }: { product: Product }) => {
     cart: { orderItems },
   } = state;
 
-  console.log("orderItems", orderItems);
+  // console.log("orderItems", orderItems);
 
   const addToCartHandler = (item: OrderItems) => {
     const existItem = orderItems.find((x) => x.name === product.brand);
@@ -47,6 +47,7 @@ const ProductItem = ({ product }: { product: Product }) => {
             <span>&#8358;</span>
             {product.price}
           </Card.Text>
+          <Card.Text className="mb-2">{product.size}</Card.Text>
         </NavLink>
         {product.countInStock === 0 ? (
           <Button variant="light">Out of stock</Button>
