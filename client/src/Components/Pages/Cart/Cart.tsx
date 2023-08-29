@@ -1,13 +1,14 @@
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import ProductItem from "../../ProductItem/ProductItem";
 import { BsCartX } from "react-icons/bs";
 import { Helmet } from "react-helmet-async";
-import "./cart.css";
 import { Store } from "../../../Store";
 import { useContext } from "react";
 import { OrderItems } from "../../../Types/CartItem";
 import { useGetProductsQuery } from "../../../Hooks/productHook";
+import "./cart.css";
 
 const Cart: React.FC = () => {
   const { state, dispatch } = useContext(Store);
@@ -18,9 +19,7 @@ const Cart: React.FC = () => {
   const { data: listOfProducts, isLoading, error } = useGetProductsQuery();
   console.log("listOfProducts", listOfProducts?.products);
 
-  const updateCartHandler = (item: OrderItems, quantity: number) => {
   
-  };
 
   return (
     <Container className="mt-5 cart-top-container">
