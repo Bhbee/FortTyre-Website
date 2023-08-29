@@ -15,6 +15,7 @@ return (await apiClient.get<ProductList>(`/products/search?brand=${search}`)).da
             
 
     
-        }
+        },
+        enabled: false,
 
     })

@@ -5,6 +5,10 @@ import apiClient from "../apiClient"
 export const useGetProductDetailsBySlugQuery = (id: string) =>
   useQuery({
     queryKey: ['products', id],
-    queryFn: async () =>
-      (await apiClient.get<Product>(`api/products/${id}`)).data,
+    queryFn: async () => 
+      
+(await apiClient.get<Product>(`/products/${id}`)).data, 
+enabled: false
+    
+
   })
