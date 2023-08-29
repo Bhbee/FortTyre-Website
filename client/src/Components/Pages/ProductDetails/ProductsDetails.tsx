@@ -87,7 +87,7 @@ const ProductDetails: React.FC = () => {
               </Helmet>
               <h1>{product.brand}</h1>
             </ListGroup.Item>
-            <ListGroup.Item>{product.size}</ListGroup.Item>
+            <ListGroup.Item>size: {product.size}</ListGroup.Item>
 
             <ListGroup.Item>Price : ${product.price}</ListGroup.Item>
           </ListGroup>
