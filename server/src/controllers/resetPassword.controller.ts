@@ -10,7 +10,7 @@ import Joi from 'joi'
 
 //Get reset-password link
 const pKey = process.env.privateKey as string;
-const baseUrl = process.env.baseUrl as string;
+const origin = process.env.origin as string;
 export const forgotPassword = asyncHandler(async (req: Request, res: Response) =>{
   const schema = Joi.object({ email: Joi.string().email().required() });
   const { error, value } = schema.validate(req.body);
@@ -31,7 +31,7 @@ export const forgotPassword = asyncHandler(async (req: Request, res: Response) =
       );
 
       //reset link
-      const link = `${baseUrl}/auth/reset-password/${user.id}/${token}`
+      const link = `${origin}/resetpassword/${user.id}/${token}`
 
       const mailHandler = new MailHandler();
       mailHandler.sendEmail(user.email, 
@@ -53,15 +53,16 @@ export const forgotPassword = asyncHandler(async (req: Request, res: Response) =
 })
 
 export const passwordReset = asyncHandler(async (req: Request, res: Response) =>{
-  const schema = Joi.object({  password: Joi.string().min(8).max(36)
-    .pattern(new RegExp('^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,}$'))
+  const schema = Joi.object({ 
+    password: Joi.string().min(8).max(24).pattern(new RegExp('^(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$'))
     .required()
-    .messages({'string.pattern.base': 'Password must contain at least one uppercase letter, one lowercase letter, one digit, and one special character',
-  }), });
+    .messages({'string.pattern.base': 'Password must contain at least one special character',
+    })
+  });
   const { error } = schema.validate(req.body);
   if (error) { res.status(400).send(error.details[0].message)}
   const salt = await bcrypt.genSalt(12) 
-    const {id, token} = req.params
+  const {id, token} = req.params
     try{
       const user = await UserModel.findOne({ _id: id })
       const secret = pKey + user?.phone_number

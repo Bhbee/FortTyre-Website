@@ -4,6 +4,7 @@ import {Login, Logout, Register, handleRefreshToken } from '../controllers/auth.
 import {forgotPassword, passwordReset} from '../controllers/resetPassword.controller'
 export const authRouter = express.Router()
 
+
 //Login
 authRouter.post('/sign-in', Login)
 
@@ -20,9 +21,11 @@ authRouter.get("/sign-out", Logout)
 authRouter.get('/google', passport.authenticate('google',{
     scope:['profile', 'email']
 }))
+
 authRouter.get('/google/redirect', passport.authenticate('google'),(req,res)=>{
     res.redirect('/orders/my-order')
 })
+
 //Forgot Password? Get reset-password link
 authRouter.post("/forgot-password", forgotPassword)
 

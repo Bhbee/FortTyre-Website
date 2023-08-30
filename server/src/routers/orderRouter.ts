@@ -16,7 +16,7 @@ orderRouter.get('/', verifyUser, isAdmin, GetAllOrders)
 //summary of monthly sales/orders by Admin only
 orderRouter.get('/summary', verifyUser, isAdmin, summaryOfSales)
 
-//get all orders of current user
+//get order history of current user
 orderRouter.get('/my-order', (isLoggedIn||verifyUser), GetAllOrdersOfUser)
 
 //Delete order by admin only
@@ -31,5 +31,5 @@ orderRouter.post('/:id/pay', PayWithPaystack, )
 //Update order payment details
 orderRouter.get('/pay/verify/:id', VerifyPayment)
 
-//Order delivery status update
+//Order delivery status update by Admin
 orderRouter.put('/:id/deliver', verifyUser, isAdmin, UpdateDeliverystatus)

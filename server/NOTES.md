@@ -1,3 +1,9 @@
+## TODO
+1. Nodemailer
+2. Cloudinary account
+3. Paystack
+4. Google account
+
 ##
 1. Register user
 2. Login
