@@ -17,7 +17,7 @@ const Products: React.FC = () => {
 
   const { data: listOfProducts, isLoading, error } = useGetProductsQuery();
 
-    console.log("listOfProducts", listOfProducts);
+  // console.log("listOfProducts", listOfProducts);
 
   return (
     <Container style={style} fluid className="mt-5">

@@ -4,18 +4,18 @@ import Nav from "react-bootstrap/Nav";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Navbar from "react-bootstrap/Navbar";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { RiAccountCircleFill } from "react-icons/ri";
 import { SiGnuprivacyguard } from "react-icons/si";
 // import BreadCrumbs from "../BreadCrumbs/BreadCrumb";
-import { useContext, useState } from "react";
+import React, { useContext, useState } from "react";
 import { useGetFilterSearchQuery } from "../../Hooks/filterSearchHook";
-import useDebounceValue from "../../Hooks/useDebounceValue";
 import { Store } from "../../Store";
-import "./layout.css";
 import { Badge } from "react-bootstrap";
+import SearchResults from "../Pages/SearchResults/SearchResults";
 import { Product } from "../../Types/Product";
+import "./layout.css";
 
 const Layout: React.FC = () => {
   const {
@@ -23,17 +23,30 @@ const Layout: React.FC = () => {
     dispatch,
   } = useContext(Store);
 
-  const [search, setSearch] = useState("");
+  const navigate = useNavigate();
 
-  const debouncedSearchTerm = useDebounceValue(search, 500);
+  const [search, setSearch] = useState("");
 
   const {
     data: filterSearchProducts,
     isLoading,
     error,
-  } = useGetFilterSearchQuery(debouncedSearchTerm);
+    refetch,
+  } = useGetFilterSearchQuery(search);
 
-  console.log("filterSearchProducts", filterSearchProducts);
+  const onSubmit = async (e: any) => {
+    e.preventDefault();
+    console.log(e.target.value);
+    try {
+      await refetch().then((result) =>
+        navigate("/searchresults", { state: { products: result.data } })
+      );
+      console.log("isLoading", isLoading);
+      console.log("searchProducts", filterSearchProducts);
+    } catch (err) {}
+  };
+
+  // console.log("filterSearchProducts", filterSearchProducts);
 
   return (
     <header className="layout-position">
@@ -52,19 +65,34 @@ const Layout: React.FC = () => {
             id="responsive-navbar-nav"
             className="mt-3 nav-container nav-collapse-container"
           >
-            <Form className="d-flex form-width">
+            <Form
+              className="d-flex form-width"
+              // onSubmit={onSubmit}
+            >
               <Form.Control
-                // value={search}
-                onChange={(e) => setSearch(e.target.value)}
+                value={search}
+                onChange={(e) => {
+                  setSearch(e.target.value);
+                }}
                 type="search"
                 placeholder="Search by product or size... (Eg 205/65/16 or Michelin) "
                 className="me-2"
                 aria-label="Search"
               />
-              {/* 
-              <Button variant="outline-success" className="layout-search-btn">
-                Search
-              </Button> */}
+
+              <Nav.Link
+                as={NavLink}
+                to="../searchresults"
+                href="../searchresults"
+              >
+                <Button
+                  variant="outline-success"
+                  className="layout-search-btn"
+                  onClick={onSubmit}
+                >
+                  Search
+                </Button>
+              </Nav.Link>
             </Form>
             {/* <Button variant={mode}>
               <i>{mode === "light" ? <BsFillSunFill /> : <BsFillMoonFill />}</i>
@@ -118,20 +146,26 @@ const Layout: React.FC = () => {
             ))}
         </div>
       } */}
-      {      <div >
-        {search !== "" && (
-          <div className="search-results">
-            {isLoading && <div>Loading...</div>}
-            {filterSearchProducts &&
-              filterSearchProducts.products.map((product) => (
-                <div className="border-bottom" key={product._id}>
-                  {product.brand}
-                </div>
-              ))}
-          </div>
-        )}
-      </div>
-}
+      {/* {
+        <div>
+          {search !== "" && (
+            <div className="search-results">
+              {isLoading && <div>Loading...</div>}
+              {filterSearchProducts &&
+                filterSearchProducts.products.map((product) => (
+                  <NavLink
+                    to={`products/${product._id}`}
+                    style={{ textDecoration: "none", color: "white" }}
+                  >
+                    <div className="border-bottom" key={product._id}>
+                      {product.brand}
+                    </div>
+                  </NavLink>
+                ))}
+            </div>
+          )}
+        </div>
+      } */}
       {/* <BreadCrumbs /> */}
     </header>
   );
