@@ -16,10 +16,12 @@ const ProductItem = ({ product }: { product: Product }) => {
 
   // console.log("orderItems", orderItems);
 
+  const existItem = orderItems.find((x) => x.name === product.brand);
+  const quantity = existItem ? existItem.quantity + 1 : 1;
+
   const addToCartHandler = (item: OrderItems) => {
-    const existItem = orderItems.find((x) => x.name === product.brand);
-    const quantity = existItem ? existItem.quantity + 1 : 1;
     if (product.countInStock < quantity) {
+      console.log(product.countInStock);
       alert("Sorry. Product is out of stock");
       return;
     }
@@ -49,7 +51,7 @@ const ProductItem = ({ product }: { product: Product }) => {
           </Card.Text>
           <Card.Text className="mb-2">{product.size}</Card.Text>
         </NavLink>
-        {product.countInStock === 0 ? (
+        {product.countInStock < quantity ? (
           <Button variant="light">Out of stock</Button>
         ) : (
           <Button

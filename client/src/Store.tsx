@@ -38,7 +38,11 @@ type Action =
   | { type: "SWITCH_MODE" }
   | { type: "USER_LOGIN"; payload: UserToken }
   | { type: "USER_REGISTERED"; payload: UserSignUpMessage }
-  | { type: "CART_ADD_ITEM"; payload: OrderItems };
+  | { type: "CART_ADD_ITEM"; payload: OrderItems } |
+  {
+    type: "CART_REMOVE_ITEM";
+    payload: OrderItems;
+  }
 
 function reducer(state: AppState, action: Action): AppState {
   switch (action.type) {
@@ -64,6 +68,14 @@ function reducer(state: AppState, action: Action): AppState {
       console.log("cartItems", cartItems);
 
       return { ...state, cart: { ...state.cart, orderItems: cartItems } };
+
+    case "CART_REMOVE_ITEM": {
+      const cartItems = state.cart.orderItems.filter(
+        (item: OrderItems) => item.name !== action.payload.name
+      );
+      localStorage.setItem("cartItems", JSON.stringify(cartItems));
+      return { ...state, cart: { ...state.cart, orderItems: cartItems } };
+    }
 
     default:
       return state;
