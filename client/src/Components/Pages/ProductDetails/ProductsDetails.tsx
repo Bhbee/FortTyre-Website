@@ -61,7 +61,7 @@ const ProductDetails: React.FC = () => {
   };
 
   return isLoading ? (
-    <LoadingBox />
+    <LoadingBox  />
   ) : error ? (
     <MessageBox variant="danger">{getError(error as ApiError)}</MessageBox>
   ) : !product ? (
