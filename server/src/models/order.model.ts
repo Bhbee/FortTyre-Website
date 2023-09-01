@@ -34,6 +34,9 @@ class Item {
   @prop ({required: true })
   public price!: number
 
+  @prop({required: true, default: 0})
+  public countInStock!: number
+
   @prop ({ref: Product})
   public product?: Ref<Product> 
 
