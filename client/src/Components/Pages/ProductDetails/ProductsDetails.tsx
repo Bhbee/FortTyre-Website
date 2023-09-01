@@ -61,7 +61,7 @@ const ProductDetails: React.FC = () => {
   };
 
   return isLoading ? (
-    <LoadingBox  />
+    <LoadingBox />
   ) : error ? (
     <MessageBox variant="danger">{getError(error as ApiError)}</MessageBox>
   ) : !product ? (
@@ -100,7 +100,7 @@ const ProductDetails: React.FC = () => {
               <ListGroup variant="flush">
                 <ListGroup.Item>
                   <Row>
-                    <Col>Price:</Col>
+                    <Col>price:</Col>
                     <Col>${product.price}</Col>
                   </Row>
                 </ListGroup.Item>
