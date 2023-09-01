@@ -1,11 +1,11 @@
 # 📜 Basic Overview
 
-This part of the project is the API for an E-comerce website `Drawer Navigation`
+This part of the project is the API for an E-comerce website `A restful API`
 
 
 # 🛠 Tech Details
 
-This project was built primarily with `Nodejs(Expressjs)`, `Typescript`, `MongoDB` (stack, drawer and bottom tabs), and `Passport`
+This project was built primarily with `Nodejs(Expressjs)`, `Typescript`, `MongoDB` (Database), and `Passport`.
 
 Other tools used for maintaining a standard project workflow and structure include `eslint` for linking and `prettier` for code formatting and `npm` for package management.
 Other Third party API include `Cloudinary`, `Paystack` and `Passport` for google Oauth.
@@ -65,22 +65,20 @@ To build the typescript files into javascript files
 
 ## 🧱 Project Structure
 
-### The top level directory structure is as follows:
-- [config](src%2F%40config) - Contains Interfaces, enum, types, declarations
-- [controllers](src%2Fcontrollers) - Contains globally shared/reusable components, 
-- [middlewares](src%2F%40types) - Contains Interfaces, enum, types, declarations
-- [models](src%2Fmodels) - Contains globally shared/reusable components, such as 
-- [routers](src%2Fcontrollers) - Contains globally shared/reusable components, 
-- [types](src%2F%40types) - Contains Interfaces, enum, types, declarations
-
-- [utilities](src%2Futilities) - Contains utilities [functions], helpers, and the likes
-- [services](src%2Fservices) - Would contain the API related services for the app
+### The top level directory structure implementing separation of concerns is as follows:
+- [config](src%2F%40config) - Contains configuration settings for the database connection and google Oauth using passport.
+- [controllers](src%2Fcontrollers) - Contains files whch acts intermediaries between input received from user and the Models.  
+- [middlewares](src%2F%40types) - Contains essential components which acts as a middleman in a request-response cycle.
+- [models](src%2Fmodels) - Contains files that represents the application's data, the rules and constraints enforced on those data.
+- [routers](src%2Fcontrollers) - Contains files that defines the routes or endpoints of the web application,
+- [types](src%2F%40types) - Contains a global type for req.user
+- [utilities](src%2Futilities) - Contains utilities [tools, libraries, functions] that provides certain useful functionalities to assist in development
 
 # ⚡️ Walkthrough of the API
 
-- As previously mentioned in the previous sections of this README, I made use of react-navigation's Drawer, Stack and Tab navigations to achieve the required navigations of the app.
+- As previously mentioned in the previous sections of this README, I made use of Nodejs(ExpressJS) and Typecript PL. 
 
-### Accesible endpoints for users:
+### 🛠 Accesible endpoints for users:
 
 - Register New User: POST /auth/sign-up
 - User Login: POST /auth/sign-in
@@ -102,7 +100,7 @@ To build the typescript files into javascript files
 - Get order details: GET /orders/:id
 - Make payments: POST /orders/:id/pay
 
-### Accesible endpoints for Admins only:
+### 🛠 Accesible endpoints for Admins only:
 - Get all registered users: GET /users/
 - Delete user account: DELETE /users/:id
 - View user's profile: GET /users/:id
@@ -117,10 +115,12 @@ To build the typescript files into javascript files
 - Update delivery status: PUT /orders/:id/deliver
 
 ## API Documentation
+- Click on the link to find the documentation of this API.
+[API Documentation](https://documenter.getpostman.com/view/22756934/2s946h8Xeg#268c9d99-5c21-49eb-9b8c-559b2c932829)
 
-![API Documentation](https://documenter.getpostman.com/view/22756934/2s946h8Xeg#268c9d99-5c21-49eb-9b8c-559b2c932829).
-
-```Users can create their own account with the following details:
+```
+User Registration
+Users can create their own account with the following details:
 - First name
 - Last name
 - Email address
