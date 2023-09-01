@@ -17,7 +17,7 @@ orderRouter.get('/', verifyUser, isAdmin, GetAllOrders)
 orderRouter.get('/summary', verifyUser, isAdmin, summaryOfSales)
 
 //get order history of current user
-orderRouter.get('/my-order', (isLoggedIn||verifyUser), GetAllOrdersOfUser)
+orderRouter.get('/my-orders', (isLoggedIn||verifyUser), GetAllOrdersOfUser)
 
 //Delete order by admin only
 orderRouter.delete('/:id', verifyUser, isAdmin, DeleteOrder)

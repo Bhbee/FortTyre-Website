@@ -1,17 +1,18 @@
 import Joi from 'joi'
 import { User } from '../models/user.model';
 
-export const validateLoginData = (login: {email: string; password: string}) =>{
-    const loginSchema = Joi.object({
-        email: Joi.string().email().required().messages({'string.pattern.base': 'Email must be a valid email type'}),
-        password: Joi.string().min(8).max(24).pattern(new RegExp('^(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$'))
-            .required()
-            .messages({'string.pattern.base': 'Password must contain at least one special character',
-        }),
-        //The value must match a regular expression pattern that requires at least one special character while allowing any combination of characters
-    })
-    return loginSchema.validate(login)
-}
+export const validateLoginData = (login: { email: string; password: string }) => {
+  const loginSchema = Joi.object({
+    email: Joi.string().email().required().messages({ 'string.pattern.base': 'Email must be a valid email type' }),
+    password: Joi.string()
+      .min(8)
+      .max(24)
+      .pattern(new RegExp('^(?=.*[@$!%*?&]).{8,}$'))
+      .required()
+      //.messages({ 'string.pattern.base': 'Password must contain at least one special character' }),
+  });
+  return loginSchema.validate(login);
+};
 
 export const validateRegisterData = (user: User) =>{
     const RegisterSchema = Joi.object<User>({
@@ -22,7 +23,9 @@ export const validateRegisterData = (user: User) =>{
             .required()
             .messages({'string.pattern.base': 'Phone number must 11 digits without the country code',
         }),
-        password: Joi.string().min(8).max(24).pattern(new RegExp('^(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$'))
+        password: Joi.string()
+            .min(8).max(24)
+            .pattern(new RegExp('^(?=.*[@$!%*?&]).{8,}$'))
             .required()
             .messages({'string.pattern.base': 'Password must contain at least one special character',
         }),
