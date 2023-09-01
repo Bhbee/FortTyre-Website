@@ -20,7 +20,7 @@ export class Product {
     public size!: string
 
     @prop({required: true, default: 0})
-    public price!: string
+    public price!: number
 
     @prop({required: true, default: 0})
     public countInStock!: number

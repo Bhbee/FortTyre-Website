@@ -32,7 +32,7 @@ class Item {
   public image!: string
 
   @prop ({required: true })
-  public price!: string
+  public price!: number
 
   @prop ({ref: Product})
   public product?: Ref<Product> 
