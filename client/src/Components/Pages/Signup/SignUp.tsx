@@ -30,15 +30,14 @@ const SignUp: React.FC = () => {
   const [error, setError] = useState("");
 
   const isPasswordValid = (password: string) => {
-    const passwordPattern =
-      /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
+    const passwordPattern = /^(?=.*[@$!%*?&]).{8,}$/;
 
     if (password.length < 8) {
       return "Password must be at least 8 characters long.";
     }
 
     if (!passwordPattern.test(password)) {
-      return "Password must include at least one uppercase letter, one lowercase letter, one digit, and one special character.";
+      return "Password must include one special character.";
     }
 
     return ""; // Return null if the password is valid
@@ -66,7 +65,7 @@ const SignUp: React.FC = () => {
         password,
       });
       dispatch({ type: "USER_REGISTERED", payload: data });
-      localStorage.setItem("userAccessToken", JSON.stringify(data));
+      localStorage.setItem("userRegistered", JSON.stringify(data));
       console.log("signUp", data);
       toast.success(data.message, {
         position: toast.POSITION.BOTTOM_CENTER,
@@ -192,7 +191,7 @@ const SignUp: React.FC = () => {
                   />
                 </Form.Group>
 
-                <Form.Group className="mb-4" controlId="formBasicEmail">
+                <Form.Group className="mb-4" controlId="formBasicPhone">
                   <Form.Label>Phone number</Form.Label>
                   <Form.Control
                     type="phone_number"

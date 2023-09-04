@@ -1,7 +1,7 @@
 import React, { createContext, useReducer } from "react";
 import { UserToken } from "./Types/UserAccessTokenType";
 import { UserSignUpMessage } from "./Types/UserSignUpMessage";
-import { Cart, OrderItems } from "./Types/CartItem";
+import { Cart, DeliveryAddress, OrderItems } from "./Types/CartItem";
 
 type AppState = {
   mode: string;
@@ -38,11 +38,13 @@ type Action =
   | { type: "SWITCH_MODE" }
   | { type: "USER_LOGIN"; payload: UserToken }
   | { type: "USER_REGISTERED"; payload: UserSignUpMessage }
-  | { type: "CART_ADD_ITEM"; payload: OrderItems } |
-  {
-    type: "CART_REMOVE_ITEM";
-    payload: OrderItems;
-  }
+  | { type: "CART_ADD_ITEM"; payload: OrderItems }
+  | {
+      type: "CART_REMOVE_ITEM";
+      payload: OrderItems;
+    }
+  | { type: "SAVE_DELIVERY_ADDRESS"; payload: DeliveryAddress }
+  | { type: "USER_LOGOUT" };
 
 function reducer(state: AppState, action: Action): AppState {
   switch (action.type) {
@@ -50,6 +52,24 @@ function reducer(state: AppState, action: Action): AppState {
       return { ...state, mode: state.mode === "dark" ? "light" : "dark" };
     case "USER_LOGIN":
       return { ...state, userAccessToken: action.payload };
+    case "USER_LOGOUT":
+      return {
+        mode: "",
+        cart: {
+          orderItems: [],
+          deliveryAddress: {
+            fullname: "",
+            address: "",
+            city: "",
+            postalcode: "",
+            country: ""
+          },
+          itemPrice: 0,
+          deliveryPrice: 0,
+          totalPrice: 0
+        }
+      };
+
     case "USER_REGISTERED":
       return { ...state, userRegistered: action.payload };
 
@@ -65,7 +85,7 @@ function reducer(state: AppState, action: Action): AppState {
         : [...state.cart.orderItems, newItem];
       localStorage.setItem("orderItems", JSON.stringify(newItem));
 
-      console.log("cartItems", cartItems);
+      // console.log("cartItems", cartItems);
 
       return { ...state, cart: { ...state.cart, orderItems: cartItems } };
 
@@ -76,6 +96,15 @@ function reducer(state: AppState, action: Action): AppState {
       localStorage.setItem("cartItems", JSON.stringify(cartItems));
       return { ...state, cart: { ...state.cart, orderItems: cartItems } };
     }
+
+    case "SAVE_DELIVERY_ADDRESS":
+      return {
+        ...state,
+        cart: {
+          ...state.cart,
+          deliveryAddress: action.payload,
+        },
+      };
 
     default:
       return state;

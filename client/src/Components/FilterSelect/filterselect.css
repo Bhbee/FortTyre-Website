@@ -1,0 +1,20 @@
+.filter-search-button {
+    background-color: green;
+    border-radius: 38px;
+    position: fixed;
+    z-index: 1999;
+
+}
+
+.filter-search-button:hover {
+    background-color: rgb(50, 205, 50);
+}
+
+.filter-search-button:active {
+    background-color: rgb(50, 205, 50);
+}
+
+div.dropdown-menu.show {
+    /* border: 1px solid red; */
+    margin-top: 2.5rem;
+}

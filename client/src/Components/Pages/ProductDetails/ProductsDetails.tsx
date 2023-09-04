@@ -119,7 +119,11 @@ const ProductDetails: React.FC = () => {
                 {product.countInStock > 0 && (
                   <ListGroup.Item>
                     <div className="d-grid">
-                      <Button onClick={addToCartHandler} variant="primary">
+                      <Button
+                        className="product-details-atc-button"
+                        onClick={addToCartHandler}
+                        variant="primary"
+                      >
                         Add to Cart
                       </Button>
                     </div>

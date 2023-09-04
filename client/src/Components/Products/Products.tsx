@@ -20,7 +20,7 @@ const Products: React.FC = () => {
   // console.log("listOfProducts", listOfProducts);
 
   return (
-    <Container style={style} fluid className="mt-5">
+    <Container style={style} fluid >
       <Container>
         <h3 className="product-text mb-3">Products</h3>
       </Container>
@@ -44,7 +44,7 @@ const Products: React.FC = () => {
       ) : (
         <Row className="mt-3">
           {listOfProducts?.products.map((product) => (
-            <Col key={product.__v} sm={6} md={4} lg={3}>
+            <Col key={product._id} sm={6} md={4} lg={3}>
               <ProductItem product={product} />
             </Col>
           ))}
