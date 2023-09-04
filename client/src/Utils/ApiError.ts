@@ -13,7 +13,8 @@ export const convertProductToCartItem = (product: Product): OrderItems  => {
   const orderItem: OrderItems = {
     price: product.price,
     name: product.brand,
-    quantity: 1
+    quantity: 1,
+    countInStock: product.countInStock
   } 
   return orderItem;
 }

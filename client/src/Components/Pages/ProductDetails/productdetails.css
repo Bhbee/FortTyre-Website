@@ -2,3 +2,15 @@
     padding-top: 4rem;
 }
 
+
+.product-details-atc-button {
+    background-color: green;
+}
+
+.product-details-atc-button:hover {
+    background-color: rgb(50, 205, 50)
+
+} 
+.product-details-atc-button:active {
+    background-color: rgb(50, 205, 50)
+}

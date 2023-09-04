@@ -1,0 +1,26 @@
+.shipping-page-container {
+    margin-top: 2rem;
+}
+
+.shipping-form-row-align {
+    justify-content: center;   
+}
+
+.shipping-login-button {
+    background-color: green;
+        color: #fff;
+        width: 100%;
+        border-radius: 38px;
+}
+
+.shipping-login-button:hover {
+    box-shadow: 0 0 20px rgba(104, 85, 224, 0.2);
+        transition: 0.4s;
+        background-color: rgb(50, 205, 50)
+}
+
+@media(max-width: 992px) {
+    .shipping-image-col {
+        display: none;
+    }
+}

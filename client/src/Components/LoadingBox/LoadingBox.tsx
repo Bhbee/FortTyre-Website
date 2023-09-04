@@ -8,7 +8,6 @@ export default function LoadingBox() {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        minHeight: "50vh",
       }}
     >
       <Spinner animation="border" role="status" className="center">

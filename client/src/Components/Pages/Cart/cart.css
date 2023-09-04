@@ -12,3 +12,15 @@
 .cart-headerh4 {
     text-align: center;
 }
+
+.cart-button-color {
+    background-color: green;
+}
+
+.cart-button-color:hover {
+background-color: rgb(50, 205, 50)
+}
+
+.cart-button-color:active {
+background-color: rgb(50, 205, 50)
+}

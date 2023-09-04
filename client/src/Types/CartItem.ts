@@ -1,7 +1,8 @@
 export type OrderItems = {
     name: string,
     quantity: number,
-    price: string
+    price: number,
+    countInStock: number
 }
 
 export type DeliveryAddress = {
@@ -16,7 +17,8 @@ export type Cart = {
     orderItems: {
     name: string,
     quantity: number,
-    price: string
+    price: number,
+    countInStock: number
 }[]
     deliveryAddress: DeliveryAddress,
     itemPrice: number, 

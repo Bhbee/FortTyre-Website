@@ -6,7 +6,7 @@ export type Product = {
   };
   brand: string;
   size: string;
-  price: string;
+  price: number;
   countInStock: number;
   createdAt: string;
   updatedAt: string;
@@ -22,7 +22,7 @@ export type ProductList = {
   };
   brand: string;
   size: string;
-  price: string;
+  price: number;
   countInStock: number;
   createdAt: string;
   updatedAt: string;
