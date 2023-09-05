@@ -11,7 +11,7 @@ import { SiGnuprivacyguard } from "react-icons/si";
 // import BreadCrumbs from "../BreadCrumbs/BreadCrumb";
 import React, { useContext, useState } from "react";
 import { useGetFilterSearchQuery } from "../../Hooks/filterSearchHook";
-import FilterSelect from "../FilterSelect/FilterSelect";
+// import FilterSelect from "../FilterSelect/FilterSelect";
 import { Store } from "../../Store";
 import { Badge } from "react-bootstrap";
 import SearchResults from "../Pages/SearchResults/SearchResults";
@@ -85,7 +85,7 @@ const Layout: React.FC = () => {
               className="d-flex form-width"
               // onSubmit={onSubmit}
             >
-              <FilterSelect onChange={handleSelect} />
+              {/* <FilterSelect onChange={handleSelect} /> */}
 
               <Form.Control
                 value={search}

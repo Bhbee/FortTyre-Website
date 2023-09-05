@@ -7,7 +7,7 @@ import { useContext } from "react";
 import { OrderItems } from "../../../Types/CartItem";
 import MessageBox from "../../MessageBox/MessageBox";
 import { toast } from "react-toastify";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { Button, Card, ListGroup } from "react-bootstrap";
 import { AiFillPlusCircle } from "react-icons/ai";
 import { AiFillMinusCircle } from "react-icons/ai";
@@ -20,6 +20,7 @@ const Cart: React.FC = () => {
     cart: { orderItems },
   } = state;
 
+  const navigate = useNavigate();
   // const { data: listOfProducts, isLoading, error } = useGetProductsQuery();
   // console.log("listOfProducts", listOfProducts?.products);
 
@@ -39,8 +40,12 @@ const Cart: React.FC = () => {
     dispatch({ type: "CART_REMOVE_ITEM", payload: item });
   };
 
+  const checkoutHandler = () => {
+    navigate("/shippingpage");
+  };
+
   return (
-    <Container className="mt-5 cart-top-container">
+    <Container className="cart-top-container">
       <Helmet>
         <title>Cart</title>
       </Helmet>
@@ -57,14 +62,7 @@ const Cart: React.FC = () => {
               {orderItems.map((item: OrderItems) => (
                 <ListGroup.Item key={item.quantity}>
                   <Row className="align-items-center">
-                    {/* <Col md={4}>
-                      <img
-                        src={item.image}
-                        alt={item.name}
-                        className="img-fluid rounded thumbnail"
-                      ></img>{" "}
-                      <NavLink to={`/product/${item.slug}`}>{item.name}</NavLink>
-                    </Col> */}
+                    <Col md={4}> {item.name}</Col>
                     <Col md={3}>
                       <Button
                         className="cart-button-color"
@@ -76,7 +74,9 @@ const Cart: React.FC = () => {
                       >
                         <AiFillMinusCircle />
                       </Button>{" "}
-                      <span>{item.quantity}</span>{" "}
+                      <span className="cart-button-quantity">
+                        {item.quantity}
+                      </span>{" "}
                       <Button
                         // variant={mode}
                         className="cart-button-color"
@@ -88,7 +88,9 @@ const Cart: React.FC = () => {
                         {<AiFillPlusCircle />}
                       </Button>
                     </Col>
-                    <Col md={3}>${item.price}</Col>
+                    <Col className="cart-button" md={3}>
+                      ${item.price}
+                    </Col>
                     <Col md={2}>
                       <Button
                         className="cart-button-color"
@@ -121,7 +123,7 @@ const Cart: React.FC = () => {
                       className="cart-button-color"
                       type="button"
                       variant="primary"
-                      // onClick={checkoutHandler}
+                      onClick={checkoutHandler}
                       disabled={orderItems.length === 0}
                     >
                       Proceed to Checkout

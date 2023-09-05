@@ -10,7 +10,7 @@ export type DeliveryAddress = {
         address: string,
         city: string,
         postalcode: string,
-        country: string
+        country: string,
 }
 
 export type Cart = {
@@ -23,5 +23,5 @@ export type Cart = {
     deliveryAddress: DeliveryAddress,
     itemPrice: number, 
     deliveryPrice: number,
-    totalPrice: number 
+    totalPrice: number,
 }
