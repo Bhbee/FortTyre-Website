@@ -11,6 +11,7 @@ import { SiGnuprivacyguard } from "react-icons/si";
 // import BreadCrumbs from "../BreadCrumbs/BreadCrumb";
 import React, { useContext, useState } from "react";
 import { useGetFilterSearchQuery } from "../../Hooks/filterSearchHook";
+// import FilterSelect from "../FilterSelect/FilterSelect";
 import { Store } from "../../Store";
 import { Badge } from "react-bootstrap";
 import SearchResults from "../Pages/SearchResults/SearchResults";
@@ -19,9 +20,11 @@ import "./layout.css";
 
 const Layout: React.FC = () => {
   const {
-    state: { cart },
+    state: { cart, userAccessToken },
     dispatch,
   } = useContext(Store);
+
+  console.log("USER_ACCESS_TOKEN", userAccessToken?.accessToken);
 
   const navigate = useNavigate();
 
@@ -44,6 +47,19 @@ const Layout: React.FC = () => {
       console.log("isLoading", isLoading);
       console.log("searchProducts", filterSearchProducts);
     } catch (err) {}
+  };
+
+  const handleSelect = (filter: string) => {
+    // setSelect(filter);
+    console.log("filter", filter);
+  };
+
+  const logoutHandler = () => {
+    dispatch({ type: "USER_LOGOUT" });
+    localStorage.removeItem("userRegistered");
+    localStorage.removeItem("userAccessToken");
+    localStorage.removeItem("orderItems");
+    localStorage.removeItem("deliveryAddress");
   };
 
   // console.log("filterSearchProducts", filterSearchProducts);
@@ -69,14 +85,16 @@ const Layout: React.FC = () => {
               className="d-flex form-width"
               // onSubmit={onSubmit}
             >
+              {/* <FilterSelect onChange={handleSelect} /> */}
+
               <Form.Control
                 value={search}
                 onChange={(e) => {
                   setSearch(e.target.value);
                 }}
                 type="search"
-                placeholder="Search by product or size... (Eg 205/65/16 or Michelin) "
-                className="me-2"
+                placeholder="Search by brand or size... (Eg 205/65/16 or Michelin)"
+                className="me-2 layout-search-input"
                 aria-label="Search"
               />
 
@@ -108,15 +126,28 @@ const Layout: React.FC = () => {
               <p className="cart-paragraph">Sign Up</p>
             </Nav.Link>
 
-            <Nav.Link
-              as={NavLink}
-              to="../login"
-              className="nav-social-links"
-              href="../login"
-            >
-              <RiAccountCircleFill className="layout-icon-margin layout-icon" />{" "}
-              <p className="cart-paragraph">Login</p>
-            </Nav.Link>
+            {userAccessToken ? (
+              <Nav.Link
+                as={NavLink}
+                to=""
+                onClick={logoutHandler}
+                className="nav-social-links"
+                href="../login"
+              >
+                <RiAccountCircleFill className="layout-icon-margin layout-icon" />{" "}
+                <p className="cart-paragraph">Logout</p>
+              </Nav.Link>
+            ) : (
+              <Nav.Link
+                as={NavLink}
+                to="../login"
+                className="nav-social-links"
+                href="../login"
+              >
+                <RiAccountCircleFill className="layout-icon-margin layout-icon" />{" "}
+                <p className="cart-paragraph">Login</p>
+              </Nav.Link>
+            )}
 
             <Nav.Link
               as={NavLink}

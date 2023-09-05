@@ -1,0 +1,15 @@
+.filter-search-button {
+    background-color: green;
+    border-radius: 38px;
+    
+
+}
+
+.filter-search-button:hover {
+    background-color: rgb(50, 205, 50);
+}
+
+.filter-search-button:active {
+    background-color: rgb(50, 205, 50);
+}
+

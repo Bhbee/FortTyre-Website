@@ -14,6 +14,9 @@ import ForgotPassword from "./Pages/ForgotPasword/ForgotPassword";
 import ProductDetails from "./Pages/ProductDetails/ProductsDetails";
 import ResetPassword from "./Pages/ResetPassword/ResetPassword";
 import SearchResults from "./Pages/SearchResults/SearchResults";
+import ShippingPage from "./Pages/ShippingPage/ShippingPage";
+import ProtectedRoutes from "./ProtectedRoutes/ProtectedRoutes";
+import PlaceOrder from "./Pages/PlaceOrder/PlaceOrder";
 
 const AppRouter: React.FC = () => {
   return (
@@ -21,11 +24,19 @@ const AppRouter: React.FC = () => {
       <Route path="/" element={<Home />} />
       <Route path="products" element={<Products />} />
       <Route path="products/:productId" element={<ProductDetails />} />
-      <Route path="searchresults/products/:productId" element={<ProductDetails />} />
+      <Route
+        path="searchresults/products/:productId"
+        element={<ProductDetails />}
+      />
+      <Route element={<ProtectedRoutes />}>
+        <Route path="shippingpage" element={<ShippingPage />} />
+        <Route path="placeorder" element={<PlaceOrder/>}></Route>
+      </Route>
       <Route path="searchresults" element={<SearchResults />} />
       <Route path="about" element={<About />} />
       <Route path="fitting" element={<Fitting />} />
       <Route path="maintenance" element={<Maintenance />} />
+
       <Route path="servicing" element={<Servicing />} />
       <Route path="cart" element={<Cart />} />
       <Route path="terms" element={<Terms />} />

@@ -14,14 +14,12 @@ const ProductItem = ({ product }: { product: Product }) => {
     cart: { orderItems },
   } = state;
 
-  // console.log("orderItems", orderItems);
-
-  const existItem = orderItems.find((x) => x.name === product.brand);
-  const quantity = existItem ? existItem.quantity + 1 : 1;
-
   const addToCartHandler = (item: OrderItems) => {
+    const existItem = orderItems.find((x) => x.name === product.brand);
+    const quantity = existItem ? existItem.quantity + 1 : 1;
+
     if (product.countInStock < quantity) {
-      console.log(product.countInStock);
+      console.log("product", product);
       alert("Sorry. Product is out of stock");
       return;
     }
@@ -51,12 +49,14 @@ const ProductItem = ({ product }: { product: Product }) => {
           </Card.Text>
           <Card.Text className="mb-2">{product.size}</Card.Text>
         </NavLink>
-        {product.countInStock < quantity ? (
-          <Button variant="light">Out of stock</Button>
+        {product.countInStock === 0 ? (
+          <Button className="product-item-button" variant="danger">
+            Out of stock
+          </Button>
         ) : (
           <Button
             onClick={() => addToCartHandler(convertProductToCartItem(product))}
-            className="product-item-color"
+            className="product-item-button"
           >
             Add to cart
           </Button>

@@ -37,7 +37,7 @@ const Login: React.FC = () => {
       dispatch({ type: "USER_LOGIN", payload: data });
       localStorage.setItem("userAccessToken", JSON.stringify(data));
       console.log("login", data);
-      // navigate("/cart");
+      navigate("/cart");
       toast.success("successfully logged in", {
         position: toast.POSITION.BOTTOM_CENTER,
       });

@@ -12,3 +12,33 @@
 .cart-headerh4 {
     text-align: center;
 }
+
+.cart-button-color {
+    background-color: green;
+}
+
+
+.cart-button-color:hover {
+background-color: rgb(50, 205, 50)
+}
+
+.cart-button-color:active {
+background-color: rgb(50, 205, 50)
+}
+
+.cart-button-quantity {
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+}
+
+@media(max-width: 992px) {
+    .cart-button {
+            margin-top: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+    .cart-button-quantity {
+        margin-left: 0.5rem;
+        margin-right: 0.5rem;
+    }
+    
+}

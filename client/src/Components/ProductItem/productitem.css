@@ -1,8 +1,12 @@
-.product-item-color {
+.product-item-button {
     background-color: green;
 }
 
-.product-item-color:hover {
+.product-item-button:hover {
+    background-color: rgb(50, 205, 50)
+}
+
+.product-item-button:active {
     background-color: rgb(50, 205, 50)
 }
 

@@ -65,6 +65,10 @@
     width: 60%;
 }
 
+.layout-search-input {
+    border-radius: 38px;
+}
+
 .layout-search-btn {
   background-color: green;
   color:#fff;
@@ -75,6 +79,12 @@
 .layout-search-btn:hover {
     background-color: rgb(50, 205, 50)
 }
+
+.layout-search-btn:active {
+    background-color: rgb(50, 205, 50)
+    
+}
+
 .icon-account-paragraph {
   text-decoration: none;
   color: green;
