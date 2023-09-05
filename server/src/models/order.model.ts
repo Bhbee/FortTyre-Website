@@ -14,8 +14,8 @@ class DeliveryAddress {
   @prop()
   public city?: string
 
-  @prop()
-  public postalCode?: string
+  // @prop()
+  // public postalCode?: string
 
   @prop()
   public country?: string

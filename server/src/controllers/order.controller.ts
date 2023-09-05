@@ -1,7 +1,7 @@
 import express, {Request, Response} from 'express'
 import asyncHandler from 'express-async-handler'
 import { OrderModel } from '../models/order.model'
-import { Product, ProductModel } from '../models/product.model'
+import { Product} from '../models/product.model'
 import { UserModel } from '../models/user.model'
 
 //get all orders
