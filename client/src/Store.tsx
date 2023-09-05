@@ -34,6 +34,8 @@ const initialState: AppState = {
   },
 };
 
+console.log("GLOBAL_STATE", initialState);
+
 type Action =
   | { type: "SWITCH_MODE" }
   | { type: "USER_LOGIN"; payload: UserToken }
@@ -44,7 +46,7 @@ type Action =
       payload: OrderItems;
     }
   | { type: "SAVE_DELIVERY_ADDRESS"; payload: DeliveryAddress }
-  | { type: "USER_LOGOUT" };
+  | { type: "USER_LOGOUT" } | { type: 'CART_CLEAR' } 
 
 function reducer(state: AppState, action: Action): AppState {
   switch (action.type) {
@@ -58,16 +60,16 @@ function reducer(state: AppState, action: Action): AppState {
         cart: {
           orderItems: [],
           deliveryAddress: {
-            fullname: "",
-            address: "",
-            city: "",
+            fullname: " ",
+            address: " ",
+            city: " ",
             postalcode: "",
-            country: ""
+            country: "",
           },
           itemPrice: 0,
           deliveryPrice: 0,
-          totalPrice: 0
-        }
+          totalPrice: 0,
+        },
       };
 
     case "USER_REGISTERED":
@@ -96,6 +98,9 @@ function reducer(state: AppState, action: Action): AppState {
       localStorage.setItem("cartItems", JSON.stringify(cartItems));
       return { ...state, cart: { ...state.cart, orderItems: cartItems } };
     }
+
+    case "CART_CLEAR":
+      return { ...state, cart: { ...state.cart, orderItems: [] } };
 
     case "SAVE_DELIVERY_ADDRESS":
       return {
