@@ -14,14 +14,14 @@ class DeliveryAddress {
   @prop()
   public city?: string
 
-  // @prop()
-  // public postalCode?: string
-
   @prop()
   public country?: string
 }
 
 class Item {
+
+  public _id!: string
+  
   @prop ({required: true })
   public name!: string
 

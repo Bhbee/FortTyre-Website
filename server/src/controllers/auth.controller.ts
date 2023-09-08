@@ -27,7 +27,8 @@ export const Login = asyncHandler(async (req: Request, res: Response) =>{
         httpOnly: true, maxAge: 72 * 60 * 60  * 1000
       })
       res.send({
-        accessToken: generateToken(findUser)
+        accessToken: generateToken(findUser),
+        firstName: findUser.first_name
       })
     }
     else{
