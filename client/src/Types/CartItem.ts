@@ -1,4 +1,11 @@
+interface ProductImage {
+    public_id: string
+    url: string
+}
+
 export type OrderItems = {
+    image: ProductImage
+    _id: string
     name: string,
     quantity: number,
     price: number,
@@ -14,14 +21,9 @@ export type DeliveryAddress = {
 }
 
 export type Cart = {
-    orderItems: {
-    name: string,
-    quantity: number,
-    price: number,
-    countInStock: number
-}[]
+    orderItems: OrderItems[]
     deliveryAddress: DeliveryAddress,
-    itemPrice: number, 
+    itemsPrice: number, 
     deliveryPrice: number,
     totalPrice: number,
 }

@@ -16,11 +16,11 @@ const verifyUser = (req, res, next) => {
             next();
         }
         catch (error) {
-            res.send("No token attached");
+            res.send("session time out");
         }
     }
     else {
-        res.status(403).send({ message: "Token expired. Please login again" });
+        res.status(403).send({ message: "Please login" });
     }
 };
 exports.verifyUser = verifyUser;

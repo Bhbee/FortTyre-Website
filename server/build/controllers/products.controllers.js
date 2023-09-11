@@ -12,23 +12,35 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.SearchByFilter = exports.DeleteProduct = exports.EditProductDetails = exports.AddProduct = exports.GetAllProducts = exports.userRouter = void 0;
+exports.SearchByFilter = exports.DeleteProduct = exports.EditProductDetails = exports.AddProduct = exports.GetAllProducts = exports.GetAProduct = exports.userRouter = void 0;
 const express_1 = __importDefault(require("express"));
 const express_async_handler_1 = __importDefault(require("express-async-handler"));
+const cloudinary_1 = __importDefault(require("../utils/cloudinary"));
 const product_model_1 = require("../models/product.model");
 exports.userRouter = express_1.default.Router();
 const productsPerPage = 8;
+//Get a Product
+exports.GetAProduct = (0, express_async_handler_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const productId = req.params.id;
+    const product = yield product_model_1.ProductModel.findById(productId);
+    if (product) {
+        res.send(product);
+    }
+    else {
+        res.status(404).send({ message: 'Product Not Found' });
+    }
+}));
 //Get All Products
 exports.GetAllProducts = (0, express_async_handler_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { query } = req;
     const page = query.page || 1;
-    const pageSize = query.pageSize || query.PAGE_SIZE;
+    const pageSize = query.pageSize || query.PAGE_SIZE || 10;
     const products = yield product_model_1.ProductModel
         .find()
         .skip(pageSize * (page - 1))
         .limit(pageSize);
     const countProducts = yield product_model_1.ProductModel.countDocuments();
-    res.send({
+    res.status(200).send({
         products,
         countProducts,
         page,
@@ -36,40 +48,65 @@ exports.GetAllProducts = (0, express_async_handler_1.default)((req, res) => __aw
     });
 }));
 //Add Product by admin only
-exports.AddProduct = (0, express_async_handler_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    let findProduct = yield product_model_1.ProductModel.findOne({ brand: req.body.brand });
-    const findProductSize = yield product_model_1.ProductModel.findOne({ size: req.body.size });
-    if (findProduct && findProductSize) {
-        res.send("Product alreaddy exists. You might want to consider updating the existing product");
-    }
-    else {
+const AddProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { brand, size, price, countInStock } = req.body;
+    const imageFile = req.file;
+    try {
+        let findProduct = yield product_model_1.ProductModel.findOne({ brand: req.body.brand });
+        const findProductSize = yield product_model_1.ProductModel.findOne({ size: req.body.size });
+        if (findProduct && findProductSize) {
+            return res.send('Product already exists. You might want to consider updating the existing product');
+        }
+        if (!imageFile) {
+            return res.status(400).send({ message: 'Image file is missing' });
+        }
+        const uploadResponse = yield cloudinary_1.default.uploader.upload(imageFile.path, {
+            resource_type: 'image',
+            upload_preset: 'forttyres-product-images'
+        });
+        if (!uploadResponse) {
+            return res.status(400).send({ message: 'Image upload failed' });
+        }
         const product = yield product_model_1.ProductModel.create({
-            brand: req.body.brand,
-            size: req.body.size,
-            price: req.body.price,
-            image: req.body.image,
-            countInStock: req.body.countInStock,
+            brand: brand.toUpperCase,
+            size: size,
+            price: price,
+            image: {
+                url: uploadResponse.secure_url,
+                public_id: uploadResponse.public_id
+            },
+            countInStock: countInStock
         });
-        res.json({
-            _id: product.id,
-            brand: product.brand,
-            size: product.size,
-            price: product.price,
-            image: product.image,
-            countInStock: product.countInStock,
-        });
+        res.status(201).send({ message: 'Product Added Successfully' });
     }
-}));
+    catch (err) {
+        console.error(err);
+        res.status(500).send({ message: 'Internal Server Error' });
+    }
+});
+exports.AddProduct = AddProduct;
 //Edit Product
 exports.EditProductDetails = (0, express_async_handler_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const productId = req.params.id;
+    const { brand, size, price, countInStock } = req.body;
+    const imageFile = req.file;
     const product = yield product_model_1.ProductModel.findById(productId);
     if (product) {
-        product.price = req.body.price;
-        product.image = req.body.image;
-        product.size = req.body.size;
-        product.brand = req.body.brand;
-        product.countInStock = req.body.countInStock;
+        if (imageFile) {
+            const uploadResponse = yield cloudinary_1.default.uploader.upload(imageFile.path, {
+                resource_type: 'image',
+                upload_preset: 'forttyres-product-images'
+            });
+            yield cloudinary_1.default.uploader.destroy(product.image.public_id);
+            product.image = {
+                url: uploadResponse.secure_url,
+                public_id: uploadResponse.public_id
+            };
+        }
+        product.price = price;
+        product.size = size;
+        product.brand = brand.toUpperCase();
+        product.countInStock = countInStock;
         yield product.save();
         res.send({ message: 'Product Updated' });
     }
@@ -81,7 +118,10 @@ exports.EditProductDetails = (0, express_async_handler_1.default)((req, res) => 
 exports.DeleteProduct = (0, express_async_handler_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const product = yield product_model_1.ProductModel.findById(req.params.id);
     if (product) {
-        yield product_model_1.ProductModel.deleteOne();
+        if (product.image && product.image.public_id) {
+            yield cloudinary_1.default.uploader.destroy(product.image.public_id);
+        }
+        yield product_model_1.ProductModel.deleteOne({ _id: product._id });
         res.send({ message: "Product Deleted" });
     }
     else {
@@ -91,14 +131,14 @@ exports.DeleteProduct = (0, express_async_handler_1.default)((req, res) => __awa
 //search by filter
 exports.SearchByFilter = (0, express_async_handler_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { query } = req;
-    const page = query.page || 1;
+    const page = Number(query.page) || 1;
     const pageSize = query.pageSize || query.PAGE_SIZE;
-    const brand = query.brand || '';
-    const size = query.size || '';
+    const brand = (query.brand || '').toUpperCase();
+    const size = (query.size || '');
     const searchQuery = query.query || '';
     const queryFilter = searchQuery && searchQuery !== 'all'
         ? {
-            name: {
+            brand: {
                 $regex: searchQuery,
                 $options: 'i',
             },
@@ -114,6 +154,5 @@ exports.SearchByFilter = (0, express_async_handler_1.default)((req, res) => __aw
         products,
         countProducts,
         page,
-        //pages: Math.ceil(countProducts / pageSize),
     });
 }));

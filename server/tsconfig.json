@@ -1,13 +1,17 @@
 {
   "compilerOptions": {
     "target": "es2015" ,
-    "outDir": "./build",
+    "outDir": "build",
     "module": "commonjs",                           
     "esModuleInterop": true,                        
     "strict": true, 
     "skipLibCheck": true,                           
     "forceConsistentCasingInFileNames": true,
     "experimentalDecorators": true,
-    "emitDecoratorMetadata": true
+    "emitDecoratorMetadata": true,
+    "typeRoots": [
+      "./src/types",
+      "./node_modules/@types"
+    ]
   }
 }

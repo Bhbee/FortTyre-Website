@@ -1,6 +1,7 @@
 import  express, {Request, Response} from 'express'
 import {isAdmin} from '../middleware/verifyAdmin'
 import {verifyUser} from '../middleware/verifyUserAuthencity'
+import {isLoggedIn} from '../middleware/isLoggedIn'
 import upload from "../middleware/multer"
 import {AddProduct, DeleteProduct, EditProductDetails, GetAProduct, GetAllProducts, SearchByFilter} from '../controllers/products.controllers'
 export const productRouter = express.Router()

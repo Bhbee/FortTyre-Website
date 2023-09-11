@@ -3,15 +3,6 @@ import { Product} from './product.model'
 import { User } from './user.model'
 import { Payment } from './payment.model'
 
-
-// interface PaymentInfo {
-//   order: string
-//   email: string
-//   amount: number
-//   reference: string
-//   status: string
-// }
-
 @modelOptions({ schemaOptions: {timestamps: true}})
 class DeliveryAddress {
   @prop()
@@ -24,13 +15,13 @@ class DeliveryAddress {
   public city?: string
 
   @prop()
-  public postalCode?: string
-
-  @prop()
   public country?: string
 }
 
 class Item {
+
+  public _id!: string
+  
   @prop ({required: true })
   public name!: string
 
@@ -41,7 +32,10 @@ class Item {
   public image!: string
 
   @prop ({required: true })
-  public price!: string
+  public price!: number
+
+  @prop({required: true, default: 0})
+  public countInStock!: number
 
   @prop ({ref: Product})
   public product?: Ref<Product> 
@@ -63,9 +57,6 @@ export class Order {
 
   @prop({ref: Payment})
   public paymentInfo?: Ref<Payment>
-
-  // @prop()
-  // public paymentInfo?: PaymentInfo
 
   @prop({required: true, default: 0})
   public itemPrice!: number

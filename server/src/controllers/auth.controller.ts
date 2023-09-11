@@ -2,6 +2,7 @@ import  express, { Request, Response} from 'express'
 import asyncHandler from 'express-async-handler'
 import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
+import { validateLoginData, validateRegisterData} from '../utils/validation'
 import { generateRefreshToken, generateToken} from '../utils/jwt.utils'
 import { User, UserModel } from '../models/user.model'
 
@@ -10,47 +11,61 @@ export const userRouter = express.Router()
 const JWT_SECRET = process.env.JWT_SECRET as string;
 
 
-
 //Login
 export const Login = asyncHandler(async (req: Request, res: Response) =>{
-  const findUser = await UserModel.findOne({email: req.body.email})
-  if (findUser && bcrypt.compareSync(req.body.password, findUser.password)) {
-    findUser.refreshToken = generateRefreshToken(findUser)
-    await findUser.save()
-    res.cookie("refreshToken", findUser.refreshToken, {
-      httpOnly: true, maxAge: 72 * 60 * 60  * 1000
-    })
-    res.send({
-      accessToken: generateToken(findUser)
-    })
+  const { error, value } = validateLoginData(req.body);
+  const { email, password } = req.body;
+  if (error){
+    res.status(400).send("Invalid Request: " + error.details[0].message);
   }
   else{
-    res.status(401).send({message: "incorrect Email or Password"})
+    const findUser = await UserModel.findOne({email:email})
+    if (findUser && bcrypt.compareSync(password, findUser.password)) {
+      findUser.refreshToken = generateRefreshToken(findUser)
+      await findUser.save()
+      res.cookie("refreshToken", findUser.refreshToken, {
+        httpOnly: true, maxAge: 72 * 60 * 60  * 1000
+      })
+      res.send({
+        accessToken: generateToken(findUser),
+        firstName: findUser.first_name
+      })
+    }
+    else{
+      res.status(401).send({message: "incorrect Email or Password"})
+    }
   }
+  
 })
 
 //Register
 export const Register = asyncHandler(async (req: Request, res: Response) =>{
-  const findUser = await UserModel.findOne({email: req.body.email})
-  const findUserPhone = await UserModel.findOne({phone_number: req.body.phone_number})
-
-  if(!findUser && !findUserPhone){
-    const salt = await bcrypt.genSalt(12) 
-    await UserModel.create({
-      first_name: req.body.first_name,
-      last_name: req.body.last_name,
-      email: req.body.email,
-      phone_number: req.body.phone_number,
-      password: bcrypt.hashSync(req.body.password, salt)
-    } as User)
-    res.status(201).send({message:"Successfully Registered"})
-  } else if (findUserPhone) {
-    res.status(401).send({message:"This phone number has been registered by another user"})
+  const { error, value } = validateRegisterData(req.body);
+  const { first_name, last_name, email, phone_number, password } = req.body;
+  if (error){
+    res.status(401).send("Invalid Request: " + error.details[0].message);
   }
   else{
-    res.status(401).send({message:"This email address has been registered by another user"})
+    const findUser = await UserModel.findOne({email: req.body.email})
+    const findUserPhone = await UserModel.findOne({phone_number: req.body.phone_number})
+  
+    if(!findUser && !findUserPhone){
+      const salt = await bcrypt.genSalt(12) 
+      await UserModel.create({
+        first_name: first_name,
+        last_name: last_name,
+        email: email,
+        phone_number: phone_number,
+        password: bcrypt.hashSync(password, salt)
+      } as User)
+      res.status(201).send({message:"Successfully Registered"})
+    } else if (findUserPhone) {
+      res.status(401).send({message:"This phone number has been registered by another user"})
+    }
+    else{
+      res.status(401).send({message:"This email address has been registered by another user"})
+    }
   }
-
 })
 
 // Handle Refresh Token
@@ -89,6 +104,7 @@ export const handleRefreshToken = asyncHandler(async (req: Request, res: Respons
 
 
 export const Logout = asyncHandler(async (req: Request, res: Response) =>{
+  // req.logout
   const cookie = req.cookies
   if(!cookie?.refreshToken) {
     res.sendStatus(204)

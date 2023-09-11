@@ -11,7 +11,7 @@ const generateToken = (user) => {
         _id: user._id,
         email: user.email,
         isAdmin: user.isAdmin,
-    }, JWT_SECRET, { expiresIn: '1d' });
+    }, JWT_SECRET, { expiresIn: process.env.ACCESS_TOKEN_EXPIRES_IN });
 };
 exports.generateToken = generateToken;
 //Refresh Token
@@ -20,6 +20,6 @@ function generateRefreshToken(user) {
         _id: user._id,
         email: user.email,
         isAdmin: user.isAdmin,
-    }, JWT_SECRET, { expiresIn: '3d' });
+    }, JWT_SECRET, { expiresIn: process.env.REFRESH_TOKEN_EXPIRES_IN });
 }
 exports.generateRefreshToken = generateRefreshToken;

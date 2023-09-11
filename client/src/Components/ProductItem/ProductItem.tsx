@@ -15,7 +15,7 @@ const ProductItem = ({ product }: { product: Product }) => {
   } = state;
 
   const addToCartHandler = (item: OrderItems) => {
-    const existItem = orderItems.find((x) => x.name === product.brand);
+    const existItem = orderItems.find((x) => x._id === product._id);
     const quantity = existItem ? existItem.quantity + 1 : 1;
 
     if (product.countInStock < quantity) {

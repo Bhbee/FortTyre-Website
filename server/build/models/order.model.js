@@ -13,6 +13,7 @@ exports.OrderModel = exports.Order = void 0;
 const typegoose_1 = require("@typegoose/typegoose");
 const product_model_1 = require("./product.model");
 const user_model_1 = require("./user.model");
+const payment_model_1 = require("./payment.model");
 let DeliveryAddress = class DeliveryAddress {
 };
 __decorate([
@@ -54,30 +55,12 @@ __decorate([
 ], Item.prototype, "image", void 0);
 __decorate([
     (0, typegoose_1.prop)({ required: true }),
-    __metadata("design:type", Number)
+    __metadata("design:type", String)
 ], Item.prototype, "price", void 0);
 __decorate([
     (0, typegoose_1.prop)({ ref: product_model_1.Product }),
     __metadata("design:type", Object)
 ], Item.prototype, "product", void 0);
-class PaymentResult {
-}
-__decorate([
-    (0, typegoose_1.prop)(),
-    __metadata("design:type", String)
-], PaymentResult.prototype, "paymentId", void 0);
-__decorate([
-    (0, typegoose_1.prop)(),
-    __metadata("design:type", String)
-], PaymentResult.prototype, "status", void 0);
-__decorate([
-    (0, typegoose_1.prop)(),
-    __metadata("design:type", String)
-], PaymentResult.prototype, "update_time", void 0);
-__decorate([
-    (0, typegoose_1.prop)(),
-    __metadata("design:type", String)
-], PaymentResult.prototype, "email_address", void 0);
 let Order = exports.Order = class Order {
 };
 __decorate([
@@ -89,17 +72,13 @@ __decorate([
     __metadata("design:type", DeliveryAddress)
 ], Order.prototype, "deliveryAddress", void 0);
 __decorate([
-    (0, typegoose_1.prop)({ ref: user_model_1.User }),
+    (0, typegoose_1.prop)({ ref: user_model_1.User, required: true }),
     __metadata("design:type", Object)
 ], Order.prototype, "user", void 0);
 __decorate([
-    (0, typegoose_1.prop)({ required: true }),
-    __metadata("design:type", String)
-], Order.prototype, "paymentMethod", void 0);
-__decorate([
-    (0, typegoose_1.prop)(),
-    __metadata("design:type", PaymentResult)
-], Order.prototype, "paymentResult", void 0);
+    (0, typegoose_1.prop)({ ref: payment_model_1.Payment }),
+    __metadata("design:type", Object)
+], Order.prototype, "paymentInfo", void 0);
 __decorate([
     (0, typegoose_1.prop)({ required: true, default: 0 }),
     __metadata("design:type", Number)

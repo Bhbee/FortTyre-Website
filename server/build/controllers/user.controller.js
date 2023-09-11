@@ -23,12 +23,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.GetUserProfile = exports.UpdatePersonalUserInfo = exports.DeleteUSer = exports.UpdateIUserInfoByAdmin = exports.GetAllUserInfo = exports.userRouter = void 0;
+exports.UpdatePersonalUserInfo = exports.DeleteUSer = exports.GetUserProfile = exports.GetMyProfile = exports.GetAllUserInfo = exports.userRouter = void 0;
 const express_1 = __importDefault(require("express"));
 const express_async_handler_1 = __importDefault(require("express-async-handler"));
 const bcryptjs_1 = __importDefault(require("bcryptjs"));
-const jwt_utils_1 = require("../utils/jwt.utils");
 const user_model_1 = require("../models/user.model");
+const order_model_1 = require("../models/order.model");
 exports.userRouter = express_1.default.Router();
 //Get all user: By Admin only
 exports.GetAllUserInfo = (0, express_async_handler_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -39,17 +39,40 @@ exports.GetAllUserInfo = (0, express_async_handler_1.default)((req, res) => __aw
     });
     res.send(usersWithoutPassword);
 }));
-//update user info by Admin only
-exports.UpdateIUserInfoByAdmin = (0, express_async_handler_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const user = yield user_model_1.UserModel.findById(req.params.id);
-    if (user) {
-        user.first_name = req.body.first_name;
-        user.last_name = req.body.last_name;
-        user.email = req.body.email;
-        user.phone_number = req.body.phone_number;
-        user.isAdmin = Boolean(req.body.isAdmin);
-        const updatedUser = yield user.save();
-        res.send({ message: "User Updated", user: updatedUser });
+//Get my profile
+exports.GetMyProfile = (0, express_async_handler_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { id } = req.params;
+    const currentUser = req.user;
+    if (id !== currentUser._id) {
+        res.status(403).send({ message: "Access denied" });
+        return;
+    }
+    else {
+        const user = yield user_model_1.UserModel.findById(req.params.id).lean();
+        const orders = yield order_model_1.OrderModel.find({ user: currentUser._id });
+        if (user) {
+            const { password } = user, userWithoutPassword = __rest(user, ["password"]);
+            res.send({
+                userWithoutPassword,
+                orders
+            });
+        }
+        else {
+            res.status(404).send({ message: "User Not Found" });
+        }
+    }
+}));
+//Get user's profile  by Admin only
+exports.GetUserProfile = (0, express_async_handler_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { id } = req.params;
+    const userFound = yield user_model_1.UserModel.findById(id).lean();
+    const orders = yield order_model_1.OrderModel.find({ user: userFound === null || userFound === void 0 ? void 0 : userFound._id });
+    if (userFound) {
+        const { password } = userFound, userWithoutPassword = __rest(userFound, ["password"]);
+        res.send({
+            userWithoutPassword,
+            orders
+        });
     }
     else {
         res.status(404).send({ message: "User Not Found" });
@@ -70,107 +93,35 @@ exports.DeleteUSer = (0, express_async_handler_1.default)((req, res) => __awaite
         res.status(404).send({ message: "User Not Found" });
     }
 }));
-//to do laterchange password
-//update personal user details i.e can only be done by owner of account
 exports.UpdatePersonalUserInfo = (0, express_async_handler_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const salt = yield bcryptjs_1.default.genSalt(12);
-    const user = yield user_model_1.UserModel.findById(req.user._id);
-    if (user) {
-        user.first_name = req.body.first_namename || user.first_name;
-        user.last_name = req.body.last_namename || user.last_name;
-        user.email = req.body.email || user.email;
-        user.phone_number = req.body.phone_number || user.phone_number;
-        if (req.body.password) {
-            user.password = bcryptjs_1.default.hashSync(req.body.password, salt);
-        }
-        const updatedUser = yield user.save();
-        res.send({
-            _id: updatedUser._id,
-            first_name: updatedUser.first_name,
-            last_name: updatedUser.last_name,
-            email: updatedUser.email,
-            phone_number: updatedUser.phone_number,
-            isAdmin: updatedUser.isAdmin,
-            accessToken: (0, jwt_utils_1.generateToken)(updatedUser),
-        });
-    }
-    else {
-        res.status(404).send({ message: "User not found" });
-    }
-}));
-//Get a user profile by id
-exports.GetUserProfile = (0, express_async_handler_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
-    const currentUser = req.user;
-    if (id !== currentUser._id && !currentUser.isAdmin) {
+    const currentUser = req.user._id;
+    if (id !== currentUser) {
         res.status(403).send({ message: "Access denied" });
         return;
     }
     else {
-        const user = yield user_model_1.UserModel.findById(req.params.id).lean();
+        const salt = yield bcryptjs_1.default.genSalt(12);
+        const user = yield user_model_1.UserModel.findById(currentUser);
         if (user) {
-            const { password } = user, userWithoutPassword = __rest(user, ["password"]);
-            res.send(userWithoutPassword);
+            if (req.body.password) {
+                user.password = bcryptjs_1.default.hashSync(req.body.password, salt);
+            }
+            user.first_name = req.body.first_name || user.first_name;
+            user.last_name = req.body.last_name || user.last_name;
+            user.email = req.body.email || user.email;
+            user.phone_number = req.body.phone_number || user.phone_number;
+            const updatedUser = yield user.save();
+            res.send({
+                _id: updatedUser._id,
+                first_name: updatedUser.first_name,
+                last_name: updatedUser.last_name,
+                email: updatedUser.email,
+                phone_number: updatedUser.phone_number,
+            });
         }
         else {
-            res.status(404).send({ message: "User Not Found" });
+            res.status(404).send({ message: "User not found" });
         }
     }
 }));
-// export const payOrderEmailTemplate = (order) => {
-//   return `<h1>Thanks for shopping with us</h1>
-//   <p>
-//   Hi ${order.user.name},</p>
-//   <p>We have finished processing your order.</p>
-//   <h2>[Order ${order._id}] (${order.createdAt.toString().substring(0, 10)})</h2>
-//   <table>
-//   <thead>
-//   <tr>
-//   <td><strong>Product</strong></td>
-//   <td><strong>Quantity</strong></td>
-//   <td><strong align="right">Price</strong></td>
-//   </thead>
-//   <tbody>
-//   ${order.orderItems
-//     .map(
-//       (item) => `
-//       <tr>
-//     <td>${item.name}</td>
-//     <td align="center">${item.quantity}</td>
-//     <td align="right"> $${item.price.toFixed(2)}</td>
-//     </tr>
-//   `
-//     )
-//     .join('\n')}
-//   </tbody>
-//   <tfoot>
-//   <tr>
-//   <td colspan="2">Items Price:</td>
-//   <td align="right"> $${order.itemsPrice.toFixed(2)}</td>
-//   </tr>
-//   <tr>
-//   <td colspan="2">Shipping Price:</td>
-//   <td align="right"> $${order.shippingPrice.toFixed(2)}</td>
-//   </tr>
-//   <tr>
-//   <td colspan="2"><strong>Total Price:</strong></td>
-//   <td align="right"><strong> $${order.totalPrice.toFixed(2)}</strong></td>
-//   </tr>
-//   <tr>
-//   <td colspan="2">Payment Method:</td>
-//   <td align="right">${order.paymentMethod}</td>
-//   </tr>
-//   </table>
-//   <h2>Shipping address</h2>
-//   ${order.shippingAddress.fullName},<br/>
-//   ${order.shippingAddress.address},<br/>
-//   ${order.shippingAddress.city},<br/>
-//   ${order.shippingAddress.country},<br/>
-//   ${order.shippingAddress.postalCode}<br/>
-//   </p>
-//   <hr/>
-//   <p>
-//   Thanks for shopping with us.
-//   </p>
-//   `;
-// };

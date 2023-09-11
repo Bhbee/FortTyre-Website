@@ -1,12 +1,12 @@
 import jwt from "jsonwebtoken";
 import {User} from "../models/user.model"
 
-const JWT_SECRET = process.env.JWT_SECRET as string;
+const JWT_SECRET = process.env.JWT_SECRET as string
 
 export const generateToken = (user: User) => {
   return jwt.sign(
     {
-      sub: user._id,
+      _id: user._id,
       email: user.email,
       isAdmin: user.isAdmin,
     }, 
@@ -20,7 +20,7 @@ export const generateToken = (user: User) => {
 export function generateRefreshToken(user: User){
   return jwt.sign(
     {
-      sub: user._id,
+      _id: user._id,
       email: user.email,
       isAdmin: user.isAdmin,
     }, 

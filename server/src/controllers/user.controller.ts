@@ -74,7 +74,6 @@ export const DeleteUSer = asyncHandler(async (req: Request, res: Response) =>{
 export const UpdatePersonalUserInfo = asyncHandler(async (req: Request, res: Response) =>{
   const { id } = req.params;
   const currentUser = req.user._id; 
-  //console.log(currentUser, id)
   if (id !== currentUser) {
     res.status(403).send({ message: "Access denied" });
     return;
@@ -82,13 +81,13 @@ export const UpdatePersonalUserInfo = asyncHandler(async (req: Request, res: Res
     const salt = await bcrypt.genSalt(12) 
     const user = await UserModel.findById(currentUser);
     if (user) {
+      if (req.body.password) {
+        user.password = bcrypt.hashSync(req.body.password, salt)
+      }
       user.first_name = req.body.first_name || user.first_name;
       user.last_name = req.body.last_name || user.last_name;
       user.email = req.body.email || user.email;
       user.phone_number = req.body.phone_number || user.phone_number;
-      if (req.body.password) {
-        user.password = bcrypt.hashSync(req.body.password, salt)
-      }
       const updatedUser = await user.save();
       res.send({
         _id: updatedUser._id,
