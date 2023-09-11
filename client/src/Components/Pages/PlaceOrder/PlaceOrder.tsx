@@ -22,13 +22,13 @@ const PlaceOrder: React.FC = () => {
 
   const round2 = (num: number) => Math.round(num * 100 + Number.EPSILON) / 100;
 
-  cart.itemPrice = round2(
+  cart.itemsPrice = round2(
     cart.orderItems.reduce((a, c) => a + c.quantity * c.price, 0)
   );
 
-  cart.deliveryPrice = cart.itemPrice > 100 ? round2(0) : round2(10);
+  cart.deliveryPrice = cart.itemsPrice > 100 ? round2(0) : round2(10);
 
-  cart.totalPrice = cart.itemPrice + cart.deliveryPrice;
+  cart.totalPrice = cart.itemsPrice + cart.deliveryPrice;
 
   const { mutateAsync: createOrder, isLoading } = useCreateOrderMutation();
 
@@ -37,14 +37,14 @@ const PlaceOrder: React.FC = () => {
       const data = await createOrder({
         orderItems: cart.orderItems,
         deliveryAddress: cart.deliveryAddress,
-        itemPrice: cart.itemPrice,
+        itemPrice: cart.itemsPrice,
         deliveryPrice: cart.deliveryPrice,
         totalPrice: cart.totalPrice,
       });
       dispatch({ type: "CART_CLEAR" });
       localStorage.removeItem("orderItems");
-      console.log("Data_Response_placeOrder", data);
-      //  navigate(`/order/${data.order._id}`);
+      //console.log("Data_Response_placeOrder", data);
+      navigate(`/order/${data.order._id}`);
     } catch (err) {
       toast.error(getError(err as ApiError));
     }
@@ -113,7 +113,7 @@ const PlaceOrder: React.FC = () => {
                 <ListGroup.Item>
                   <Row>
                     <Col>Items</Col>
-                    <Col>${cart.itemPrice.toFixed(2)}</Col>
+                    <Col>${cart.itemsPrice.toFixed(2)}</Col>
                   </Row>
                 </ListGroup.Item>
                 <ListGroup.Item>

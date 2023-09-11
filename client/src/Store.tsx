@@ -28,7 +28,7 @@ const initialState: AppState = {
     deliveryAddress: localStorage.getItem("deliveryAddress")
       ? JSON.parse(localStorage.getItem("deliveryAddress")!)
       : {},
-    itemPrice: 0,
+    itemsPrice: 0,
     deliveryPrice: 0,
     totalPrice: 0,
   },
@@ -66,7 +66,7 @@ function reducer(state: AppState, action: Action): AppState {
             postalcode: "",
             country: "",
           },
-          itemPrice: 0,
+          itemsPrice: 0,
           deliveryPrice: 0,
           totalPrice: 0,
         },
