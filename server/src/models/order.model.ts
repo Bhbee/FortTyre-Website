@@ -67,6 +67,9 @@ export class Order {
   @prop({required: true, default: false})
   public isPaid!: boolean
 
+  @prop()
+  public paidAt?: Date
+
   @prop({required: true, default: false})
   public isDelivered!: boolean
 
