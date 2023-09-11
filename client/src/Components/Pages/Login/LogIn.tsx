@@ -40,8 +40,15 @@ const Login: React.FC = () => {
     }
   };
 
+  const emptyFormFieldAfterLogin = () => {
+    setEmail("");
+    setPassword("");
+  };
+
   const submitHandler = async (e: React.SyntheticEvent) => {
+    // emptyFormFieldAfterLogin();
     e.preventDefault();
+
     try {
       const data = await logIn({
         email,
@@ -50,9 +57,11 @@ const Login: React.FC = () => {
       dispatch({ type: "USER_LOGIN", payload: data });
       localStorage.setItem("userAccessToken", JSON.stringify(data));
       console.log("login", data);
+
       toast.success("successfully logged in", {
         position: toast.POSITION.BOTTOM_CENTER,
       });
+      navigate("../cart");
     } catch (err) {
       toast.error(getError(err as ApiError), {
         position: toast.POSITION.BOTTOM_CENTER,

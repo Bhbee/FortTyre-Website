@@ -34,14 +34,11 @@ const PlaceOrder: React.FC = () => {
   const { mutateAsync: createOrder, isLoading } = useCreateOrderMutation();
 
   const placeOrderHandler = async () => {
-    console.log("orderItems",cart.orderItems);
-    console.log("deliveryAddress", cart.deliveryAddress)
+    console.log("orderItems", cart.orderItems);
+    console.log("deliveryAddress", cart.deliveryAddress);
     console.log("itemPrice", cart.itemsPrice);
-    console.log("totalPrice", cart.totalPrice)
-    
+    console.log("totalPrice", cart.totalPrice);
 
-
-    
     try {
       const data = await createOrder({
         orderItems: cart.orderItems,
@@ -52,7 +49,7 @@ const PlaceOrder: React.FC = () => {
       });
       dispatch({ type: "CART_CLEAR" });
       localStorage.removeItem("orderItems");
-      //console.log("Data_Response_placeOrder", data);
+      console.log("Data_Response_placeOrder", data);
       navigate(`/order/${data.order._id}`);
     } catch (err) {
       toast.error(getError(err as ApiError));
