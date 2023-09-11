@@ -18,15 +18,19 @@ const ProductItem = ({ product }: { product: Product }) => {
     const existItem = orderItems.find((x) => x._id === product._id);
     const quantity = existItem ? existItem.quantity + 1 : 1;
 
+    console.log("product", product);
+    console.log("orderItems", orderItems);
+    console.log("existItem", existItem);
+    console.log("STATE", state);
+
     if (product.countInStock < quantity) {
-      console.log("product", product);
       alert("Sorry. Product is out of stock");
       return;
     }
     dispatch({
       type: "CART_ADD_ITEM",
       payload: { ...item, quantity },
-    })
+    });
     toast.success("Product added to the cart");
   };
 

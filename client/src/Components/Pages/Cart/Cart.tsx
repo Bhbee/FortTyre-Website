@@ -62,15 +62,15 @@ const Cart: React.FC = () => {
               {orderItems.map((item: OrderItems) => (
                 <ListGroup.Item key={item._id}>
                   <Row className="align-items-center">
-                  <Col md={2}>
+                    <Col md={2}>
                       <img
                         src={item.image.url}
                         alt={item.name}
                         className="img-fluid rounded thumbnail"
-                      ></img>{' '}
+                      ></img>{" "}
                       {/* <Link to={`/product/${item.slug}`}>{item.name}</Link> */}
                     </Col>
-                    <Col md={3}>
+                    <Col md={2}>
                       <Button
                         className="cart-button-color"
                         onClick={() =>
@@ -95,9 +95,13 @@ const Cart: React.FC = () => {
                         {<AiFillPlusCircle />}
                       </Button>
                     </Col>
-                    <Col className="cart-button" md={3}>
-                      ${item.price}
+                    <Col className="cart-button" md={2}>
+                      {""} {item.name}
                     </Col>
+                    <Col className="cart-button" md={2}>
+                      {""} ${item.price}
+                    </Col>
+                    {/* <Col md={1}>{item.name}</Col> */}
                     <Col md={2}>
                       <Button
                         className="cart-button-color"

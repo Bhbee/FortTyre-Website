@@ -34,7 +34,6 @@ const initialState: AppState = {
   },
 };
 
-console.log("GLOBAL_STATE", initialState);
 
 type Action =
   | { type: "SWITCH_MODE" }
@@ -78,11 +77,11 @@ function reducer(state: AppState, action: Action): AppState {
     case "CART_ADD_ITEM":
       const newItem = action.payload;
       const existItem = state.cart.orderItems.find(
-        (item: OrderItems) => item.name === newItem.name
+        (item: OrderItems) => item._id === newItem._id
       );
       const orderItems = existItem
         ? state.cart.orderItems.map((item: OrderItems) =>
-            item.name === existItem.name ? newItem : item
+            item._id === existItem._id ? newItem : item
           )
         : [...state.cart.orderItems, newItem];
       localStorage.setItem("orderItems", JSON.stringify(newItem));
