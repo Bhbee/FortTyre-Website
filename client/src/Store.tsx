@@ -46,7 +46,8 @@ type Action =
       payload: OrderItems;
     }
   | { type: "SAVE_DELIVERY_ADDRESS"; payload: DeliveryAddress }
-  | { type: "USER_LOGOUT" } | { type: 'CART_CLEAR' } 
+  | { type: "USER_LOGOUT" }
+  | { type: "CART_CLEAR" };
 
 function reducer(state: AppState, action: Action): AppState {
   switch (action.type) {
@@ -63,7 +64,6 @@ function reducer(state: AppState, action: Action): AppState {
             fullname: " ",
             address: " ",
             city: " ",
-            postalcode: "",
             country: "",
           },
           itemsPrice: 0,
@@ -80,7 +80,7 @@ function reducer(state: AppState, action: Action): AppState {
       const existItem = state.cart.orderItems.find(
         (item: OrderItems) => item.name === newItem.name
       );
-      const cartItems = existItem
+      const orderItems = existItem
         ? state.cart.orderItems.map((item: OrderItems) =>
             item.name === existItem.name ? newItem : item
           )
@@ -89,7 +89,7 @@ function reducer(state: AppState, action: Action): AppState {
 
       // console.log("cartItems", cartItems);
 
-      return { ...state, cart: { ...state.cart, orderItems: cartItems } };
+      return { ...state, cart: { ...state.cart, orderItems } };
 
     case "CART_REMOVE_ITEM": {
       const cartItems = state.cart.orderItems.filter(

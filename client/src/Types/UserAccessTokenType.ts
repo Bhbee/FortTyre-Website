@@ -1,3 +1,4 @@
 export type UserToken = {
-    accessToken: string
+    accessToken: string,
+    firstName: string
 }

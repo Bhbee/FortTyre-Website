@@ -23,9 +23,6 @@ const ShippingPage: React.FC = () => {
   const [fullname, setFullName] = useState(deliveryAddress.fullname || "");
   const [address, setAddress] = useState(deliveryAddress.address || "");
   const [city, setCity] = useState(deliveryAddress.city || "");
-  const [postalcode, setPostalCode] = useState(
-    deliveryAddress.postalcode || ""
-  );
   const [country, setCountry] = useState(deliveryAddress.country || "");
 
   const submitHandler = (e: React.SyntheticEvent) => {
@@ -36,7 +33,6 @@ const ShippingPage: React.FC = () => {
         fullname,
         address,
         city,
-        postalcode,
         country,
       },
     });
@@ -46,7 +42,6 @@ const ShippingPage: React.FC = () => {
         fullname,
         address,
         city,
-        postalcode,
         country,
       })
     );
@@ -108,17 +103,6 @@ const ShippingPage: React.FC = () => {
                     onChange={(e) => setCity(e.target.value)}
                     type="city"
                     placeholder="city"
-                    required
-                  />
-                </Form.Group>
-
-                <Form.Group className="mb-3" controlId="formBasicPostalCode">
-                  <Form.Label>Postal Code</Form.Label>
-                  <Form.Control
-                    value={postalcode}
-                    onChange={(e) => setPostalCode(e.target.value)}
-                    type="postalcode"
-                    placeholder="postal code"
                     required
                   />
                 </Form.Group>

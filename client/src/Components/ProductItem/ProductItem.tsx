@@ -26,7 +26,7 @@ const ProductItem = ({ product }: { product: Product }) => {
     dispatch({
       type: "CART_ADD_ITEM",
       payload: { ...item, quantity },
-    });
+    })
     toast.success("Product added to the cart");
   };
 

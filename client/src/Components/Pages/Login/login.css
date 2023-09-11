@@ -48,6 +48,10 @@ font-size: large;
     margin-left: 20px;     
 } 
 
+.login-password-button-reveal {
+    background-color: green;
+    border-radius: 36px;
+}
 
 .login-form-icon-btn {
     border-right: 1px solid #fff;

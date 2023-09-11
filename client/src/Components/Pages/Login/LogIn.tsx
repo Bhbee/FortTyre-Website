@@ -12,20 +12,33 @@ import { Helmet } from "react-helmet-async";
 import { useContext, useState } from "react";
 import { Store } from "../../../Store";
 import { useLoginMutation } from "../../../Hooks/UserHook";
+import { useGetGoogleAuth } from "../../../Hooks/googleAuthHook";
 import { getError } from "../../../Utils/ApiError";
 import ApiError from "../../../Types/ApiErrortype";
 import LoadingBox from "../../LoadingBox/LoadingBox";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./login.css";
+import { InputGroup } from "react-bootstrap";
 
 const Login: React.FC = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const { dispatch } = useContext(Store);
 
   const { mutateAsync: logIn, isLoading } = useLoginMutation();
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+
+  const disableChangePasswordButton = () => {
+    if (password === "") {
+      return true;
+    }
+  };
 
   const submitHandler = async (e: React.SyntheticEvent) => {
     e.preventDefault();
@@ -37,7 +50,6 @@ const Login: React.FC = () => {
       dispatch({ type: "USER_LOGIN", payload: data });
       localStorage.setItem("userAccessToken", JSON.stringify(data));
       console.log("login", data);
-      navigate("/cart");
       toast.success("successfully logged in", {
         position: toast.POSITION.BOTTOM_CENTER,
       });
@@ -142,12 +154,23 @@ const Login: React.FC = () => {
 
                 <Form.Group className="mb-4" controlId="formBasicPassword">
                   <Form.Label>Password</Form.Label>
-                  <Form.Control
-                    type="password"
-                    required
-                    placeholder="**********"
-                    onChange={(e) => setPassword(e.target.value)}
-                  />
+
+                  <InputGroup>
+                    <Form.Control
+                      type={showPassword ? "text" : "password"}
+                      required
+                      placeholder="**********"
+                      onChange={(e) => setPassword(e.target.value)}
+                    />
+                  </InputGroup>
+                  <Button
+                    onClick={togglePasswordVisibility}
+                    className="login-password-button-reveal mt-3"
+                    disabled={disableChangePasswordButton() || isLoading}
+                  >
+                    {" "}
+                    {showPassword ? "Hide password" : "Show password"}
+                  </Button>
                 </Form.Group>
 
                 <Row className="login-form-row-align">

@@ -30,7 +30,7 @@
     left: 0;
     right: 0;
     z-index: 2000;
-}
+    }
 
 .layout-logo {
     height: auto;
@@ -89,6 +89,15 @@
   text-decoration: none;
   color: green;
 
+}
+
+div.dropdown-menu.show {
+    border: 1px solid red;
+    /* position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1999; */
 }
 
 .search-results {

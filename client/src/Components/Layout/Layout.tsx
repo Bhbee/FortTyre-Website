@@ -4,6 +4,8 @@ import Nav from "react-bootstrap/Nav";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Navbar from "react-bootstrap/Navbar";
+import Dropdown from "react-bootstrap/Dropdown";
+import DropdownButton from "react-bootstrap/DropdownButton";
 import { NavLink, useNavigate } from "react-router-dom";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { RiAccountCircleFill } from "react-icons/ri";
@@ -24,7 +26,7 @@ const Layout: React.FC = () => {
     dispatch,
   } = useContext(Store);
 
-  console.log("USER_ACCESS_TOKEN", userAccessToken?.accessToken);
+  // console.log("USER_ACCESS_TOKEN", userAccessToken?.accessToken);
 
   const navigate = useNavigate();
 
@@ -126,7 +128,7 @@ const Layout: React.FC = () => {
               <p className="cart-paragraph">Sign Up</p>
             </Nav.Link>
 
-            {userAccessToken ? (
+            {/* {userAccessToken ? (
               <Nav.Link
                 as={NavLink}
                 to=""
@@ -137,6 +139,29 @@ const Layout: React.FC = () => {
                 <RiAccountCircleFill className="layout-icon-margin layout-icon" />{" "}
                 <p className="cart-paragraph">Logout</p>
               </Nav.Link>
+            ) : (
+              <Nav.Link
+                as={NavLink}
+                to="../login"
+                className="nav-social-links"
+                href="../login"
+              >
+                <RiAccountCircleFill className="layout-icon-margin layout-icon" />{" "}
+                <p className="cart-paragraph">Login</p>
+              </Nav.Link>
+            )} */}
+
+            {userAccessToken ? (
+              <DropdownButton
+                id="dropdown-basic-button"
+                title={`Hi ${userAccessToken.firstName}`}
+                style={{borderRadius: "38px"}}
+              >
+                {/* <RiAccountCircleFill className="layout-icon-margin layout-icon" /> */}
+                <Dropdown.Item onClick={logoutHandler} href="#/action-1">
+                  Logout
+                </Dropdown.Item>
+              </DropdownButton>
             ) : (
               <Nav.Link
                 as={NavLink}

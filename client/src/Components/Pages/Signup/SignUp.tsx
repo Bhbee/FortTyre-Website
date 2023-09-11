@@ -37,7 +37,7 @@ const SignUp: React.FC = () => {
     }
 
     if (!passwordPattern.test(password)) {
-      return "Password must include one special character.";
+      return "Password must include one special character ($, #, &, ?, $ etc)";
     }
 
     return ""; // Return null if the password is valid
@@ -70,7 +70,7 @@ const SignUp: React.FC = () => {
       toast.success(data.message, {
         position: toast.POSITION.BOTTOM_CENTER,
       });
-      navigate("/cart");
+
     } catch (err) {
       toast.error(getError(err as ApiError), {
         position: toast.POSITION.BOTTOM_CENTER,
