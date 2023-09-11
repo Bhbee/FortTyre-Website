@@ -87,3 +87,39 @@
 
 
 
+Use later for github actions
+
+
+# # The name of the workflow. GitHub displays the names of your workflows under your repository's "Actions" tab. If you omit `name`, GitHub displays the workflow file path relative to the root of the repository.
+# name: Node.js CI
+
+# on:
+#   push:
+#     branches: [ master ]
+#   pull_request:
+#     branches: [ master ]
+
+# #
+# jobs:
+#   build:
+
+#     runs-on: ubuntu-latest
+
+#     strategy:
+#       matrix:
+#         node-version: [14.x, 16.x, 18.x, 20.x]
+# #
+#     steps:
+#       # This step uses the `actions/checkout` action to download a copy of your repository on the runner.
+#       - uses: actions/checkout@v3
+#       # This step uses the `actions/setup-node` action to set up Node.js for each version indicated by the `matrix.node-version` key above.
+#       - name: Use Node.js ${{ matrix.node-version }}
+#         uses: actions/setup-node@v3
+#         with:
+#           node-version: ${{ matrix.node-version }}
+#       # This step runs `npm i` to install any dependencies listed in your `package.json` file.
+#       - run: npm i
+#       # This step runs the `build` script if there is one specified under the `scripts` key in your `package.json` file.
+#       - run: npm run build --if-present
+#       # This step runs the `test` script that is specified under the `scripts` key in your `package.json` file.
+#       # - run: npm test

@@ -11,6 +11,8 @@ export const getError = (error: ApiErrorType) => {
 
 export const convertProductToCartItem = (product: Product): OrderItems  => {
   const orderItem: OrderItems = {
+    _id: product._id,
+    image: product.image,
     price: product.price,
     name: product.brand,
     quantity: 1,

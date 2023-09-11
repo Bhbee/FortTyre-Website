@@ -60,9 +60,16 @@ const Cart: React.FC = () => {
           ) : (
             <ListGroup>
               {orderItems.map((item: OrderItems) => (
-                <ListGroup.Item key={item.quantity}>
+                <ListGroup.Item key={item._id}>
                   <Row className="align-items-center">
-                    <Col md={4}> {item.name}</Col>
+                  <Col md={2}>
+                      <img
+                        src={item.image.url}
+                        alt={item.name}
+                        className="img-fluid rounded thumbnail"
+                      ></img>{' '}
+                      {/* <Link to={`/product/${item.slug}`}>{item.name}</Link> */}
+                    </Col>
                     <Col md={3}>
                       <Button
                         className="cart-button-color"
