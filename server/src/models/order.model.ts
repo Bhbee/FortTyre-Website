@@ -20,7 +20,7 @@ class DeliveryAddress {
 
 class Item {
 
-  public _id!: string
+  // public _id!: string
   
   @prop ({required: true })
   public name!: string
@@ -33,9 +33,6 @@ class Item {
 
   @prop ({required: true })
   public price!: number
-
-  @prop({required: true, default: 0})
-  public countInStock!: number
 
   @prop ({ref: Product})
   public product?: Ref<Product> 
@@ -53,7 +50,7 @@ export class Order {
   public deliveryAddress ?: DeliveryAddress 
 
   @prop({ref: User, required: true})
-  public user!: Ref<User>
+  public user?: Ref<User>
 
   @prop({ref: Payment})
   public paymentInfo?: Ref<Payment>
@@ -70,14 +67,11 @@ export class Order {
   @prop({required: true, default: false})
   public isPaid!: boolean
 
-  @prop()
-  public paidAt!: Date
-
   @prop({required: true, default: false})
   public isDelivered!: boolean
 
   @prop()
-  public deliveredAt!: Date
+  public deliveredAt?: Date
 }
 
 export const OrderModel = getModelForClass(Order)
