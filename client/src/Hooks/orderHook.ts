@@ -15,7 +15,7 @@ useMutation({
         deliveryPrice: number,
         totalPrice: number
     }) => (
-        await apiClient.post<{message: string, order: Order}>(
+        await apiClient.post<{message: string}>(
             "/orders", order
         )
     ).data 

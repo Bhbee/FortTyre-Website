@@ -12,6 +12,7 @@ import { Helmet } from "react-helmet-async";
 import { Button, Card, ListGroup } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import LoadingBox from "../../LoadingBox/LoadingBox";
+import { MdEdit } from "react-icons/md";
 import "./placeorder.css";
 
 const PlaceOrder: React.FC = () => {
@@ -21,6 +22,12 @@ const PlaceOrder: React.FC = () => {
   const { cart, userAccessToken } = state;
 
   const round2 = (num: number) => Math.round(num * 100 + Number.EPSILON) / 100;
+
+  const isArray = Array.isArray(cart.orderItems);
+
+  console.log("cart", cart);
+  console.log("cart.orderItems", cart.orderItems);
+  console.log("isArray", isArray);
 
   cart.itemPrice = round2(
     cart.orderItems.reduce((a, c) => a + c.quantity * c.price, 0)
@@ -33,6 +40,14 @@ const PlaceOrder: React.FC = () => {
   const { mutateAsync: createOrder, isLoading } = useCreateOrderMutation();
 
   const placeOrderHandler = async () => {
+    console.log("orderItems",cart.orderItems);
+    console.log("deliveryAddress", cart.deliveryAddress)
+    console.log("itemPrice", cart.itemPrice);
+    console.log("totalPrice", cart.totalPrice)
+    
+
+
+    
     try {
       const data = await createOrder({
         orderItems: cart.orderItems,
@@ -64,24 +79,13 @@ const PlaceOrder: React.FC = () => {
               <Card.Text>
                 <strong>Name:</strong> {cart.deliveryAddress.fullname} <br />
                 <strong>Address: </strong> {cart.deliveryAddress.address},
-                {cart.deliveryAddress.city}, {cart.deliveryAddress.postalcode},
-                {cart.deliveryAddress.country}
+                {cart.deliveryAddress.city},{cart.deliveryAddress.country}
               </Card.Text>
               <NavLink className="place-order-edit-btn" to="/shippingpage">
-                Edit
+                <MdEdit /> Edit
               </NavLink>
             </Card.Body>
           </Card>
-
-          {/* <Card className="mb-3">
-            <Card.Body>
-              <Card.Title>Payment</Card.Title>
-              <Card.Text>
-                <strong>Method:</strong> {cart.paymentMethod}
-              </Card.Text>
-              <NavLink to="/payment">Edit</NavLink>
-            </Card.Body>
-          </Card> */}
 
           <Card className="mb-3">
             <Card.Body>
@@ -100,7 +104,7 @@ const PlaceOrder: React.FC = () => {
                 ))}
               </ListGroup>
               <NavLink className="place-order-edit-btn" to="/cart">
-                Edit
+                <MdEdit /> Edit
               </NavLink>
             </Card.Body>
           </Card>
@@ -122,12 +126,7 @@ const PlaceOrder: React.FC = () => {
                     <Col>${cart.deliveryPrice.toFixed(2)}</Col>
                   </Row>
                 </ListGroup.Item>
-                {/* <ListGroup.Item>
-                  <Row>
-                    <Col>Tax</Col>
-                    <Col>${cart.taxPrice.toFixed(2)}</Col>
-                  </Row>
-                </ListGroup.Item> */}
+
                 <ListGroup.Item>
                   <Row>
                     <Col>

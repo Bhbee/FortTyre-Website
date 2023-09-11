@@ -3,13 +3,13 @@ export type OrderItems = {
     quantity: number,
     price: number,
     countInStock: number
+    
 }
 
 export type DeliveryAddress = {
     fullname: string,
         address: string,
         city: string,
-        postalcode: string,
         country: string,
 }
 
