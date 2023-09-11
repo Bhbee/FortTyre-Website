@@ -20,5 +20,8 @@ export class Payment {
     @prop({required: true})
     public status!: string
 
+    @prop()
+    public paidAt!: Date
+
 }
 export const PaymentModel = getModelForClass(Payment)
