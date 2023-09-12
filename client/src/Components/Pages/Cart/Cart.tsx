@@ -21,9 +21,6 @@ const Cart: React.FC = () => {
   } = state;
 
   const navigate = useNavigate();
-  // const { data: listOfProducts, isLoading, error } = useGetProductsQuery();
-  // console.log("listOfProducts", listOfProducts?.products);
-
   const updateCartHandler = (item: OrderItems, quantity: number) => {
     if (item.countInStock < quantity) {
       toast.warn("Sorry. Product is out of stock");
