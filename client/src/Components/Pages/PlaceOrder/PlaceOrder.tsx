@@ -34,15 +34,6 @@ const PlaceOrder: React.FC = () => {
   const { mutateAsync: createOrder, isLoading } = useCreateOrderMutation();
 
   const placeOrderHandler = async () => {
-    const info = {
-      orderItems: cart.orderItems,
-        deliveryAddress: cart.deliveryAddress,
-        itemPrice: cart.itemsPrice,
-        deliveryPrice: cart.deliveryPrice,
-        totalPrice: cart.totalPrice,
-    }
-    console.log(info);
-   
     try {
       const data = await createOrder({
         orderItems: cart.orderItems,
