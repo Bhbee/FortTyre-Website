@@ -4,20 +4,19 @@ interface ProductImage {
 }
 
 export type OrderItems = {
-    image: ProductImage
     _id: string
+    image: ProductImage
     name: string,
     quantity: number,
     price: number,
-    countInStock: number
-    
+    countInStock: number 
 }
 
 export type DeliveryAddress = {
     fullname: string,
-        address: string,
-        city: string,
-        country: string,
+    address: string,
+    city: string,
+    country: string,
 }
 
 export type Cart = {
