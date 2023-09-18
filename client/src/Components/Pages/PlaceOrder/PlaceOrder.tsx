@@ -34,11 +34,6 @@ const PlaceOrder: React.FC = () => {
   const { mutateAsync: createOrder, isLoading } = useCreateOrderMutation();
 
   const placeOrderHandler = async () => {
-    console.log("orderItems", cart.orderItems);
-    console.log("deliveryAddress", cart.deliveryAddress);
-    console.log("itemPrice", cart.itemsPrice);
-    console.log("totalPrice", cart.totalPrice);
-
     try {
       const data = await createOrder({
         orderItems: cart.orderItems,
@@ -83,7 +78,7 @@ const PlaceOrder: React.FC = () => {
               <Card.Title>Items</Card.Title>
               <ListGroup variant="flush">
                 {cart.orderItems.map((item) => (
-                  <ListGroup.Item key={item.name}>
+                  <ListGroup.Item key={item._id}>
                     <Row className="align-items-center">
                       <Col md={6}>{item.name}</Col>
                       <Col md={3}>
