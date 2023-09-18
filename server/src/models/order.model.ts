@@ -3,6 +3,12 @@ import { Product} from './product.model'
 import { User } from './user.model'
 import { Payment } from './payment.model'
 
+interface ProductImage {
+  public_id: string
+  url: string
+}
+
+
 @modelOptions({ schemaOptions: {timestamps: true}})
 class DeliveryAddress {
   @prop()
@@ -19,8 +25,6 @@ class DeliveryAddress {
 }
 
 class Item {
-
-  // public _id!: string
   
   @prop ({required: true })
   public name!: string
@@ -29,7 +33,7 @@ class Item {
   public quantity!: number
 
   @prop ({required: true })
-  public image!: string
+  public image!: ProductImage
 
   @prop ({required: true })
   public price!: number
