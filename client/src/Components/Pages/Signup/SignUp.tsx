@@ -196,7 +196,7 @@ const SignUp: React.FC = () => {
                   <Form.Control
                     type="phone_number"
                     required
-                    placeholder="080633733915"
+                    placeholder="08083164856"
                     onChange={(e) => setPhoneNumber(e.target.value)}
                   />
                 </Form.Group>

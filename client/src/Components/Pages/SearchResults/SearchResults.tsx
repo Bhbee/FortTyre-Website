@@ -9,7 +9,7 @@ import ProductItem from "../../ProductItem/ProductItem";
 const SearchResults: React.FC = () => {
   const location = useLocation();
   const { products } = location.state.products;
-  console.log("products", products);
+  // console.log("products", products);
 
   return (
     <Container className="mt-5 search-results-padding">

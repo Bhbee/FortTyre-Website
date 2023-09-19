@@ -28,9 +28,19 @@ const Layout: React.FC = () => {
 
   // console.log("USER_ACCESS_TOKEN", userAccessToken?.accessToken);
 
+  const [search, setSearch] = useState("");
+  const [showDropdown, setshowDropdown] = useState(false);
+
   const navigate = useNavigate();
 
-  const [search, setSearch] = useState("");
+  const autoCompleteOptions = [
+    { name: "Eternity", id: 1 },
+    { name: "Himitto", id: 2 },
+    { name: "Infinity", id: 3 },
+    { name: "Road Wind", id: 4 },
+    { name: "Joyraod", id: 5 },
+    { name: "Westlake", id: 6 },
+  ];
 
   const {
     data: filterSearchProducts,
@@ -46,15 +56,32 @@ const Layout: React.FC = () => {
       await refetch().then((result) =>
         navigate("/searchresults", { state: { products: result.data } })
       );
-      console.log("isLoading", isLoading);
-      console.log("searchProducts", filterSearchProducts);
+      // console.log("isLoading", isLoading);
+      // console.log("searchProducts", filterSearchProducts);
+      setSearch("");
     } catch (err) {}
   };
 
-  const handleSelect = (filter: string) => {
-    // setSelect(filter);
-    console.log("filter", filter);
+  // const handleSelect = (filter: string) => {
+  //   // setSelect(filter);
+  //   console.log("filter", filter);
+  // };
+
+  const onSearch = (searchTerm: string) => {
+    setSearch(searchTerm);
+    setshowDropdown(false);
   };
+
+  const handleInputChange = (e: any) => {
+    const newSearch = e.target.value;
+    setSearch(newSearch);
+    setshowDropdown(newSearch !== "");
+  };
+  // const checkSearch = () => {
+  //   if(search !== "") {
+  //     setshowDropdown(true);
+  //   }
+  // };
 
   const logoutHandler = () => {
     dispatch({ type: "USER_LOGOUT" });
@@ -91,9 +118,7 @@ const Layout: React.FC = () => {
 
               <Form.Control
                 value={search}
-                onChange={(e) => {
-                  setSearch(e.target.value);
-                }}
+                onChange={handleInputChange}
                 type="search"
                 placeholder="Search by brand or size... (Eg 205/65/16 or Michelin)"
                 className="me-2 layout-search-input"
@@ -128,34 +153,11 @@ const Layout: React.FC = () => {
               <p className="cart-paragraph">Sign Up</p>
             </Nav.Link>
 
-            {/* {userAccessToken ? (
-              <Nav.Link
-                as={NavLink}
-                to=""
-                onClick={logoutHandler}
-                className="nav-social-links"
-                href="../login"
-              >
-                <RiAccountCircleFill className="layout-icon-margin layout-icon" />{" "}
-                <p className="cart-paragraph">Logout</p>
-              </Nav.Link>
-            ) : (
-              <Nav.Link
-                as={NavLink}
-                to="../login"
-                className="nav-social-links"
-                href="../login"
-              >
-                <RiAccountCircleFill className="layout-icon-margin layout-icon" />{" "}
-                <p className="cart-paragraph">Login</p>
-              </Nav.Link>
-            )} */}
-
             {userAccessToken ? (
               <DropdownButton
                 id="dropdown-basic-button"
                 title={`Hi ${userAccessToken.firstName}`}
-                style={{borderRadius: "38px"}}
+                style={{ borderRadius: "38px" }}
               >
                 {/* <RiAccountCircleFill className="layout-icon-margin layout-icon" /> */}
                 <Dropdown.Item onClick={logoutHandler} href="#/action-1">
@@ -202,26 +204,30 @@ const Layout: React.FC = () => {
             ))}
         </div>
       } */}
-      {/* {
-        <div>
-          {search !== "" && (
-            <div className="search-results">
-              {isLoading && <div>Loading...</div>}
-              {filterSearchProducts &&
-                filterSearchProducts.products.map((product) => (
-                  <NavLink
-                    to={`products/${product._id}`}
-                    style={{ textDecoration: "none", color: "white" }}
-                  >
-                    <div className="border-bottom" key={product._id}>
-                      {product.brand}
-                    </div>
-                  </NavLink>
-                ))}
-            </div>
-          )}
+
+      {showDropdown && (
+        <div className="autocomplete">
+          {autoCompleteOptions
+            .filter((item) => {
+              const searchTerm = search.toLocaleLowerCase();
+              const name = item.name.toLocaleLowerCase();
+
+              return (
+                searchTerm && name.startsWith(searchTerm) && name !== searchTerm
+              );
+            })
+            .map((item) => (
+              <div
+                className="dropdown-item"
+                onClick={() => onSearch(item.name)}
+                key={item.id}
+              >
+                {item.name}
+              </div>
+            ))}
         </div>
-      } */}
+      )}
+
       {/* <BreadCrumbs /> */}
     </header>
   );
