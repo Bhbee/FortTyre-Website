@@ -53,6 +53,22 @@
  margin-right: 0.6rem;
 }
 
+
+.autocomplete {
+    width: 50%;
+    background-color: green;
+    color: white;
+    padding: 1rem;
+    position: relative;
+}
+
+.dropdown-item:hover {
+    padding: 2px; 
+    background: rgba(255, 255, 255, 0.5);
+}
+
+
+
 .nav-social-links {
     margin: 0 0.6rem;
     text-decoration: none;
@@ -138,6 +154,7 @@ cursor: pointer;
     font-size: 2rem;
     color: green;
 }
+
     .nav-collapse-container {
         height: 50vh;
         padding: 0.95rem;

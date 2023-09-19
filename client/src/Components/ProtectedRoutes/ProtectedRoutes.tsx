@@ -1,6 +1,3 @@
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
 import { useContext } from "react";
 import { Store } from "../../Store";
 import { Navigate, Outlet } from "react-router-dom";

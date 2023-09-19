@@ -114,6 +114,8 @@ function reducer(state: AppState, action: Action): AppState {
       return state;
   }
 }
+
+
 const defaultDispatch: React.Dispatch<Action> = () => initialState;
 
 const Store = createContext({
