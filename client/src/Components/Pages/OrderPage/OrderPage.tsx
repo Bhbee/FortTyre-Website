@@ -98,7 +98,7 @@ const OrderPage: React.FC = () => {
                               alt={item.name}
                               className="img-fluid rounded thumbnail"
                             ></img>{" "}
-                            <NavLink to={`/product/${item._id}`}>
+                            <NavLink to={`/products/${item._id}`}>
                               {item.name}
                             </NavLink>
                           </Col>
