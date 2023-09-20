@@ -17,7 +17,7 @@ import "./productdetails.css";
 
 const ProductDetails: React.FC = () => {
   const { productId } = useParams();
-  const navigate = useNavigate();
+
 
   const { state, dispatch } = useContext(Store);
   const { cart } = state;
@@ -26,7 +26,6 @@ const ProductDetails: React.FC = () => {
     data: product,
     isLoading,
     error,
-    status,
     refetch,
   } = useGetProductDetailsBySlugQuery(productId!);
 
@@ -42,7 +41,7 @@ const ProductDetails: React.FC = () => {
     getProductById();
   }, [productId]);
 
-  // console.log("data", product);
+
 
   const addToCartHandler = () => {
     const existItem = cart.orderItems.find((x) => x.name === product!.brand);

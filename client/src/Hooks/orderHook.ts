@@ -1,4 +1,4 @@
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { OrderItems, DeliveryAddress} from "../Types/CartItem"; 
 import { Order } from "../Types/Order";
 import apiClient from "../apiClient";
@@ -19,6 +19,12 @@ useMutation({
     ).data 
 })
 
+export const useGetOrderDetailsQuery = (id: string) =>
+  useQuery({
+    queryKey: ['orders', id],
+    queryFn: async () => (await apiClient.get<Order>(`/orders/${id}`)).data,
+    enabled: false
+  })
 
 
 
