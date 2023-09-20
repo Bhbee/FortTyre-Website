@@ -17,6 +17,7 @@ import SearchResults from "./Pages/SearchResults/SearchResults";
 import ShippingPage from "./Pages/ShippingPage/ShippingPage";
 import ProtectedRoutes from "./ProtectedRoutes/ProtectedRoutes";
 import PlaceOrder from "./Pages/PlaceOrder/PlaceOrder";
+import OrderPage from "./Pages/OrderPage/OrderPage";
 
 const AppRouter: React.FC = () => {
   return (
@@ -30,7 +31,8 @@ const AppRouter: React.FC = () => {
       />
       <Route element={<ProtectedRoutes />}>
         <Route path="shippingpage" element={<ShippingPage />} />
-        <Route path="placeorder" element={<PlaceOrder/>}></Route>
+        <Route path="placeorder" element={<PlaceOrder />}></Route>
+        <Route path="/order/:id" element={<OrderPage />} />
       </Route>
       <Route path="searchresults" element={<SearchResults />} />
       <Route path="about" element={<About />} />

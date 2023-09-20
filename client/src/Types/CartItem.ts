@@ -1,4 +1,4 @@
-interface ProductImage {
+type ProductImage = {
     public_id: string
     url: string
 }
