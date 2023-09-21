@@ -54,7 +54,10 @@ export class Order {
   public deliveryAddress ?: DeliveryAddress 
 
   @prop({ref: User, required: true})
-  public user?: Ref<User>
+  public user!: Ref<User>
+
+  @prop({required: true})
+  public userEmail!: string
 
   @prop({ref: Payment})
   public paymentInfo?: Ref<Payment>
