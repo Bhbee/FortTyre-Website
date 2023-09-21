@@ -66,7 +66,8 @@ export const PlaceOrder = async (req: Request, res: Response) =>{
         res.status(400).json({ message: "Cart is Empty"})
     } else{ 
         const createOrder = await OrderModel.create({
-            user: user._id,
+            user: user,
+            userEmail: user.email,
             orderItems: req.body.orderItems.map((x: Product) =>({ ...x, product: x._id})),
             deliveryAddress: req.body.deliveryAddress,
             itemPrice: req.body.itemPrice,
@@ -77,7 +78,8 @@ export const PlaceOrder = async (req: Request, res: Response) =>{
       }
   }
   catch(error){
-    return res.status(500).json({ error: 'An error occurred' });
+    console.log(error)
+    //return res.status(500).json({ error: 'An error occurred' });
   }
 }
 
