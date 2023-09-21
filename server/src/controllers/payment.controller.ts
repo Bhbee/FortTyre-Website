@@ -117,7 +117,7 @@ export const VerifyPayment = async (req: Request, res: Response) => {
           
             const updatedOrder = await order.save();
             res.send({ message: "Order payment Updated", order: updatedOrder });
-            //Show fort tyre updated order page 
+            Show fort tyre updated order page 
           } else {
             res.status(404).send({ message: "Order does not exist" });
           }

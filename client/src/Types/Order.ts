@@ -4,6 +4,7 @@ export type Order = {
     deliveryAddress: DeliveryAddress
     orderItems: OrderItems[]
     user: User
+    userEmail: string
     itemPrice: number
     deliveryPrice: number
     totalPrice: number
