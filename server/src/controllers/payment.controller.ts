@@ -5,7 +5,7 @@ import { PaymentModel, Payment } from '../models/payment.model'
 import { User, UserModel } from '../models/user.model'
 import MailHandler from '../utils/mailHandler'
 
-const originUrl = process.env.origin
+const originUrl = process.env.origin as string
 
 //Payment initialization with a callback to verify payment(using paystack)
 export const PayWithPaystack = async (req: Request, res: Response) =>{
@@ -99,6 +99,7 @@ export const VerifyPayment = async (req: Request, res: Response) => {
       apiRes.on('end', async () => {
         const responseData = JSON.parse(data);
         if(responseData.data.gateway_response === "Successful"){
+          res.redirect(originUrl)
           //1. Add new payment to database
           const payment = await PaymentModel.create({
             order: req.params.id,
