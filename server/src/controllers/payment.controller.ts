@@ -5,6 +5,8 @@ import { PaymentModel, Payment } from '../models/payment.model'
 import { User, UserModel } from '../models/user.model'
 import MailHandler from '../utils/mailHandler'
 
+const originUrl = process.env.origin
+
 //Payment initialization with a callback to verify payment(using paystack)
 export const PayWithPaystack = async (req: Request, res: Response) =>{
   try {
@@ -19,8 +21,7 @@ export const PayWithPaystack = async (req: Request, res: Response) =>{
       const last_name = customer.last_name
       const id = req.params.id
       const baseUrl = process.env.baseUrl as string
-      const paymentVerificationUrl = `${baseUrl}/orders/pay/verify/${id}`; //edit later to hosted base url
-      
+      const paymentVerificationUrl = `${baseUrl}/orders/pay/verify/${id}`; 
       const params = JSON.stringify({
         "email": email,
         "first_name": first_name,
@@ -114,10 +115,7 @@ export const VerifyPayment = async (req: Request, res: Response) => {
             order.paymentInfo = payment._id
             order.isPaid = true;
             order.paidAt = new Date(Date.now());
-          
             const updatedOrder = await order.save();
-            res.send({ message: "Order payment Updated", order: updatedOrder });
-            Show fort tyre updated order page 
           } else {
             res.status(404).send({ message: "Order does not exist" });
           }
@@ -136,6 +134,7 @@ export const VerifyPayment = async (req: Request, res: Response) => {
               }
             }
           );
+          
         }
         else{
           res.send({ message: "Payment not succesful" })
