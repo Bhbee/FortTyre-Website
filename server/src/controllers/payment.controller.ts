@@ -110,13 +110,13 @@ export const VerifyPayment = async (req: Request, res: Response) => {
           });
 
           //2. update order's payment Result
-          const order = await OrderModel.findById(req.params.id);
+          const orderFound = await OrderModel.findById(req.params.id);
 
-          if (order) {
-            order.paymentInfo = payment._id
-            order.isPaid = true;
-            order.paidAt = new Date(Date.now());
-            const updatedOrder = await order.save();
+          if (orderFound) {
+            orderFound.paymentInfo = payment._id
+            orderFound.isPaid = true;
+            orderFound.paidAt = new Date(Date.now());
+            const updatedOrder = await orderFound.save();
           } else {
             res.status(404).send({ message: "Order does not exist" });
           }
