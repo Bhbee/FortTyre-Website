@@ -110,15 +110,15 @@ export const VerifyPayment = async (req: Request, res: Response) => {
           });
 
           //2. update order's payment Result
-          const orderFound = await OrderModel.findById(req.params.id);
+          const orderFound = await OrderModel.findById(req.params.id)
 
           if (orderFound) {
             orderFound.paymentInfo = payment._id
             orderFound.isPaid = true;
-            orderFound.paidAt = new Date(Date.now());
-            const updatedOrder = await orderFound.save();
+            orderFound.paidAt = new Date(Date.now())
+            const updatedOrder = await orderFound.save()
           } else {
-            res.status(404).send({ message: "Order does not exist" });
+            res.status(404).send({ message: "Order does not exist" })
           }
           //3. Send receipt as an email to payer
           const mailHandler = new MailHandler();
@@ -129,9 +129,9 @@ export const VerifyPayment = async (req: Request, res: Response) => {
             `,
             (error:any, info:any)=>{
               if (error) {
-                res.status(500).json({ error: 'An error occurred while sending the email.' });
+                res.status(500).json({ error: 'An error occurred while sending the email.' })
               } else {
-                res.status(200).json({ message: 'Email sent successfully!', response: info?.response });
+                res.status(200).json({ message: 'Email sent successfully!', response: info?.response })
               }
             }
           );
