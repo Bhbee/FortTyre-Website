@@ -140,8 +140,6 @@ export const VerifyPayment = async (req: Request, res: Response) => {
           catch(err){
             res.status(500).json({ error: 'An error occurred.' })
           }
-          
-          
         }
         else{
           res.send({ message: "Payment not succesful" })
