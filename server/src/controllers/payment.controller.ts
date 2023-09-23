@@ -99,42 +99,48 @@ export const VerifyPayment = async (req: Request, res: Response) => {
       apiRes.on('end', async () => {
         const responseData = JSON.parse(data);
         if(responseData.data.gateway_response === "Successful"){
-          res.redirect(originUrl)
-          //1. Add new payment to database
-          const payment = await PaymentModel.create({
-            order: req.params.id,
-            email: responseData.data.customer.email,
-            amount: responseData.data.amount / 100,
-            reference: responseData.data.reference,
-            status:responseData.data.status
-          });
+          try{
+            res.redirect(originUrl)
+            //1. Add new payment to database
+            const payment = await PaymentModel.create({
+              order: req.params.id,
+              email: responseData.data.customer.email,
+              amount: responseData.data.amount / 100,
+              reference: responseData.data.reference,
+              status:responseData.data.status
+            });
 
-          //2. update order's payment Result
-          const orderFound = await OrderModel.findById(req.params.id)
+            //2. update order's payment Result
+            const orderFound = await OrderModel.findById(req.params.id)
 
-          if (orderFound) {
-            orderFound.paymentInfo = payment._id
-            orderFound.isPaid = true;
-            orderFound.paidAt = new Date(Date.now())
-            const updatedOrder = await orderFound.save()
-          } else {
-            res.status(404).send({ message: "Order does not exist" })
-          }
-          //3. Send receipt as an email to payer
-          const mailHandler = new MailHandler();
-          mailHandler.sendEmail(responseData.data.customer.email, 
-            'Payment Successful Notification',
-            `<h1>Hi, Thanks for shopping with us.</h1>
-            <p>Hi, We have finished processing your order. Your transaction of ${responseData.data.amount / 100}naira to  Fort Tyre was successful!</p> 
-            `,
-            (error:any, info:any)=>{
-              if (error) {
-                res.status(500).json({ error: 'An error occurred while sending the email.' })
-              } else {
-                res.status(200).json({ message: 'Email sent successfully!', response: info?.response })
-              }
+            if (orderFound) {
+              orderFound.paymentInfo = payment._id
+              orderFound.isPaid = true;
+              orderFound.paidAt = new Date(Date.now())
+              const updatedOrder = await orderFound.save()
+            } else {
+              res.status(404).send({ message: "Order does not exist" })
             }
-          );
+            //3. Send receipt as an email to payer
+            const mailHandler = new MailHandler();
+            mailHandler.sendEmail(responseData.data.customer.email, 
+              'Payment Successful Notification',
+              `<h1>Hi, Thanks for shopping with us.</h1>
+              <p>Hi, We have finished processing your order. Your transaction of ${responseData.data.amount / 100}naira to  Fort Tyre was successful!</p> 
+              `,
+              (error:any, info:any)=>{
+                if (error) {
+                  res.status(500).json({ error: 'An error occurred while sending the email.' })
+                } else {
+                  res.status(200).json({ message: 'Email sent successfully!', response: info?.response })
+                }
+              }
+            );
+          }
+          catch(err){
+            res.status(500).json({ error: 'An error occurred.' })
+          }
+          
           
         }
         else{
