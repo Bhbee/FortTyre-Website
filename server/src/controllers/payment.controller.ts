@@ -118,24 +118,26 @@ export const VerifyPayment = async (req: Request, res: Response) => {
               orderFound.isPaid = true;
               orderFound.paidAt = new Date(Date.now())
               const updatedOrder = await orderFound.save()
+
+              //3. Send receipt as an email to payer
+              const mailHandler = new MailHandler();
+              mailHandler.sendEmail(responseData.data.customer.email, 
+                'Payment Successful Notification',
+                `<h1>Hi, Thanks for shopping with us.</h1>
+                <p>Hi, We have finished processing your order. Your transaction of ${responseData.data.amount / 100}naira to  Fort Tyre was successful!</p> 
+                `,
+                (error:any, info:any)=>{
+                  if (error) {
+                    res.status(500).json({ error: 'An error occurred while sending the email.' })
+                  } else {
+                    res.status(200).json({ message: 'Email sent successfully!', response: info?.response })
+                  }
+                }
+              );
             } else {
               res.status(404).send({ message: "Order does not exist" })
             }
-            //3. Send receipt as an email to payer
-            const mailHandler = new MailHandler();
-            mailHandler.sendEmail(responseData.data.customer.email, 
-              'Payment Successful Notification',
-              `<h1>Hi, Thanks for shopping with us.</h1>
-              <p>Hi, We have finished processing your order. Your transaction of ${responseData.data.amount / 100}naira to  Fort Tyre was successful!</p> 
-              `,
-              (error:any, info:any)=>{
-                if (error) {
-                  res.status(500).json({ error: 'An error occurred while sending the email.' })
-                } else {
-                  res.status(200).json({ message: 'Email sent successfully!', response: info?.response })
-                }
-              }
-            );
+            
           }
           catch(err){
             res.status(500).json({ error: 'An error occurred.' })
