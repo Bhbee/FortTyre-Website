@@ -4,9 +4,6 @@ import { Order } from './order.model'
 @modelOptions({ schemaOptions: {timestamps: true}})
 export class Payment {
     public _id?: string
-
-    // @prop({ref: Order, required: true})
-    // public order!: Ref<Order>
     
     @prop({required: true})
     public email!: string

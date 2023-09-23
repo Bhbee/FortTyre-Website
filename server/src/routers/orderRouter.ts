@@ -26,9 +26,9 @@ orderRouter.delete('/:id', verifyUser, isAdmin, DeleteOrder)
 orderRouter.get('/:id', verifyUser, GetOrderDetails)
 
 // make payment for order placed
-orderRouter.post('/:id/pay', PayWithPaystack, )
+orderRouter.post('/:id/pay', PayWithPaystack)
 
-//Update order payment details
+//Verify and Update order payment details
 orderRouter.get('/pay/verify/:id', VerifyPayment)
 
 //Order delivery status update by Admin

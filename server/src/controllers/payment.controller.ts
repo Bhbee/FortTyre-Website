@@ -72,7 +72,6 @@ export const PayWithPaystack = async (req: Request, res: Response) =>{
 
 //verify payment and update order payment details
 export const VerifyPayment = async (req: Request, res: Response) => {
-  try{
     const reference = req.query.reference  //get from client
 
     // Set up options for the HTTPS request to the Paystack API
@@ -100,10 +99,9 @@ export const VerifyPayment = async (req: Request, res: Response) => {
         const responseData = JSON.parse(data);
         if(responseData.data.gateway_response === "Successful"){
           try{
-            res.redirect(originUrl)
+            
             //1. Add new payment to database
             const payment = await PaymentModel.create({
-              order: req.params.id,
               email: responseData.data.customer.email,
               amount: responseData.data.amount / 100,
               reference: responseData.data.reference,
@@ -111,15 +109,15 @@ export const VerifyPayment = async (req: Request, res: Response) => {
             });
 
             //2. update order's payment Result
-            const orderFound = await OrderModel.findById(req.params.id)
-
+            const orderFound = await OrderModel.findById(req.params.id) // issue here
             if (orderFound) {
+              
               orderFound.paymentInfo = payment._id
               orderFound.isPaid = true;
               orderFound.paidAt = new Date(Date.now())
               const updatedOrder = await orderFound.save()
 
-              //3. Send receipt as an email to payer
+              // Send receipt as an email to payer
               const mailHandler = new MailHandler();
               mailHandler.sendEmail(responseData.data.customer.email, 
                 'Payment Successful Notification',
@@ -134,13 +132,14 @@ export const VerifyPayment = async (req: Request, res: Response) => {
                   }
                 }
               );
+              res.redirect(originUrl)
             } else {
               res.status(404).send({ message: "Order does not exist" })
             }
             
           }
           catch(err){
-            res.status(500).json({ error: 'An error occurred.' })
+            res.status(500).json({ err })
           }
         }
         else{
@@ -155,8 +154,4 @@ export const VerifyPayment = async (req: Request, res: Response) => {
     });
 
     clientReq.end();
-  }
-  catch(error){
-    return res.status(500).json({ error: 'An error occurred' });
-  }
 }
