@@ -54,7 +54,8 @@ export const forgotPassword = asyncHandler(async (req: Request, res: Response) =
 
 export const passwordReset = asyncHandler(async (req: Request, res: Response) =>{
   const schema = Joi.object({ 
-    password: Joi.string().min(8).max(24).pattern(new RegExp('^(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$'))
+    password: Joi.string().min(8).max(24)
+    .pattern(new RegExp('^(?=.*[@$!%*#_+-~<>()?&]).{8,}$'))
     .required()
     .messages({'string.pattern.base': 'Password must contain at least one special character',
     })
