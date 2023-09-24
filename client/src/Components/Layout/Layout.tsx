@@ -160,7 +160,7 @@ const Layout: React.FC = () => {
                 style={{ borderRadius: "38px" }}
               >
                 {/* <RiAccountCircleFill className="layout-icon-margin layout-icon" /> */}
-                <Dropdown.Item onClick={logoutHandler} href="#/action-1">
+                <Dropdown.Item onClick={logoutHandler} href="#/action-1" drop="up">
                   Logout
                 </Dropdown.Item>
               </DropdownButton>

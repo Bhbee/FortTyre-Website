@@ -8,6 +8,7 @@ export type Order = {
     deliveryPrice: number
     totalPrice: number
     isPaid: boolean
+    userEmail: string
     isDelivered: boolean
     _id: string
     createdAt: string
