@@ -29,7 +29,7 @@
     top: 0;
     left: 0;
     right: 0;
-    z-index: 2000;
+    z-index: 500;
     }
 
 .layout-logo {
@@ -109,6 +109,8 @@
 
 div.dropdown-menu.show {
     border: 1px solid red;
+    position: absolute;
+    z-index: 200;
     /* position: fixed;
         top: 0;
         left: 0;

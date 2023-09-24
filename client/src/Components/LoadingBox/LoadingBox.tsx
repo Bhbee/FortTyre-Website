@@ -1,13 +1,19 @@
 import Spinner from "react-bootstrap/Spinner";
 import "./loadingbox.css";
 
-export default function LoadingBox() {
+type LoadingProps = {
+  color?: string
+}
+
+export default function LoadingBox({color}: LoadingProps) {
+  
   return (
     <div
       style={{
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
+        color: color && color
       }}
     >
       <Spinner animation="border" role="status" className="center">

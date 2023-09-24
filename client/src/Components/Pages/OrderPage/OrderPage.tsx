@@ -2,7 +2,7 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { useContext, useEffect } from "react";
-import { NavLink, useParams } from "react-router-dom";
+import { NavLink, useParams, useNavigate } from "react-router-dom";
 import { Store } from "../../../Store";
 import { Helmet } from "react-helmet-async";
 import "./orderpage.css";
@@ -12,12 +12,16 @@ import MessageBox from "../../MessageBox/MessageBox";
 import { getError } from "../../../Utils/ApiError";
 import ApiError from "../../../Types/ApiErrortype";
 import { Button, Card, ListGroup } from "react-bootstrap";
+import { usePostPaymentMutation } from "../../../Hooks/paymentHook";
+import { toast } from "react-toastify";
+import { PaymentType } from "../../../Types/PaymentType";
 
 const OrderPage: React.FC = () => {
   const { state } = useContext(Store);
   //   const { userAccessToken, cart } = state;
 
   const params = useParams();
+  const navigate = useNavigate();
   const { id: orderId } = params;
   console.log("orderId", orderId);
 
@@ -28,6 +32,26 @@ const OrderPage: React.FC = () => {
     refetch,
   } = useGetOrderDetailsQuery(orderId!);
   console.log("order", order);
+
+const { mutateAsync: payment, isLoading: loadingPaymentResponse } = usePostPaymentMutation();
+
+const makePayment = async () => {
+    try {
+      payment({
+        id: orderId,
+        email: order?.userEmail,
+        amount: order?.totalPrice
+      }).then((paymentURL: PaymentType) => { window.location.replace(`${paymentURL.data.authorization_url}`)})
+
+
+   console.log("end of payment")
+
+    } catch (err) {
+      toast.error(getError(err as ApiError), {
+        position: toast.POSITION.BOTTOM_CENTER,
+      });
+    }
+} 
 
   const getOrderById = async () => {
     if (orderId !== "") {
@@ -150,6 +174,14 @@ const OrderPage: React.FC = () => {
       ) : (
         <div>No other data</div>
       )}
+
+      <Button
+        onClick={makePayment}
+        style={{ backgroundColor: "green", margin: "0 auto" }}
+      >
+        { loadingPaymentResponse ? <LoadingBox color="white"/> : "Pay Now" }
+      </Button>
+      
     </Container>
   );
 };

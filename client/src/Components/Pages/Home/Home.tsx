@@ -45,7 +45,7 @@ const Home: React.FC = () => {
                     consequatur voluptate assumenda nulla temporibus?
                   </p>
                   <p>&#8358;50,000</p>
-                  <button></button>
+                  {/* <button></button> */}
                 </div>
               </div>
             </Col>

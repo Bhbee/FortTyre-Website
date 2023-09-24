@@ -130,7 +130,7 @@ const PlaceOrder: React.FC = () => {
                       onClick={placeOrderHandler}
                       disabled={cart.orderItems.length === 0 || isLoading}
                     >
-                      {isLoading ? <LoadingBox></LoadingBox> : "Place Order"}
+                      {isLoading ? <LoadingBox color="white"/> : "Place Order"}
                     </Button>
                     <div style={{ marginTop: "0.5rem" }}></div>
                   </div>
