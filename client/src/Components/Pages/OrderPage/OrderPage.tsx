@@ -33,25 +33,24 @@ const OrderPage: React.FC = () => {
   } = useGetOrderDetailsQuery(orderId!);
   console.log("order", order);
 
-const { mutateAsync: payment, isLoading: loadingPaymentResponse } = usePostPaymentMutation();
+  const { mutateAsync: payment, isLoading: loadingPaymentResponse } =
+    usePostPaymentMutation();
 
-const makePayment = async () => {
+  const makePayment = async () => {
     try {
       payment({
         id: orderId,
         email: order?.userEmail,
-        amount: order?.totalPrice
-      }).then((paymentURL: PaymentType) => { window.location.replace(`${paymentURL.data.authorization_url}`)})
-
-
-   console.log("end of payment")
-
+        amount: order?.totalPrice,
+      }).then((paymentURL: PaymentType) => {
+        window.location.replace(`${paymentURL.data.authorization_url}`);
+      });
     } catch (err) {
       toast.error(getError(err as ApiError), {
         position: toast.POSITION.BOTTOM_CENTER,
       });
     }
-} 
+  };
 
   const getOrderById = async () => {
     if (orderId !== "") {
@@ -179,9 +178,8 @@ const makePayment = async () => {
         onClick={makePayment}
         style={{ backgroundColor: "green", margin: "0 auto" }}
       >
-        { loadingPaymentResponse ? <LoadingBox color="white"/> : "Pay Now" }
+        {loadingPaymentResponse ? <LoadingBox color="white" /> : "Pay Now"}
       </Button>
-      
     </Container>
   );
 };

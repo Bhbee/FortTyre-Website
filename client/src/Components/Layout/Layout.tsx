@@ -13,6 +13,7 @@ import { SiGnuprivacyguard } from "react-icons/si";
 // import BreadCrumbs from "../BreadCrumbs/BreadCrumb";
 import React, { useContext, useState } from "react";
 import { useGetFilterSearchQuery } from "../../Hooks/filterSearchHook";
+import { useGetLogoutQuery } from "../../Hooks/LogoutHook";
 // import FilterSelect from "../FilterSelect/FilterSelect";
 import { Store } from "../../Store";
 import { Badge } from "react-bootstrap";
@@ -49,6 +50,8 @@ const Layout: React.FC = () => {
     refetch,
   } = useGetFilterSearchQuery(search);
 
+  const {refetch: recall} = useGetLogoutQuery()
+
   const onSubmit = async (e: any) => {
     e.preventDefault();
     console.log(e.target.value);
@@ -84,6 +87,7 @@ const Layout: React.FC = () => {
   // };
 
   const logoutHandler = () => {
+    recall()
     dispatch({ type: "USER_LOGOUT" });
     localStorage.removeItem("userRegistered");
     localStorage.removeItem("userAccessToken");
