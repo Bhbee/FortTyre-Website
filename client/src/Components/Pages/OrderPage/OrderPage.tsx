@@ -75,7 +75,7 @@ const OrderPage: React.FC = () => {
           <Helmet>
             <title>Order Page</title>
           </Helmet>
-          <h3 className="order-page-heading mb-3">Order {order?._id}</h3>
+          <h3 className="order-page-heading mb-3">Order Details</h3>
           <Row>
             <Col md={8}>
               <Card className="mb-3">
@@ -88,15 +88,15 @@ const OrderPage: React.FC = () => {
                     {order.deliveryAddress.city},{" "}
                     {order.deliveryAddress.country}
                     &nbsp;
-                    {order.isDelivered ? (
+                    {/* {order.isDelivered ? (
                       <MessageBox variant="success">Delivered</MessageBox>
                     ) : (
                       <MessageBox variant="warning">Not Delivered</MessageBox>
-                    )}
+                    )} */}
                   </Card.Text>
                 </Card.Body>
               </Card>
-
+              {/* 
               <Card className="mb-3">
                 <Card.Body>
                   <Card.Title>Payment</Card.Title>
@@ -106,7 +106,7 @@ const OrderPage: React.FC = () => {
                     <MessageBox variant="warning">Not Paid</MessageBox>
                   )}
                 </Card.Body>
-              </Card>
+              </Card> */}
 
               <Card className="mb-3">
                 <Card.Body>

@@ -63,11 +63,13 @@
 }
 
 .dropdown-item:hover {
-    padding: 2px; 
+    /* padding: 2px;  */
     background: rgba(255, 255, 255, 0.5);
 }
 
-
+.remove-padding {
+    padding-left: 0;
+} 
 
 .nav-social-links {
     margin: 0 0.6rem;
@@ -149,10 +151,27 @@ cursor: pointer;
 
 @media (max-width: 992px) {
 
-    .search-results {
+    .autocomplete {
+        display: none;
+    }
+    .mobile-autocomplete {
+                width: 100%;
+                background-color: #fff;
+                color: green;
+                padding: 1rem;
+                position: relative;
+                padding-left: 0;
+            }
+
+            .mobile-dropdownitem {
+                width: 100%;
+            }
+
+      .search-results {
         width: 100%;
     }
-.layout-icon {
+
+    .layout-icon {
     font-size: 2rem;
     color: green;
 }

@@ -157,16 +157,16 @@ const Login: React.FC = () => {
                         Continue with Google
                       </span>
                     </Button>
-                    {googleConsentFormLoading && <div style={{marginTop: "1rem"}}><LoadingBox color="red" /></div>}
+                    {/* {googleConsentFormLoading ? <div style={{marginTop: "1rem"}}><LoadingBox color="red" /></div> : ""} */}
                   </p>
 
-                  <div>
+                  {/* <div>
                     {isError && (
                       <p style={{ color: "red", textAlign: "center" }}>
                         Error, try again
                       </p>
                     )}
-                  </div>
+                  </div> */}
                 </Col>
               </Row>
 

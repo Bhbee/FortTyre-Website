@@ -10,7 +10,8 @@ button.btn.btn-primary {
 }
 
 button.btn.btn-primary:hover {
-    background-color: rgb(50, 205, 50)
+    background-color: rgb(50, 205, 50);
+    width: 2rem;
 }
 
 .place-order-edit-btn {
