@@ -46,12 +46,22 @@ const ProductItem = ({ product }: { product: Product }) => {
       </NavLink>
       <Card.Body>
         <NavLink style={{ textDecoration: "none", color: "black" }} to="">
-          <Card.Title>{product.brand}</Card.Title>
-          <Card.Text className="mb-2">
+          <Card.Title style={{ color: "green", fontWeight: "bold" }}>
+            {product.brand}
+          </Card.Title>
+          <Card.Text
+            style={{ color: "green", fontWeight: "bold" }}
+            className="mb-2"
+          >
             <span>&#8358;</span>
             {product.price}
           </Card.Text>
-          <Card.Text className="mb-2">{product.size}</Card.Text>
+          <Card.Text
+            style={{ color: "green", fontWeight: "bold" }}
+            className="mb-2"
+          >
+            {product.size}
+          </Card.Text>
         </NavLink>
         {product.countInStock === 0 ? (
           <Button className="product-item-button" variant="danger">

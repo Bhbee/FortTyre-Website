@@ -19,6 +19,7 @@ import ProtectedRoutes from "./ProtectedRoutes/ProtectedRoutes";
 import PlaceOrder from "./Pages/PlaceOrder/PlaceOrder";
 import OrderPage from "./Pages/OrderPage/OrderPage";
 import HtmlContentPage from "./Pages/HtmlContentPage/HtmlContentPage";
+import SuccessfullRegistration from "./Pages/SuccessfullRegistration/successfullRegistraion";
 
 const AppRouter: React.FC = () => {
   return (
@@ -37,6 +38,7 @@ const AppRouter: React.FC = () => {
         <Route path="/order/:id" element={<OrderPage />} />
       </Route>
       <Route path="searchresults" element={<SearchResults />} />
+      <Route path="successfullregistration" element={<SuccessfullRegistration />} />
       <Route path="about" element={<About />} />
       <Route path="fitting" element={<Fitting />} />
       <Route path="maintenance" element={<Maintenance />} />
