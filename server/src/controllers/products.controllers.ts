@@ -61,7 +61,7 @@ export const AddProduct = async (req: Request, res: Response) => {
       return res.status(400).send({ message: 'Image upload failed' });
     }
     const product = await ProductModel.create({
-      brand: (brand as string).toUpperCase,
+      brand: brand.toUpperCase(),
       size: size,
       price: price,
       image: {
