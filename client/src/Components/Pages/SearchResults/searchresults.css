@@ -1,3 +1,20 @@
 .search-results-padding {
     padding-top: 2rem;
 }
+
+.half-border-bottom {
+    width: 1rem;
+        height: 0.5rem;
+        background-color: #fff;
+}
+
+.half-border-bottom::before {
+    content: "";
+    display: block;
+    width: 20%;
+    height: 0;
+    border-bottom: 2px solid green;;
+    position: absolute;
+    bottom: 1;
+    left: 30%;
+}

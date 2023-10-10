@@ -52,16 +52,19 @@ const PlaceOrder: React.FC = () => {
   };
 
   return (
-    <Container>
+    <Container className="place-order-blob-divider">
       <Helmet>
         <title>Preview Order</title>
       </Helmet>
       <h3 className="my-5 preview-order-text">Preview Order</h3>
+
       <Row>
         <Col md={8}>
           <Card className="mb-3">
             <Card.Body>
-              <Card.Title>Shipping</Card.Title>
+              <Card.Title style={{ fontWeight: "bold", color: "green" }}>
+                Shipping
+              </Card.Title>
               <Card.Text>
                 <strong>Name:</strong> {cart.deliveryAddress.fullname} <br />
                 <strong>Address: </strong> {cart.deliveryAddress.address},
@@ -75,7 +78,9 @@ const PlaceOrder: React.FC = () => {
 
           <Card className="mb-3">
             <Card.Body>
-              <Card.Title>Items</Card.Title>
+              <Card.Title style={{ fontWeight: "bold", color: "green" }}>
+                Items
+              </Card.Title>
               <ListGroup variant="flush">
                 {cart.orderItems.map((item) => (
                   <ListGroup.Item key={item._id}>
@@ -98,7 +103,9 @@ const PlaceOrder: React.FC = () => {
         <Col md={4}>
           <Card>
             <Card.Body>
-              <Card.Title>Order Summary</Card.Title>
+              <Card.Title style={{ fontWeight: "bold", color: "green" }}>
+                Order Summary
+              </Card.Title>
               <ListGroup variant="flush">
                 <ListGroup.Item>
                   <Row>
@@ -130,7 +137,7 @@ const PlaceOrder: React.FC = () => {
                       onClick={placeOrderHandler}
                       disabled={cart.orderItems.length === 0 || isLoading}
                     >
-                      {isLoading ? <LoadingBox color="white"/> : "Place Order"}
+                      {isLoading ? <LoadingBox color="white" /> : "Place Order"}
                     </Button>
                     <div style={{ marginTop: "0.5rem" }}></div>
                   </div>

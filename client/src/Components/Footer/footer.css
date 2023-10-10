@@ -45,6 +45,10 @@ footer {
     margin-right: 1rem;
 }
 
+.footer-location-icon {
+    color: #fff;
+}
+
 .footer-text-decoration {
     text-decoration: none;
     color: #fff;
@@ -57,7 +61,14 @@ footer {
 
 .footer-contact-text {
     color: #fff;
+
 }
+
+.footer-contact-display {
+    display: inline;
+    margin-left: 1rem;
+}
+
 .footer-border::after {
     content: "";
     height: 1px;

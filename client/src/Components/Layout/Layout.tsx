@@ -8,11 +8,14 @@ import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
 import { NavLink, useNavigate } from "react-router-dom";
 import { AiOutlineShoppingCart } from "react-icons/ai";
+import { AiOutlineSearch } from "react-icons/ai";
+
 import { RiAccountCircleFill } from "react-icons/ri";
 import { SiGnuprivacyguard } from "react-icons/si";
 // import BreadCrumbs from "../BreadCrumbs/BreadCrumb";
 import React, { useContext, useState } from "react";
 import { useGetFilterSearchQuery } from "../../Hooks/filterSearchHook";
+import { useGetLogoutQuery } from "../../Hooks/LogoutHook";
 // import FilterSelect from "../FilterSelect/FilterSelect";
 import { Store } from "../../Store";
 import { Badge } from "react-bootstrap";
@@ -49,6 +52,8 @@ const Layout: React.FC = () => {
     refetch,
   } = useGetFilterSearchQuery(search);
 
+  const { refetch: recall } = useGetLogoutQuery();
+
   const onSubmit = async (e: any) => {
     e.preventDefault();
     console.log(e.target.value);
@@ -84,6 +89,7 @@ const Layout: React.FC = () => {
   // };
 
   const logoutHandler = () => {
+    recall();
     dispatch({ type: "USER_LOGOUT" });
     localStorage.removeItem("userRegistered");
     localStorage.removeItem("userAccessToken");
@@ -143,6 +149,32 @@ const Layout: React.FC = () => {
               <i>{mode === "light" ? <BsFillSunFill /> : <BsFillMoonFill />}</i>
             </Button> */}
 
+            {showDropdown && (
+              <div className="mobile-autocomplete">
+                {autoCompleteOptions
+                  .filter((item) => {
+                    const searchTerm = search.toLocaleLowerCase();
+                    const name = item.name.toLocaleLowerCase();
+
+                    return (
+                      searchTerm &&
+                      name.startsWith(searchTerm) &&
+                      name !== searchTerm
+                    );
+                  })
+                  .map((item) => (
+                    <div
+                      className="dropdown-item mt-2"
+                      onClick={() => onSearch(item.name)}
+                      key={item.id}
+                    >
+                      <AiOutlineSearch className="mobile-search-icon" />{" "}
+                      {item.name}
+                    </div>
+                  ))}
+              </div>
+            )}
+
             <Nav.Link
               as={NavLink}
               to="../signup"
@@ -160,7 +192,11 @@ const Layout: React.FC = () => {
                 style={{ borderRadius: "38px" }}
               >
                 {/* <RiAccountCircleFill className="layout-icon-margin layout-icon" /> */}
-                <Dropdown.Item onClick={logoutHandler} href="#/action-1" drop="up">
+                <Dropdown.Item
+                  onClick={logoutHandler}
+                  href="#/action-1"
+                  drop="up"
+                >
                   Logout
                 </Dropdown.Item>
               </DropdownButton>
@@ -193,20 +229,9 @@ const Layout: React.FC = () => {
           </Navbar.Collapse>
         </Container>
       </Navbar>
-      {/* {
-        <div className="search-results">
-          {isLoading && <div>Loading...</div>}
-          {filterSearchProducts! &&
-            filterSearchProducts.products.map((product: Product) => (
-              <div className="border-bottom" key={product._id}>
-                {product.brand}
-              </div>
-            ))}
-        </div>
-      } */}
 
       {showDropdown && (
-        <div className="autocomplete">
+        <div className="autocomplete mb-2">
           {autoCompleteOptions
             .filter((item) => {
               const searchTerm = search.toLocaleLowerCase();
@@ -218,10 +243,11 @@ const Layout: React.FC = () => {
             })
             .map((item) => (
               <div
-                className="dropdown-item"
+                className="dropdown-item mt-2"
                 onClick={() => onSearch(item.name)}
                 key={item.id}
               >
+                <AiOutlineSearch className="layout-icon-margin desktop-search-icon" />{" "}
                 {item.name}
               </div>
             ))}

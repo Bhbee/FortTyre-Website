@@ -42,7 +42,7 @@ const Cart: React.FC = () => {
   };
 
   return (
-    <Container className="cart-top-container">
+    <Container className="cart-top-container cart-blob-divider ">
       <Helmet>
         <title>Cart</title>
       </Helmet>
@@ -92,7 +92,11 @@ const Cart: React.FC = () => {
                         {<AiFillPlusCircle />}
                       </Button>
                     </Col>
-                    <Col className="cart-button" md={2}>
+                    <Col
+                      className="cart-button"
+                      style={{ fontWeight: "bold" }}
+                      md={2}
+                    >
                       {""} {item.name}
                     </Col>
                     <Col className="cart-button" md={2}>
@@ -119,11 +123,14 @@ const Cart: React.FC = () => {
             <Card.Body>
               <ListGroup variant="flush">
                 <ListGroup.Item>
-                  <h3>
+                  <h6 style={{ fontWeight: "bold" }}>
                     Subtotal ({orderItems.reduce((a, c) => a + c.quantity, 0)}{" "}
-                    items) : $
-                    {orderItems.reduce((a, c) => a + c.price * c.quantity, 0)}
-                  </h3>
+                    items) :{" "}
+                    <span className="cart-total-price-color">
+                      $
+                      {orderItems.reduce((a, c) => a + c.price * c.quantity, 0)}
+                    </span>
+                  </h6>
                 </ListGroup.Item>
                 <ListGroup.Item>
                   <div className="d-grid">
@@ -143,34 +150,6 @@ const Cart: React.FC = () => {
           </Card>
         </Col>
       </Row>
-
-      {/* <Row>
-
-        <Col className="mt-3 mb-5">
-          <div style={{ textAlign: "center" }}>
-            <BsCartX size="5em" color="##323643" />
-          </div>
-        </Col>
-
-        <Row>
-          <Col className="mt-3 mb-5">
-            <h4 className="cart-headerh4">Your cart is currently empty</h4>{" "}
-          </Col>
-          {isLoading ? (
-            <LoadingBox />
-          ) : error ? (
-            <MessageBox variant="danger">
-              {getError(error as ApiError)}
-            </MessageBox>
-          ) : (
-            <Row className="mt-3">
-              {listOfProducts?.products.map((product) => (
-                <Col key={product.__v} sm={6} md={4} lg={3}></Col>
-              ))}
-            </Row>
-          )}
-        </Row>
-      </Row> */}
     </Container>
   );
 };

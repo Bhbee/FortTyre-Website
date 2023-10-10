@@ -3,6 +3,7 @@ import { RiAccountCircleFill } from "react-icons/ri";
 import { SiGnuprivacyguard } from "react-icons/si";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { NavLink } from "react-router-dom";
+import { useGetLogoutQuery } from "../../Hooks/LogoutHook";
 import { Store } from "../../Store";
 import { useContext } from "react";
 import { Badge } from "react-bootstrap";
@@ -14,7 +15,10 @@ const MobileFooterNav: React.FC = () => {
     dispatch,
   } = useContext(Store);
 
+  const { refetch } = useGetLogoutQuery();
+
   const logoutHandler = () => {
+    refetch().then((data) => console.log("successfully logged out", data)); 
     dispatch({ type: "USER_LOGOUT" });
     localStorage.removeItem("userRegistered");
     localStorage.removeItem("userAccessToken");
