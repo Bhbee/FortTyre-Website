@@ -44,15 +44,14 @@ font-size: 1rem;
 
 
  .badge-pill {
-     /* Add your custom styles here */
-     border-radius: 100%;
-     /* Change the pill border radius as desired */
-     padding: 6px 12px;
-     /* Adjust the padding to change the badge size */
-     font-size: 14px;
-     /* Adjust the font size as needed */
-     font-weight: bold;
-     /* Optionally adjust font-weight */
+    height: 100%;
+    border-radius: 90%;
+    font-size: 20px;
+    font-weight: bold;
+    color: #fff;
+    position: relative;
+    left: -1px;
+    bottom: 8px;
  }
 
  

@@ -51,19 +51,13 @@ const ProductItem = ({ product }: { product: Product }) => {
           </Card.Title>
           <div
             className="mb-2"
-            style={{ borderBottom: "2px solid #004b23" }}
+            style={{ borderBottom: "2px solid #004b23 " }}
           ></div>
-          <Card.Text
-            style={{ color: "green", fontWeight: "bold" }}
-            className="mb-2"
-          >
+          <Card.Text style={{ color: "green" }} className="mb-2">
             <span>&#8358;</span>
             {product.price}
           </Card.Text>
-          <Card.Text
-            style={{ color: "green", fontWeight: "bold" }}
-            className="mb-2"
-          >
+          <Card.Text style={{ color: "green" }} className="mb-2">
             {product.size}
           </Card.Text>
         </NavLink>

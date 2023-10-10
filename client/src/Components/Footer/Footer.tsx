@@ -81,14 +81,8 @@ const Footer: React.FC = () => {
 
           <Col className="heading">
             <h5 className="mb-3 footer-heading">Contact</h5>
-            <Row>
-              <Col>
-                <AiFillPhone className="footer-location-icon" />
-              </Col>
-              <Col>
-                <p className="footer-contact-text">+234 808 316 4856</p>
-              </Col>
-            </Row>
+
+            <p className="footer-contact-text">+234 808 316 4856</p>
 
             <p className="footer-contact-text">sales@fortyres.com</p>
             <p className="footer-contact-text">

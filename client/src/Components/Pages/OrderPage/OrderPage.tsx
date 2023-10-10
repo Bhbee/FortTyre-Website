@@ -65,7 +65,7 @@ const OrderPage: React.FC = () => {
   }, [orderId]);
 
   return (
-    <Container className="order-page-container">
+    <Container className="order-page-container order-page-blob-divider">
       {isLoading ? (
         <LoadingBox></LoadingBox>
       ) : error ? (
@@ -76,6 +76,7 @@ const OrderPage: React.FC = () => {
             <title>Order Page</title>
           </Helmet>
           <h3 className="order-page-heading mb-3">Order Details</h3>
+      
           <Row>
             <Col md={8}>
               <Card className="mb-3">

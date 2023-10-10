@@ -16,6 +16,7 @@ const SearchResults: React.FC = () => {
       <h3 style={{ textAlign: "center", color: "green", fontWeight: "bold" }}>
         Search Results
       </h3>
+      <div className="half-border-bottom"></div>
       <Row className="mt-3">
         {products?.map((product: Product) => (
           <Col key={product.__v} sm={6} md={4} lg={3}>

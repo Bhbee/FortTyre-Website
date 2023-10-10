@@ -30,7 +30,7 @@ const SignUp: React.FC = () => {
   const [error, setError] = useState("");
 
   const isPasswordValid = (password: string) => {
-    const passwordPattern = /^(?=.*[@$!%*?&]).{8,}$/;
+    const passwordPattern = /^(?=.*[@$!%*#_+-~<>?&]).{8,}$/;
 
     if (password.length < 8) {
       return "Password must be at least 8 characters long.";

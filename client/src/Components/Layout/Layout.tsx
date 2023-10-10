@@ -164,7 +164,7 @@ const Layout: React.FC = () => {
                   })
                   .map((item) => (
                     <div
-                      className="dropdown-item"
+                      className="dropdown-item mt-2"
                       onClick={() => onSearch(item.name)}
                       key={item.id}
                     >
@@ -231,7 +231,7 @@ const Layout: React.FC = () => {
       </Navbar>
 
       {showDropdown && (
-        <div className="autocomplete">
+        <div className="autocomplete mb-2">
           {autoCompleteOptions
             .filter((item) => {
               const searchTerm = search.toLocaleLowerCase();
@@ -243,7 +243,7 @@ const Layout: React.FC = () => {
             })
             .map((item) => (
               <div
-                className="dropdown-item"
+                className="dropdown-item mt-2"
                 onClick={() => onSearch(item.name)}
                 key={item.id}
               >

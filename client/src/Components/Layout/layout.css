@@ -64,6 +64,7 @@
     position: relative;
     font-weight: bold;
     left: 10rem;
+    border-bottom: 1px solid black;
 }
 
 .dropdown-item:hover {
@@ -167,8 +168,13 @@ cursor: pointer;
                 position: relative;
                 z-index: 10;
                 padding-left: 0;
+               
             }
+.dropdown-item {
+border-bottom: 1px solid black;
+margin-bottom: 1rem;
 
+}
             .mobile-dropdownitem {
                 width: 100%;
             }
