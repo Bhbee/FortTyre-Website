@@ -5,11 +5,11 @@ export const validateLoginData = (login: { email: string; password: string }) =>
   const loginSchema = Joi.object({
     email: Joi.string().email().required().messages({ 'string.pattern.base': 'Email must be a valid email type' }),
     password: Joi.string()
-      .min(8)
-      .max(24)
-      .pattern(new RegExp('^(?=.*[@$!%*#_+-~<>()?&]).{8,}$'))
-      .required()
-      //.messages({ 'string.pattern.base': 'Password must contain at least one special character' }),
+        .min(8)
+        .max(24)
+        .pattern(new RegExp('^(?=.*[@$!%*#_+~<>()?&]).{8,}$'))
+        .required()
+        .messages({ 'string.pattern.base': 'Password must contain at least one special character' })
   });
   return loginSchema.validate(login);
 };
@@ -25,7 +25,7 @@ export const validateRegisterData = (user: User) =>{
         }),
         password: Joi.string()
             .min(8).max(24)
-            .pattern(new RegExp('^(?=.*[@$!%*#_+-~<>()?&]).{8,}$'))
+            .pattern(new RegExp('^(?=.*[@$!%*#_+~<>()?&]).{8,}$'))
             .required()
             .messages({'string.pattern.base': 'Password must contain at least one special character',
         }),
