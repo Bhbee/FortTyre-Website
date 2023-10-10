@@ -18,6 +18,7 @@ const SuccessfullRegistration: React.FC = () => {
             backgroundColor: "#38b000",
             padding: "2rem",
             textAlign: "center",
+            opacity: "0.7",
           }}
         >
           <TiTick
@@ -45,7 +46,11 @@ const SuccessfullRegistration: React.FC = () => {
 
           <NavLink to="../products">
             <Button
-              style={{ borderRadius: "38px", backgroundColor: "#38b000" }}
+              style={{
+                borderRadius: "38px",
+                backgroundColor: "#38b000",
+                opacity: "0.7",
+              }}
             >
               Continue{" "}
               <HiOutlineArrowNarrowRight style={{ marginLeft: "0.5rem" }} />

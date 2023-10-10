@@ -1,13 +1,17 @@
 
  .badge-pill {
      height: 100%;
-     border-radius: 100%;
+     border-radius: 90%;
      font-size: 20px;
      font-weight: bold;
      color: #fff;
      position: relative;
      left: -1px;
-     bottom: 7px;
+     bottom: 8px;
+     /* padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem; */
 }
 
 .layout-brand-logo {
@@ -54,10 +58,12 @@
 
 .autocomplete {
     width: 50%;
-    background-color: green;
-    color: white;
+    background-color: #fff;
+    color: green;
     padding: 1rem;
     position: relative;
+    font-weight: bold;
+    left: 10rem;
 }
 
 .dropdown-item:hover {
@@ -154,10 +160,12 @@ cursor: pointer;
     }
     .mobile-autocomplete {
                 width: 100%;
+                height: 50vh;
                 background-color: #fff;
                 color: green;
                 padding: 1rem;
                 position: relative;
+                z-index: 10;
                 padding-left: 0;
             }
 
@@ -177,6 +185,8 @@ cursor: pointer;
     .nav-collapse-container {
         height: 50vh;
         padding: 0.95rem;
+        position: relative;
+        z-index: 9;
         /* border: 2px solid red; */
 
     }
@@ -211,7 +221,10 @@ cursor: pointer;
             margin-bottom: 0.95rem;
         }
 
-
+        .mobile-search-icon {
+            font-size: x-large;
+            
+        }
     
 }
 
@@ -239,9 +252,18 @@ cursor: pointer;
     .layout-icon {
     font-size: 1rem;
   }
+
+  .desktop-search-icon {
+    margin: 0;
+    font-size: 1.2rem;
+  }
     .nav-container {
         justify-content: space-around;
         align-items: center;
+    }
+
+    .mobile-autocomplete {
+        display: none;
     }
 
 }

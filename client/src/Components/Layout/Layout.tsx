@@ -168,7 +168,7 @@ const Layout: React.FC = () => {
                       onClick={() => onSearch(item.name)}
                       key={item.id}
                     >
-                      <AiOutlineSearch className="layout-icon-margin layout-icon" />{" "}
+                      <AiOutlineSearch className="mobile-search-icon" />{" "}
                       {item.name}
                     </div>
                   ))}
@@ -247,6 +247,7 @@ const Layout: React.FC = () => {
                 onClick={() => onSearch(item.name)}
                 key={item.id}
               >
+                <AiOutlineSearch className="layout-icon-margin desktop-search-icon" />{" "}
                 {item.name}
               </div>
             ))}

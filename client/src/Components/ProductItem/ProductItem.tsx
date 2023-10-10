@@ -49,6 +49,10 @@ const ProductItem = ({ product }: { product: Product }) => {
           <Card.Title style={{ color: "green", fontWeight: "bold" }}>
             {product.brand}
           </Card.Title>
+          <div
+            className="mb-2"
+            style={{ borderBottom: "2px solid #004b23" }}
+          ></div>
           <Card.Text
             style={{ color: "green", fontWeight: "bold" }}
             className="mb-2"
