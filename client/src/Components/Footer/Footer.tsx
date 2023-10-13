@@ -10,6 +10,9 @@ import { FaLinkedinIn } from "react-icons/fa";
 import { FaTwitter } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa";
 import { BsFacebook } from "react-icons/bs";
+import { FaLocationDot } from "react-icons/fa6";
+import { AiFillPhone } from "react-icons/ai";
+import { MdEmail } from "react-icons/md";
 import "./footer.css";
 import logofooter from "../../Assets/logofooter.png";
 
@@ -78,7 +81,9 @@ const Footer: React.FC = () => {
 
           <Col className="heading">
             <h5 className="mb-3 footer-heading">Contact</h5>
+
             <p className="footer-contact-text">+234 808 316 4856</p>
+
             <p className="footer-contact-text">sales@fortyres.com</p>
             <p className="footer-contact-text">
               KM 20, Office 3B, A & B Mall Lekki Expressway, Opp. Lagos Business

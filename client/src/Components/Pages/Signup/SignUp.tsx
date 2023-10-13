@@ -30,7 +30,7 @@ const SignUp: React.FC = () => {
   const [error, setError] = useState("");
 
   const isPasswordValid = (password: string) => {
-    const passwordPattern = /^(?=.*[@$!%*?&]).{8,}$/;
+    const passwordPattern = /^(?=.*[@$!%*#_+-~<>?&]).{8,}$/;
 
     if (password.length < 8) {
       return "Password must be at least 8 characters long.";
@@ -67,10 +67,10 @@ const SignUp: React.FC = () => {
       dispatch({ type: "USER_REGISTERED", payload: data });
       localStorage.setItem("userRegistered", JSON.stringify(data));
       console.log("signUp", data);
-      toast.success(data.message, {
-        position: toast.POSITION.BOTTOM_CENTER,
-      });
-
+      navigate("../successfullregistration");
+      // toast.success(data.message, {
+      //   position: toast.POSITION.BOTTOM_CENTER,
+      // });
     } catch (err) {
       toast.error(getError(err as ApiError), {
         position: toast.POSITION.BOTTOM_CENTER,

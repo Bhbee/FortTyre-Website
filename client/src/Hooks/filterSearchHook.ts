@@ -9,8 +9,6 @@ export const useGetFilterSearchQuery = (search: string | undefined) =>
         {  if (search === undefined) {
         return { products: [] };
       }
-            // console.log("search", search);
-            // console.log("fetching");
 return (await apiClient.get<ProductList>(`/products/search?brand=${search}`)).data 
             
 

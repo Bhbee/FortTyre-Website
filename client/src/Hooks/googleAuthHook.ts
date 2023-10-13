@@ -1,8 +1,9 @@
 import {useQuery} from "@tanstack/react-query"; 
 import apiClient from "../apiClient";
 
-export const useGetGoogleAuth = () => 
+export const useGetGoogleAuthQuery = () => 
     useQuery({
         queryKey: ["googleAuth"],
-        queryFn: async () => (await apiClient.get("/auth/google")).data
+        queryFn: async () => (await apiClient.get<string>("/auth/google")).data,
+        enabled: false
     })

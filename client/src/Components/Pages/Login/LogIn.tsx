@@ -12,7 +12,7 @@ import { Helmet } from "react-helmet-async";
 import { useContext, useState } from "react";
 import { Store } from "../../../Store";
 import { useLoginMutation } from "../../../Hooks/UserHook";
-import { useGetGoogleAuth } from "../../../Hooks/googleAuthHook";
+import { useGetGoogleAuthQuery } from "../../../Hooks/googleAuthHook";
 import { getError } from "../../../Utils/ApiError";
 import ApiError from "../../../Types/ApiErrortype";
 import LoadingBox from "../../LoadingBox/LoadingBox";
@@ -43,6 +43,27 @@ const Login: React.FC = () => {
   const emptyFormFieldAfterLogin = () => {
     setEmail("");
     setPassword("");
+  };
+
+  const {
+    data,
+    refetch,
+    isLoading: googleConsentFormLoading,
+    isError,
+  } = useGetGoogleAuthQuery();
+
+  const googleAuthHandler = async () => {
+    try {
+      await refetch()
+        .then((result) => {
+          console.log("Google-Consent-Form", result);
+        })
+        .catch((error) => console.log("error", error));
+    } catch (err: any) {
+      toast.error(getError(err as ApiError), {
+        position: toast.POSITION.BOTTOM_CENTER,
+      });
+    }
   };
 
   const submitHandler = async (e: React.SyntheticEvent) => {
@@ -124,19 +145,28 @@ const Login: React.FC = () => {
                   <p style={{ textAlign: "center" }}>
                     <Button
                       variant="primary"
-                      disabled={isLoading}
                       type="submit"
                       size="lg"
                       className="login-google"
+                      onClick={googleAuthHandler}
                     >
                       <span className="login-form-icon-btn">
                         <AiOutlineGoogle size="1.5rem" className="login-icon" />{" "}
                       </span>{" "}
-                      <span className="login-form-txt-btn">
+                      <span className="login-form-txt-btn mb-2">
                         Continue with Google
                       </span>
                     </Button>
+                    {/* {googleConsentFormLoading ? <div style={{marginTop: "1rem"}}><LoadingBox color="red" /></div> : ""} */}
                   </p>
+
+                  {/* <div>
+                    {isError && (
+                      <p style={{ color: "red", textAlign: "center" }}>
+                        Error, try again
+                      </p>
+                    )}
+                  </div> */}
                 </Col>
               </Row>
 
