@@ -14,6 +14,10 @@
     padding-bottom: 2rem; */
 }
 
+.layout-logout {
+    color: rgb(50, 205, 50);
+}
+
 .layout-brand-logo {
     margin-right: 1rem;
     margin-top: 0.6rem;
@@ -67,10 +71,10 @@
     border-bottom: 1px solid black;
 }
 
-.dropdown-item:hover {
-    /* padding: 2px;  */
+/* .dropdown-item:hover {
+
     background: rgba(255, 255, 255, 0.5);
-}
+} */
 
 .remove-padding {
     padding-left: 0;
@@ -113,18 +117,33 @@
   color: green;
 
 }
+a.dropdown-item {
+    color: #fff;
+} 
 
 div.dropdown-menu.show {
-    border: 1px solid red;
-    position: absolute;
+    position: relative;
     z-index: 200;
-    /* position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        z-index: 1999; */
+    border-radius: 38px;
+    background-color: green;
+    color: white;
 }
 
+.btn-primary {
+    background-color: green;
+    border-radius: 38px;
+}
+
+.btn-primary:active {
+    background-color: rgb(50, 205, 50);
+}
+
+.btn-primary:disabled {
+    background-color: rgb(50, 205, 50);
+}
+.btn-primary:hover {
+    background-color: rgb(50, 205, 50);
+}
 .search-results {
     display: flex;
     flex-direction: column;

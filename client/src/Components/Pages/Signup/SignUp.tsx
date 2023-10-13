@@ -10,7 +10,7 @@ import { AiOutlineGoogle } from "react-icons/ai";
 import { Helmet } from "react-helmet-async";
 import { useState } from "react";
 import sign_up from "../../../Assets/sign_up.png";
-import "./signup.css";
+
 import { useSignUpMutation } from "../../../Hooks/UserSignUpHook";
 import { getError } from "../../../Utils/ApiError";
 import ApiError from "../../../Types/ApiErrortype";
@@ -19,6 +19,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { Store } from "../../../Store";
 import { useContext } from "react";
 import LoadingBox from "../../LoadingBox/LoadingBox";
+import "./signup.css";
 
 const SignUp: React.FC = () => {
   const navigate = useNavigate();

@@ -13,6 +13,8 @@ import { Button, Card, ListGroup } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import LoadingBox from "../../LoadingBox/LoadingBox";
 import { MdEdit } from "react-icons/md";
+import { Image } from "react-bootstrap";
+import previeworder from "../../../Assets/previeworder.png";
 import "./placeorder.css";
 
 const PlaceOrder: React.FC = () => {
@@ -57,6 +59,11 @@ const PlaceOrder: React.FC = () => {
         <title>Preview Order</title>
       </Helmet>
       <h3 className="my-5 preview-order-text">Preview Order</h3>
+      <Row className="justify-content-center">
+        <Col md={4}>
+          <Image src={previeworder} fluid />
+        </Col>
+      </Row>
 
       <Row>
         <Col md={8}>
@@ -109,13 +116,17 @@ const PlaceOrder: React.FC = () => {
               <ListGroup variant="flush">
                 <ListGroup.Item>
                   <Row>
-                    <Col>Items</Col>
+                    <Col>
+                      <strong>Items</strong>
+                    </Col>
                     <Col>${cart.itemsPrice.toFixed(2)}</Col>
                   </Row>
                 </ListGroup.Item>
                 <ListGroup.Item>
                   <Row>
-                    <Col>Shipping</Col>
+                    <Col>
+                      <strong>Shipping</strong>
+                    </Col>
                     <Col>${cart.deliveryPrice.toFixed(2)}</Col>
                   </Row>
                 </ListGroup.Item>
@@ -131,9 +142,10 @@ const PlaceOrder: React.FC = () => {
                   </Row>
                 </ListGroup.Item>
                 <ListGroup.Item>
-                  <div className="d-grid button.btn.btn-primary">
+                  <div className="d-grid">
                     <Button
                       type="button"
+                      className="place-order-button"
                       onClick={placeOrderHandler}
                       disabled={cart.orderItems.length === 0 || isLoading}
                     >
