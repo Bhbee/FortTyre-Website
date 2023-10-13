@@ -43,6 +43,7 @@ const Layout: React.FC = () => {
     { name: "Road Wind", id: 4 },
     { name: "Joyraod", id: 5 },
     { name: "Westlake", id: 6 },
+    { name: "Risen", id: 7 },
   ];
 
   const {
@@ -189,13 +190,15 @@ const Layout: React.FC = () => {
               <DropdownButton
                 id="dropdown-basic-button"
                 title={`Hi ${userAccessToken.firstName}`}
-                style={{ borderRadius: "38px" }}
+                style={{ color: "green", borderRadius: "38px" }}
+                className="btn-primary"
               >
                 {/* <RiAccountCircleFill className="layout-icon-margin layout-icon" /> */}
                 <Dropdown.Item
                   onClick={logoutHandler}
                   href="#/action-1"
-                  drop="up"
+                  drop="down"
+                  className="btn-primary"
                 >
                   Logout
                 </Dropdown.Item>

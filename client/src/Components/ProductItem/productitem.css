@@ -2,13 +2,13 @@
     background-color: green;
 }
 
-.product-item-button:hover {
+/* .product-item-button:hover {
     background-color: rgb(50, 205, 50)
 }
 
 .product-item-button:active {
     background-color: rgb(50, 205, 50)
-}
+} */
 
 .product-card {
     max-width: 400px;

@@ -11,10 +11,11 @@ import LoadingBox from "../../LoadingBox/LoadingBox";
 import MessageBox from "../../MessageBox/MessageBox";
 import { getError } from "../../../Utils/ApiError";
 import ApiError from "../../../Types/ApiErrortype";
-import { Button, Card, ListGroup } from "react-bootstrap";
+import { Button, Card, Image, ListGroup } from "react-bootstrap";
 import { usePostPaymentMutation } from "../../../Hooks/paymentHook";
 import { toast } from "react-toastify";
 import { PaymentType } from "../../../Types/PaymentType";
+import orderdetails from "../../../Assets/orderdetails.png";
 
 const OrderPage: React.FC = () => {
   const { state } = useContext(Store);
@@ -66,6 +67,11 @@ const OrderPage: React.FC = () => {
 
   return (
     <Container className="order-page-container order-page-blob-divider">
+      <Row className="justify-content-center">
+        <Col md={4}>
+          <Image src={orderdetails} fluid />
+        </Col>
+      </Row>
       {isLoading ? (
         <LoadingBox></LoadingBox>
       ) : error ? (
@@ -76,7 +82,7 @@ const OrderPage: React.FC = () => {
             <title>Order Page</title>
           </Helmet>
           <h3 className="order-page-heading mb-3">Order Details</h3>
-      
+
           <Row>
             <Col md={8}>
               <Card className="mb-3">
@@ -116,7 +122,7 @@ const OrderPage: React.FC = () => {
                     {order.orderItems.map((item) => (
                       <ListGroup.Item key={item._id}>
                         <Row className="align-items-center">
-                          <Col md={6}>
+                          <Col md={3}>
                             <img
                               src={item.image.url}
                               alt={item.name}
@@ -145,13 +151,17 @@ const OrderPage: React.FC = () => {
                   <ListGroup variant="flush">
                     <ListGroup.Item>
                       <Row>
-                        <Col>Items</Col>
+                        <Col>
+                          <strong>Items</strong>
+                        </Col>
                         <Col>${order.itemPrice.toFixed(2)}</Col>
                       </Row>
                     </ListGroup.Item>
                     <ListGroup.Item>
                       <Row>
-                        <Col>Shipping</Col>
+                        <Col>
+                          <strong>Shipping</strong>
+                        </Col>
                         <Col>${order.deliveryPrice.toFixed(2)}</Col>
                       </Row>
                     </ListGroup.Item>

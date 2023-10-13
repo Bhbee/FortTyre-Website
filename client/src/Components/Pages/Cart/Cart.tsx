@@ -12,6 +12,8 @@ import { Button, Card, ListGroup } from "react-bootstrap";
 import { AiFillPlusCircle } from "react-icons/ai";
 import { AiFillMinusCircle } from "react-icons/ai";
 import { BsTrash3Fill } from "react-icons/bs";
+import { Image } from "react-bootstrap";
+import cartimg from "../../../Assets/cartimg.png";
 import "./cart.css";
 
 const Cart: React.FC = () => {
@@ -47,7 +49,13 @@ const Cart: React.FC = () => {
         <title>Cart</title>
       </Helmet>
       <h3 className="cart-header">Cart</h3>
+      <Row className="justify-content-center">
+        <Col md={4}>
+          <Image src={cartimg} fluid />
+        </Col>
+      </Row>
 
+      
       <Row>
         <Col md={8}>
           {orderItems.length === 0 ? (

@@ -10,15 +10,15 @@
         background-position: bottom-center;
         background-size: cover;
 }
-button.btn.btn-primary {
+/* button.btn.btn-primary {
     background-color: green;
 
-}
+} */
 
-button.btn.btn-primary:hover {
+/* button.btn.btn-primary:hover {
     background-color: rgb(50, 205, 50);
     width: 2rem;
-}
+} */
 
 .place-order-edit-btn {
     text-decoration: none;
@@ -26,3 +26,6 @@ button.btn.btn-primary:hover {
     cursor: pointer;
 }
 
+.place-order-button:disabled {
+    background-color: rgb(50, 205, 50);
+} 

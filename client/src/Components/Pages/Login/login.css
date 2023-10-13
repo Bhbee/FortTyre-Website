@@ -28,29 +28,42 @@
         background-color: rgb(50, 205, 50)
 }
 
+.form-login-btn:disabled {
+    background-color: rgb(50, 205, 50);
+}
 .login-form-row-align {
     justify-content: center;
 }
 
 .login-google {
-    background-color: rgb(234, 55, 33);
+    background-color: green;
 color:#fff;
 border: none;
 border-radius: 38px;
 padding: 5px 20px;
 font-size: large;
 }
-.login-google:hover { 
+/* .login-google:hover { 
     background-color: rgb(241, 113, 96);
-}
+} */
 
 .login-form-txt-btn {
-    margin-left: 20px;     
+    margin-left: 20px;    
 } 
 
 .login-password-button-reveal {
     background-color: green;
     border-radius: 36px;
+}
+.login-password-button-reveal:hover {
+    background-color: rgb(50, 205, 50);
+}
+.login-password-button-reveal:disabled {
+    background-color: rgb(50, 205, 50);
+}
+
+.login-password-button-reveal:active {
+    background-color: rgb(50, 205, 50);
 }
 
 .login-form-icon-btn {
@@ -62,13 +75,13 @@ font-size: large;
     margin-right: 5px;
 }
 
-.login-facebook {
+/* .login-facebook {
     background-color: blue;
     color: #fff;
     border-radius: 38px;
     padding: 5px 20px;
     font-size: large;
-}
+} */
 
 .form-login-link-txt-decoration {
     text-decoration: none;
