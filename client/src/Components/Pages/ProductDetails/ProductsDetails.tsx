@@ -18,7 +18,6 @@ import "./productdetails.css";
 const ProductDetails: React.FC = () => {
   const { productId } = useParams();
 
-
   const { state, dispatch } = useContext(Store);
   const { cart } = state;
 
@@ -40,8 +39,6 @@ const ProductDetails: React.FC = () => {
   useEffect(() => {
     getProductById();
   }, [productId]);
-
-
 
   const addToCartHandler = () => {
     const existItem = cart.orderItems.find((x) => x.name === product!.brand);
@@ -71,14 +68,14 @@ const ProductDetails: React.FC = () => {
         <title>Product</title>
       </Helmet>
       <Row>
-        <Col md={6}>
+        <Col md={4}>
           <img
             style={{ width: "400px", maxWidth: "100%" }}
             src={product.image.url}
             alt={product._id}
           />
         </Col>
-        <Col md={3}>
+        <Col md={4}>
           <ListGroup variant="flush">
             <ListGroup.Item>
               <Helmet>
@@ -92,7 +89,7 @@ const ProductDetails: React.FC = () => {
           </ListGroup>
         </Col>
 
-        <Col md={3}>
+        <Col md={4}>
           {" "}
           <Card>
             <Card.Body>

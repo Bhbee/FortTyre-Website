@@ -2,20 +2,36 @@
     padding-top: 2rem;
 }
 
-.login-header {
+.signup-header {
     text-align: center;
     color: green;
     font-weight: 900;
 }
 
-.login-form-img {
+.signup-form-img {
     width: 100%;
     max-width: 100%;
     min-height: 100%;
 }
 
+#signup-google {
+        background-color: green;
+        color: #fff;
+        border: none;
+        border-radius: 38px;
+        padding: 5px 20px;
+        font-size: large;
+}
 
-.form-login-btn {
+#signup-googgle:active {
+    background-color: rgb(50, 205, 50);
+}
+
+#signup-google:hover {
+    background-color: rgb(50, 205, 50);
+}
+
+#form-signup-btn {
     background-color: green;
     color: #fff;
     width: 100%;
@@ -23,13 +39,17 @@
 
 }
 
-/* .form-login-btn:hover {
+.form-signup-btn:hover {
     box-shadow: 0 0 20px rgba(104, 85, 224, 0.2);
     transition: 0.4s;
     background-color: rgb(50, 205, 50)
-} */
+}
 
-.login-form-row-align {
+.form-signup-btn:active {
+    background-color: rgb(50, 205, 50);
+}
+
+.signup-form-row-align {
     justify-content: center;
 }
 
@@ -45,38 +65,38 @@
 /* .login-google:hover {
     background-color: rgb(241, 113, 96);
 } */
-.login-form-column {
+.signup-form-column {
     display: flex;
     flex-direction: column;
     justify-content: center;
     
     
 }
-.login-form-txt-btn {
+.signup-form-txt-btn {
     margin-left: 20px;
 }
 
 
-.login-form-icon-btn {
+.signup-form-icon-btn {
     border-right: 1px solid #fff;
 
 }
 
-.login-icon {
+.signup-icon {
     margin-right: 5px;
 }
 
 
-.form-login-link-txt-decoration {
+.form-signup-link-txt-decoration {
     text-decoration: none;
 }
 
-.login-googleIcon-span {
+.signup-googleIcon-span {
     border-right: 2px solid #fff;
 }
 
 @media(max-width: 992px) {
-    .login-form-column {
+    .signup-form-column {
         display: none;
     }
 }

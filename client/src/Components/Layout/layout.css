@@ -30,6 +30,19 @@
     color: #fff;
 }
 
+#dropdown-basic-button {
+    background-color: green;
+    border-radius: 38px;
+    color: #fff;
+}
+
+#dropdown-basic-button:hover {
+    background-color: rgb(50, 205, 50);
+}
+
+#dropdown-basic-button:active {
+    background-color: rgb(50, 205, 50);
+}
 .layout-position {
     position: fixed;
     top: 0;
@@ -96,20 +109,24 @@
     border-radius: 38px;
 }
 
-.layout-search-btn {
+#layout-search-btn {
   background-color: green;
   color:#fff;
   border-radius: 38px;
 }
 
 
-.layout-search-btn:hover {
+#layout-search-btn:hover {
     background-color: rgb(50, 205, 50)
 }
 
-.layout-search-btn:active {
+#layout-search-btn:active {
     background-color: rgb(50, 205, 50)
     
+}
+
+.btn-outline-success {
+    background-color: green;
 }
 
 .icon-account-paragraph {
@@ -127,14 +144,27 @@ div.dropdown-menu.show {
     border-radius: 38px;
     background-color: green;
     color: white;
+    
 }
 
-.btn-primary {
-    background-color: green;
+
+#siginedin-btn { 
+    background-color: white; 
     border-radius: 38px;
+    color: #198754;
+    margin-left: 0.5rem;
+    width: 5.5rem;
+    
 }
 
-.btn-primary:active {
+/* #siginedin-btn:active {
+    background-color: rgb(50, 205, 50);
+} */
+
+#siginedin-btn:hover {
+    color: #fff;
+}
+/* .btn-primary:active {
     background-color: rgb(50, 205, 50);
 }
 
@@ -143,7 +173,7 @@ div.dropdown-menu.show {
 }
 .btn-primary:hover {
     background-color: rgb(50, 205, 50);
-}
+} */
 .search-results {
     display: flex;
     flex-direction: column;

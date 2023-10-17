@@ -7,6 +7,7 @@ import { Helmet } from "react-helmet-async";
 import { useNavigate } from "react-router-dom";
 import { Store } from "../../../Store";
 import { ToastContainer } from "react-toastify";
+import { HiOutlineArrowNarrowRight } from "react-icons/hi";
 import CheckoutSteps from "../../CheckoutSteps/CheckoutSteps";
 import shippingimage from "../../../Assets/shippingimage.png";
 import "./shippingpage.css";
@@ -124,9 +125,10 @@ const ShippingPage: React.FC = () => {
                       variant="primary"
                       type="submit"
                       size="lg"
-                      className="form-login-btn"
+                      id="shipping-continue-btn"
                     >
-                      Continue
+                      <span className="shipping-continue-txt">Continue</span>
+                      <HiOutlineArrowNarrowRight />
                     </Button>
                     {/* <div className="mt-3">  {isLoading && <LoadingBox />}  </div> */}
                     <div>

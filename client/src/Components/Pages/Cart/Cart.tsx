@@ -55,7 +55,6 @@ const Cart: React.FC = () => {
         </Col>
       </Row>
 
-      
       <Row>
         <Col md={8}>
           {orderItems.length === 0 ? (
@@ -77,7 +76,7 @@ const Cart: React.FC = () => {
                     </Col>
                     <Col md={2}>
                       <Button
-                        className="cart-button-color"
+                        id="cart-button-color"
                         onClick={() =>
                           updateCartHandler(item, item.quantity - 1)
                         }
@@ -91,7 +90,7 @@ const Cart: React.FC = () => {
                       </span>{" "}
                       <Button
                         // variant={mode}
-                        className="cart-button-color"
+                        id="cart-button-decrease"
                         onClick={() =>
                           updateCartHandler(item, item.quantity + 1)
                         }
@@ -113,7 +112,7 @@ const Cart: React.FC = () => {
                     {/* <Col md={1}>{item.name}</Col> */}
                     <Col md={2}>
                       <Button
-                        className="cart-button-color"
+                        id="cart-button-remove"
                         onClick={() => removeItemHandler(item)}
                         // variant={mode}
                       >
@@ -143,7 +142,7 @@ const Cart: React.FC = () => {
                 <ListGroup.Item>
                   <div className="d-grid">
                     <Button
-                      className="cart-button-color"
+                      id="cart-button-proceed"
                       type="button"
                       variant="primary"
                       onClick={checkoutHandler}

@@ -14,6 +14,8 @@ const ProductItem = ({ product }: { product: Product }) => {
     cart: { orderItems },
   } = state;
 
+  console.log("orderItems", orderItems);
+
   const addToCartHandler = (item: OrderItems) => {
     const existItem = orderItems.find((x) => x._id === product._id);
     const quantity = existItem ? existItem.quantity + 1 : 1;
@@ -68,7 +70,7 @@ const ProductItem = ({ product }: { product: Product }) => {
         ) : (
           <Button
             onClick={() => addToCartHandler(convertProductToCartItem(product))}
-            className="product-item-button"
+            id="add-to-cart"
           >
             Add to cart
           </Button>

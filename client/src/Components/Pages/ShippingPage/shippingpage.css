@@ -19,6 +19,23 @@
         background-color: rgb(50, 205, 50)
 }
 
+#shipping-continue-btn {
+    background-color: green;
+    border-radius: 38px;
+}
+
+#shipping-continue-btn:hover {
+    background-color: rgb(50, 205, 50);
+}
+
+#shipping-continue-btn:active {
+    background-color: rgb(50, 205, 50);
+}
+
+.shipping-continue-txt {
+    margin-right: 1rem;
+}
+
 @media(max-width: 992px) {
     .shipping-image-col {
         display: none;

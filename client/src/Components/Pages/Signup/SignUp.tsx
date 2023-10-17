@@ -31,13 +31,11 @@ const SignUp: React.FC = () => {
   const [error, setError] = useState("");
 
   const isPasswordValid = (password: string) => {
-    const passwordPattern = /^(?=.*[@$!%*#_+-~<>?&]).{8,}$/;
+    const passwordPattern = /^(?=.*[@$!%*#_+~<>?&]).{8,}$/;
 
     if (password.length < 8) {
       return "Password must be at least 8 characters long.";
-    }
-
-    if (!passwordPattern.test(password)) {
+    } else if (!passwordPattern.test(password) && password.length > 8) {
       return "Password must include one special character ($, #, &, ?, $ etc)";
     }
 
@@ -87,7 +85,7 @@ const SignUp: React.FC = () => {
       <Row className="mt-5 mb-5">
         <Row>
           <Col xs={12}>
-            <h3 className="login-header">Signup</h3>
+            <h3 className="signup-header">Signup</h3>
           </Col>
         </Row>
 
@@ -95,14 +93,14 @@ const SignUp: React.FC = () => {
           {/* <Row className="mt-3"></Row> */}
 
           <Row className="mt-5">
-            <Col className="login-form-column">
+            <Col className="signup-form-column">
               <div>
-                <Image src={sign_up} className="login-form-img" />
+                <Image src={sign_up} className="signup-form-img" />
               </div>
             </Col>
 
             <Col>
-              <Row className="login-form-row-align">
+              <Row className="signup-form-row-align">
                 <Col xs={12} md={8}>
                   <Form.Text>
                     <p
@@ -114,7 +112,7 @@ const SignUp: React.FC = () => {
                       Signed up already?
                       <NavLink
                         to="../login"
-                        className="form-login-link-txt-decoration"
+                        className="form-signup-link-txt-decoration"
                       >
                         <span
                           style={{
@@ -131,19 +129,22 @@ const SignUp: React.FC = () => {
                 </Col>
               </Row>
 
-              <Row className="login-form-row-align">
+              <Row className="signup-form-row-align">
                 <Col xs={12} md={8}>
                   <p style={{ textAlign: "center" }}>
                     <Button
                       variant="primary"
                       type="submit"
                       size="lg"
-                      className="login-google"
+                      id="signup-google"
                     >
-                      <span className="login-form-icon-btn">
-                        <AiOutlineGoogle size="1.5rem" className="login-icon" />{" "}
+                      <span className="signup-form-icon-btn">
+                        <AiOutlineGoogle
+                          size="1.5rem"
+                          className="signup-icon"
+                        />{" "}
                       </span>{" "}
-                      <span className="login-form-txt-btn">
+                      <span className="signup-form-txt-btn">
                         Continue with Google
                       </span>
                     </Button>
@@ -151,7 +152,7 @@ const SignUp: React.FC = () => {
                 </Col>
               </Row>
 
-              <Row className="login-form-row-align">
+              <Row className="signup-form-row-align">
                 <Col xs={12} md={8}>
                   <Form.Text>
                     <p style={{ textAlign: "center", fontSize: "larger" }}>
@@ -216,14 +217,14 @@ const SignUp: React.FC = () => {
                   <p style={{ color: "red", fontWeight: "bold" }}>{error}</p>
                 )}
 
-                <Row className="login-form-row-align">
+                <Row className="signup-form-row-align">
                   <Col xs={12} md={8} className="mt-3">
                     <Button
                       variant="primary"
                       disabled={isLoading}
                       type="submit"
                       size="lg"
-                      className="form-login-btn"
+                      id="form-signup-btn"
                     >
                       Create my account
                     </Button>
@@ -234,7 +235,7 @@ const SignUp: React.FC = () => {
                   </Col>
                 </Row>
 
-                <Row className="login-form-row-align">
+                <Row className="signup-form-row-align">
                   <Col xs={12} md={8} className="mt-3"></Col>
                 </Row>
               </Form>

@@ -72,6 +72,7 @@ const OrderPage: React.FC = () => {
           <Image src={orderdetails} fluid />
         </Col>
       </Row>
+      <h3 className="order-page-heading mb-3">Order Details</h3>
       {isLoading ? (
         <LoadingBox></LoadingBox>
       ) : error ? (
@@ -81,7 +82,6 @@ const OrderPage: React.FC = () => {
           <Helmet>
             <title>Order Page</title>
           </Helmet>
-          <h3 className="order-page-heading mb-3">Order Details</h3>
 
           <Row>
             <Col md={8}>
