@@ -12,6 +12,17 @@ export type OrderItems = {
     countInStock: number 
 }
 
+
+// export type CartItems = {
+//     _id: string
+//     image: ProductImage
+//     name: string,
+//     quantity: number,
+//     price: number,
+//     countInStock: number 
+// }[]
+
+
 export type DeliveryAddress = {
     fullname: string,
     address: string,

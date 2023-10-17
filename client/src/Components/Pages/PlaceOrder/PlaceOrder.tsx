@@ -145,7 +145,7 @@ const PlaceOrder: React.FC = () => {
                   <div className="d-grid">
                     <Button
                       type="button"
-                      className="place-order-button"
+                      id="place-order-button"
                       onClick={placeOrderHandler}
                       disabled={cart.orderItems.length === 0 || isLoading}
                     >

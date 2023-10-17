@@ -147,7 +147,7 @@ const Login: React.FC = () => {
                       variant="primary"
                       type="submit"
                       size="lg"
-                      className="login-google"
+                      id="login-google"
                       onClick={googleAuthHandler}
                     >
                       <span className="login-form-icon-btn">
@@ -204,7 +204,8 @@ const Login: React.FC = () => {
                   </InputGroup>
                   <Button
                     onClick={togglePasswordVisibility}
-                    className="login-password-button-reveal mt-3"
+                    id="login-password-button-reveal"
+                    className="mt-3"
                     disabled={disableChangePasswordButton() || isLoading}
                   >
                     {" "}
@@ -219,7 +220,7 @@ const Login: React.FC = () => {
                       type="submit"
                       size="lg"
                       disabled={isLoading}
-                      className="form-login-btn"
+                      id="form-login-btn"
                     >
                       Login
                     </Button>

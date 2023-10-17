@@ -14,7 +14,7 @@
     min-height: 100%;
 }
 
-.form-login-btn {
+#form-login-btn {
             background-color: green;
             color: #fff;
             width: 100%;
@@ -22,20 +22,24 @@
         
 }
 
-.form-login-btn:hover {
+#form-login-btn:active {
+    background-color: rgb(50, 205, 50); 
+}
+
+#form-login-btn:hover {
     box-shadow: 0 0 20px rgba(104, 85, 224, 0.2);
         transition: 0.4s;
         background-color: rgb(50, 205, 50)
 }
 
-.form-login-btn:disabled {
+#form-login-btn:disabled {
     background-color: rgb(50, 205, 50);
 }
 .login-form-row-align {
     justify-content: center;
 }
 
-.login-google {
+#login-google {
     background-color: green;
 color:#fff;
 border: none;
@@ -43,26 +47,31 @@ border-radius: 38px;
 padding: 5px 20px;
 font-size: large;
 }
-/* .login-google:hover { 
-    background-color: rgb(241, 113, 96);
-} */
+
+#login-google:active {
+    background-color: rgb(50, 205, 50);
+}
+
+#login-google:hover {
+    background-color: rgb(50, 205, 50);
+}
 
 .login-form-txt-btn {
     margin-left: 20px;    
 } 
 
-.login-password-button-reveal {
+#login-password-button-reveal {
     background-color: green;
     border-radius: 36px;
 }
-.login-password-button-reveal:hover {
+#login-password-button-reveal:hover {
     background-color: rgb(50, 205, 50);
 }
-.login-password-button-reveal:disabled {
+#login-password-button-reveal:disabled {
     background-color: rgb(50, 205, 50);
 }
 
-.login-password-button-reveal:active {
+#login-password-button-reveal:active {
     background-color: rgb(50, 205, 50);
 }
 

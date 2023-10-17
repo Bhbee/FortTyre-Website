@@ -1,14 +1,18 @@
-.product-item-button {
+#add-to-cart {
     background-color: green;
+    border-radius: 38px;
+    color: white;
 }
 
-/* .product-item-button:hover {
-    background-color: rgb(50, 205, 50)
+#add-to-cart:hover {
+    background-color: rgb(50, 205, 50);
+    color: #fff;
 }
 
-.product-item-button:active {
-    background-color: rgb(50, 205, 50)
-} */
+#add-to-cart:active {
+    background-color: rgb(50, 205, 50);
+    color: #fff;
+}
 
 .product-card {
     max-width: 400px;

@@ -24,22 +24,76 @@
     text-align: center;
 }
 
-.cart-button-color {
+#cart-button-color {
     background-color: green;
 }
 
 
-.cart-button-color:hover {
+#cart-button-color:hover {
 background-color: rgb(50, 205, 50)
 }
 
-.cart-button-color:disabled {
+#cart-button-color:disabled {
+    background-color: rgb(50, 205, 50);
+}
+
+#cart-button-color:active {
+background-color: rgb(50, 205, 50)
+}
+
+#cart-button-decrease {
     background-color: green;
 }
 
-.cart-button-color:active {
-background-color: rgb(50, 205, 50)
+#cart-button-decrease:hover {
+background-color: rgb(50, 205, 50);
 }
+
+#cart-button-decrease:disabled {
+background-color: rgb(50, 205, 50);
+}
+
+#cart-button-decrease:active {
+background-color: rgb(50, 205, 50);
+}
+
+#cart-button-remove {
+    background-color: green;
+}
+
+#cart-button-remove:hover {
+    background-color: rgb(50, 205, 50);
+}
+
+#cart-button-remove:active {
+    background-color: rgb(50, 205, 50);
+}
+
+#cart-button-remove:disabled {
+    background-color: rgb(50, 205, 50);
+}
+
+#cart-button-proceed {
+    background-color: green;
+    border-radius: 38px;
+}
+
+#cart-button-proceed:active {
+    background-color: rgb(50, 205, 50);
+}
+
+#cart-button-proceed:hover {
+    background-color: rgb(50, 205, 50);
+}
+
+#cart-button-proceed:disabled {
+    background-color: rgb(50, 205, 50);
+}
+
+
+
+
+
 
 .cart-total-price-color {
     color: green;
@@ -70,8 +124,8 @@ background-color: rgb(50, 205, 50)
     
 }
 
-/* @media(max-width: 992px) {
+@media(max-width: 992px) {
     .cart-img-column {
         display: none;
     }
-} */
+}

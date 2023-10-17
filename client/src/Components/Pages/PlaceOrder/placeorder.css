@@ -26,6 +26,19 @@
     cursor: pointer;
 }
 
-.place-order-button:disabled {
+#place-order-button {
+    background-color: green;
+    border-radius: 38px;
+}
+
+#place-order-button:hover {
+    background-color: rgb(50, 205, 50);
+}
+
+#place-order-button:active {
+    background-color: rgb(50, 205, 50);
+}
+
+#place-order-button:disabled {
     background-color: rgb(50, 205, 50);
 } 

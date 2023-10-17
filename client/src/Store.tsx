@@ -14,26 +14,30 @@ const initialState: AppState = {
   userRegistered: localStorage.getItem("userRegistered")
     ? JSON.parse(localStorage.getItem("userRegistered")!)
     : null,
+
   userAccessToken: localStorage.getItem("userAccessToken")
     ? JSON.parse(localStorage.getItem("userAccessToken")!)
     : null,
+
   mode: localStorage.getItem("mode")
     ? localStorage.getItem("mode")!
     : window.matchMedia &&
       window.matchMedia("(prefers-color-scheme: dark)").matches
     ? "dark"
     : "light",
+
   cart: {
     orderItems: [],
+
     deliveryAddress: localStorage.getItem("deliveryAddress")
       ? JSON.parse(localStorage.getItem("deliveryAddress")!)
       : {},
+
     itemsPrice: 0,
     deliveryPrice: 0,
     totalPrice: 0,
   },
 };
-
 
 type Action =
   | { type: "SWITCH_MODE" }
@@ -114,7 +118,6 @@ function reducer(state: AppState, action: Action): AppState {
       return state;
   }
 }
-
 
 const defaultDispatch: React.Dispatch<Action> = () => initialState;
 

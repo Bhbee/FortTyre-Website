@@ -44,6 +44,8 @@ const Layout: React.FC = () => {
     { name: "Joyraod", id: 5 },
     { name: "Westlake", id: 6 },
     { name: "Risen", id: 7 },
+    { name: "Gladstone", id: 8 },
+    { name: "Cocrea", id: 9 },
   ];
 
   const {
@@ -139,7 +141,7 @@ const Layout: React.FC = () => {
               >
                 <Button
                   variant="outline-success"
-                  className="layout-search-btn"
+                  id="layout-search-btn"
                   onClick={onSubmit}
                 >
                   Search
@@ -190,15 +192,14 @@ const Layout: React.FC = () => {
               <DropdownButton
                 id="dropdown-basic-button"
                 title={`Hi ${userAccessToken.firstName}`}
-                style={{ color: "green", borderRadius: "38px" }}
-                className="btn-primary"
+                // style={{ color: "green", borderRadius: "38px" }}
               >
                 {/* <RiAccountCircleFill className="layout-icon-margin layout-icon" /> */}
                 <Dropdown.Item
                   onClick={logoutHandler}
                   href="#/action-1"
                   drop="down"
-                  className="btn-primary"
+                  id="siginedin-btn"
                 >
                   Logout
                 </Dropdown.Item>
