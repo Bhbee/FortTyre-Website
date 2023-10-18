@@ -1,25 +1,34 @@
 {
   "files": {
-    "main.css": "/static/css/main.d2cdde7b.css",
-    "main.js": "/static/js/main.262149b7.js",
+    "main.css": "/static/css/main.ed63b6ef.css",
+    "main.js": "/static/js/main.3583e311.js",
     "static/js/787.54df3bad.chunk.js": "/static/js/787.54df3bad.chunk.js",
     "static/media/Hero_banner_6.png": "/static/media/Hero_banner_6.5a1ada5ca738a1155164.png",
     "static/media/Hero_Banner_2.png": "/static/media/Hero_Banner_2.23dc9d5df0f004ea7766.png",
-    "static/media/Michelin.png": "/static/media/Michelin.c68e4291619d4ad5426f.png",
     "static/media/latest_deal_img.png": "/static/media/latest_deal_img.1eb9cb427a43a241a51a.png",
+    "static/media/servicing.png": "/static/media/servicing.2c31fcb9271a3a4abd2e.png",
+    "static/media/maintenance.png": "/static/media/maintenance.51746dd7d83be1250dfd.png",
+    "static/media/fitting.png": "/static/media/fitting.f5e4674b89fbd815710a.png",
     "static/media/Hero_Banner_4.png": "/static/media/Hero_Banner_4.ac0e6c73b569658b7cc3.png",
-    "static/media/tyreBrands.png": "/static/media/tyreBrands.8d6f811eda70f7e894d0.png",
+    "static/media/orderdetails.png": "/static/media/orderdetails.d7353312c0227a7691d2.png",
+    "static/media/previeworder.png": "/static/media/previeworder.ea6a6e75c98f718103f3.png",
+    "static/media/logofooter.png": "/static/media/logofooter.1cddf97376d2f84d9895.png",
+    "static/media/cartimg.png": "/static/media/cartimg.d15f579ca14cf50609b5.png",
+    "static/media/shippingimage.png": "/static/media/shippingimage.d5d7eba33ff53272ab5d.png",
     "static/media/login.png": "/static/media/login.f5d9e96c294eea48eb68.png",
     "static/media/sign_up.png": "/static/media/sign_up.1f9df64f8e3de484d5af.png",
+    "static/media/servicing_os.png": "/static/media/servicing_os.002470d0e4629baceb72.png",
     "static/media/freshArrival.jpg": "/static/media/freshArrival.87a52a7a282e85256f94.jpg",
-    "static/media/logo.jpg": "/static/media/logo.7580018debde3f782471.jpg",
+    "static/media/maintenance_os.png": "/static/media/maintenance_os.f08d829928b905c717b0.png",
+    "static/media/fittingimg.png": "/static/media/fittingimg.c115c51bf41ffd4b996e.png",
+    "static/media/pagenotfound.png": "/static/media/pagenotfound.343f2f13fa986f9373cc.png",
     "index.html": "/index.html",
-    "main.d2cdde7b.css.map": "/static/css/main.d2cdde7b.css.map",
-    "main.262149b7.js.map": "/static/js/main.262149b7.js.map",
+    "main.ed63b6ef.css.map": "/static/css/main.ed63b6ef.css.map",
+    "main.3583e311.js.map": "/static/js/main.3583e311.js.map",
     "787.54df3bad.chunk.js.map": "/static/js/787.54df3bad.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.d2cdde7b.css",
-    "static/js/main.262149b7.js"
+    "static/css/main.ed63b6ef.css",
+    "static/js/main.3583e311.js"
   ]
 }
