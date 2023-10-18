@@ -148,13 +148,18 @@ div.dropdown-menu.show {
 }
 
 
-#siginedin-btn { 
+#signedin-btn { 
     background-color: white; 
     border-radius: 38px;
     color: #198754;
     margin-left: 0.5rem;
     width: 5.5rem;
     
+}
+
+#signedin-btn:hover {
+    color: #198754;
+    background-color: white;
 }
 
 /* #siginedin-btn:active {
