@@ -199,7 +199,7 @@ const Layout: React.FC = () => {
                   onClick={logoutHandler}
                   href="#/action-1"
                   drop="down"
-                  id="siginedin-btn"
+                  id="signedin-btn"
                 >
                   Logout
                 </Dropdown.Item>
