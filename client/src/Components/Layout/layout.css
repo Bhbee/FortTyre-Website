@@ -148,7 +148,7 @@ div.dropdown-menu.show {
 }
 
 
-#siginedin-btn { 
+#signedin-btn { 
     background-color: white; 
     border-radius: 38px;
     color: #198754;
@@ -161,7 +161,7 @@ div.dropdown-menu.show {
     background-color: rgb(50, 205, 50);
 } */
 
-#siginedin-btn:hover {
+#signedin-btn:hover {
     color: #fff;
 }
 /* .btn-primary:active {
