@@ -192,14 +192,14 @@ const Layout: React.FC = () => {
               <DropdownButton
                 id="dropdown-basic-button"
                 title={`Hi ${userAccessToken.firstName}`}
-                // style={{ color: "green", borderRadius: "38px" }}
+              
               >
                 {/* <RiAccountCircleFill className="layout-icon-margin layout-icon" /> */}
                 <Dropdown.Item
                   onClick={logoutHandler}
                   href="#/action-1"
                   drop="down"
-                  id="siginedin-btn"
+                  id="signedin-btn"
                 >
                   Logout
                 </Dropdown.Item>
