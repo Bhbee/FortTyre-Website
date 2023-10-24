@@ -59,7 +59,25 @@ const Cart: React.FC = () => {
         <Col md={8}>
           {orderItems.length === 0 ? (
             <MessageBox>
-              Cart is empty. <NavLink to="/products">Go Shopping</NavLink>
+              <h5
+                style={{
+                  backgroundColor: "#C8FFC8",
+                  padding: "1.5rem",
+                  borderRadius: "36px",
+                }}
+              >
+                Cart is empty.{" "}
+                <NavLink
+                  to="/products"
+                  style={{
+                    textDecoration: "none",
+                    color: "green",
+                    fontWeight: "bolder",
+                  }}
+                >
+                  Go Shopping
+                </NavLink>
+              </h5>
             </MessageBox>
           ) : (
             <ListGroup>
@@ -125,6 +143,7 @@ const Cart: React.FC = () => {
             </ListGroup>
           )}
         </Col>
+
         <Col md={4}>
           <Card>
             <Card.Body>
