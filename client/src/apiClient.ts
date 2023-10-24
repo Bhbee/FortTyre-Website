@@ -2,7 +2,7 @@ import axios from "axios";
 import { useGetRefreshTokenQuery } from "./Hooks/refreshToken";
 
 const apiClient = axios.create({
-    baseURL:  "https://forttyreapi.onrender.com",
+    baseURL:  "https://forttyres-api.onrender.com",
     headers : {
         "Content-Type": "application/json",
     }
